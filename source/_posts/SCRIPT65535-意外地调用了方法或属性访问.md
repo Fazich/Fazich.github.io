@@ -3,8 +3,8 @@ type:
   - tags
   - categories
 date: 2016-03-09 22:08:52
-tags: [javascript,ie]
-categories: [前端,debug]
+tags: [debug,ie]
+categories: [js]
 ---
 本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
 

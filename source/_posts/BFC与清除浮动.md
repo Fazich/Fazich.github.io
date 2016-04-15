@@ -3,8 +3,8 @@ type:
   - tags
   - categories
 date: 2016-03-12 00:38:20
-tags: [css]
-categories: [前端]
+tags: [BFC,浮动]
+categories: [css]
 ---
 快投简历了，到时候肯定避免不了要笔试或者面试一些前端题目，所以呢有空把一些基础知识总结下
 

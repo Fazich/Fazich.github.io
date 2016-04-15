@@ -3,8 +3,8 @@ type:
   - tags
   - categories
 date: 2016-02-25 18:47:37
-tags: [前端,meta]
-categories: 前端
+tags: [meta]
+categories: [html]
 ---
 前两天遇到一个问题，把PC的页面整体缩放到pad上，意思如下以：
 
