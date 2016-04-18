@@ -2,7 +2,7 @@ title: 跨域及jsonp
 type:
   - tags
   - categories
-date: 2016-04-08 22:15:23
+date: 2016-04-15 20:15:23
 tags: [跨域,jsonp,CRFS]
 categories: [ajax]
 ---
