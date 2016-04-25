@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>蒙特卡洛树求pi</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">蒙特卡洛树求pi——blog.yangchen123h.cn</a>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="page-header">
+        <h1>蒙特卡洛树算法简介
+            <small>AlphaGo的核心算法</small>
+        </h1>
+    </div>
+    <p>蒙特·卡罗方法（Monte Carlo
+        method），也称统计模拟方法，是二十世纪四十年代中期由于科学技术的发展和电子计算机的发明，而被提出的一种以概率统计理论为指导的一类非常重要的数值计算方法。是指使用随机数（或更常见的伪随机数）来解决很多计算问题的方法。与它对应的是确定性算法。蒙特·卡罗方法在金融工程学，宏观经济学，计算物理学（如粒子输运计算、量子热力学计算、空气动力学计算）等领域应用广泛</p>
+    <p>蒙特卡罗树原理是通过大量随机样本，去了解一个系统，进而逼近所要计算的值。这和微积分的思想很是相近，蒙特卡洛树算法相当简单易懂，很容易实现。对于许多问题来说，它往往是最直接的计算方法。</p>
+    <div class="page-header">
+        <h2>以计算圆周率pi为例</h2>
+    </div>
+    <p>在一个正方形中，随机产生若干个点，计算它们与中心点的距离，从而判断是否落在圆的内部。如果这些点均匀分布，那么圆内的点应该占到所有点的 π/4，因此将这个比值乘以4，就是π的值。</p>
+
+    <div class="page-header">
+        <h2>演示例子</h2>
+    </div>
+
+    <canvas id="circle" width="300" height="300" style="border:1px solid #000"></canvas>
+    <form>
+        <div class="form-group">
+            <label for="time">生成样本时间间隔(毫秒)</label>
+            <input type="number" class="form-control" id="time" placeholder="生成时间间隔(毫秒)">
+        </div>
+        <a id="btn" href="javascript:;" class="btn btn-success">开始计算</a>
+    </form>
+    <p><span>圈外样本：</span><span id="outCount">0</span></p>
+    <p><span>圈内样本：</span><span id="innerCount">0</span></p>
+    <p><span>样本总量：</span><span id="sumCount">0</span></p>
+    <p><span>该样本量下的pi值：</span><span id="pi">0</span></p>
+</div>
+
+<script type="text/javascript">
+    var canvas = document.getElementById('circle');
+    var context = canvas.getContext("2d");
+    var dotContent = {};
+    var dotOutCount = 0;
+    var dotInnerCount = 0;
+
+    function drawCircle() {
+        context.beginPath();
+        context.arc(150, 150, 150, 0, Math.PI * 2, true);
+        context.closePath();
+        context.strokeStyle = '#000';
+        context.stroke();
+    }
+    drawCircle();
+
+    function drawDot() {
+        var x = parseInt(Math.random() * 300, 10);
+        var y = parseInt(Math.random() * 300, 10);
+        context.beginPath();
+        context.arc(x, y, 1, 0, Math.PI * 2, true);
+        context.closePath();
+        //圈内圈外判断
+        if (Math.sqrt(Math.pow(Math.abs(x - 150), 2) + Math.pow(Math.abs(y - 150), 2)) <= 150) {
+            dotInnerCount += 1;
+            document.getElementById('innerCount').innerHTML = dotInnerCount;
+            context.fillStyle = '#5bc0de';//圈内颜色
+        } else {
+            context.fillStyle = '#5cb85c';//圈外颜色
+            dotOutCount += 1;
+            document.getElementById('outCount').innerHTML = dotOutCount;
+        }
+        document.getElementById('sumCount').innerHTML = dotOutCount+dotInnerCount;
+        context.fill();
+        document.getElementById('pi').innerHTML = (dotInnerCount / (dotInnerCount + dotOutCount)) * 4;
+    }
+    $('#btn').bind('click',function(){
+        var time = $('#time').val();
+        if(time === "" || time <=0){
+            alert('请输入正确的时间');
+            return false;
+        }
+        setInterval(function () {
+            drawDot()
+        }, time);
+    })
+
+
+</script>
+</body>
+
+</html>
