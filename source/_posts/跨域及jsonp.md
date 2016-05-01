@@ -73,6 +73,24 @@ function readJson() {
 最后注意下，使用jsonp有个问题就是不知道这个请求是否成功还是失败，因为没有状态码，因此还需要设置个定时器。
 ## 问题
 面试的时候考官问了个问题，就是为什么src能跨域，我的推测就是个w3c的标准，但是没有找到相关的信息，所以有谁知道就请告诉我吧，谢谢啦。
+## 更新
+前两天面试也是问到个关于jsonp的跨域问题，不过这次把我问蒙了，问的是如果用post进行ajax的跨域请求。当时想了一会，设计了个方法答了下，回来后特意查了查，发现完全说的驴唇不对马嘴啊。。所以专门更新写一下post的ajax跨域请求吧。
+### AJAX的post跨域
+在《JavaScript高级程序设计》的第21.4跨源资源共享中，说到了一个方法叫COR(Cross-Origin Resource Sharing)，这里引述下这段解释下
+> CORS（Cross-Origin Resource Sharing，跨源资源共享）是W3C 的一个工作草案，定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通。CORS 背后的基本思想，就是使用自定义的HTTP 头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功，还是应该失败。
+
+get已经能跨域了，为什么还要折腾个post呢？因为get对于数据的请求是有大小限制的，而且不安全，用post就能很好的解决，所以post的跨域也是必不可少的。
+#### CORS的请求过程
+CORS的请求过程与正常的ajax基本一样，不过增加了一个自定义http头部的交流过程，具体过程如下：
+
+1. 前端：发送请求时需要一个Origin头部，其中包含请求页面的源信息（协议、域名和端口），以便服务器根据这个头部信息来决定是否给予相应。一个Origin头部的实例：`Origin:http://www.baidu.com`。这个Origin头部不需要单独设置，请求时自动的就会有。另外注意一点使用CORS时，url路径要写完整的路径，包括协议、域名和端口号等。
+2. 后端：服务器接到这个请求后，如果认为可接受，就在Access-Control-Allow-Origin 头部中回发相同的源信息（如果是公共资源，可以回发"*"）。例如：`Access-Control-Allow-Origin: http://www.baidu.com`。如果没有这个头部，或者有但是源信息不匹配，那么就会驳回。另外请求和响应都没有cookie信息。
+#### 兼容性
+兼容性这块还是爱搞特殊的IE啦。IE8以下都不支持，另外在IE8下要使用CORS需要引入XDR类型，也就是创建一个XDomainRequest示例，而不是XMLHttpRequest示例。最后附以下浏览器兼容性的表吧。
+![CORS兼容性](http://7xr8op.com1.z0.glb.clouddn.com/CORS.png)
+上图来自于[Can I use](http://caniuse.com/)
+
+
 
 
 
