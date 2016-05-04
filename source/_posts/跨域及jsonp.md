@@ -85,6 +85,7 @@ CORS的请求过程与正常的ajax基本一样，不过增加了一个自定义
 
 1. 前端：发送请求时需要一个Origin头部，其中包含请求页面的源信息（协议、域名和端口），以便服务器根据这个头部信息来决定是否给予相应。一个Origin头部的实例：`Origin:http://www.baidu.com`。这个Origin头部不需要单独设置，请求时自动的就会有。另外注意一点使用CORS时，url路径要写完整的路径，包括协议、域名和端口号等。
 2. 后端：服务器接到这个请求后，如果认为可接受，就在Access-Control-Allow-Origin 头部中回发相同的源信息（如果是公共资源，可以回发"*"）。例如：`Access-Control-Allow-Origin: http://www.baidu.com`。如果没有这个头部，或者有但是源信息不匹配，那么就会驳回。另外请求和响应都没有cookie信息。
+
 #### 兼容性
 兼容性这块还是爱搞特殊的IE啦。IE8以下都不支持，另外在IE8下要使用CORS需要引入XDR类型，也就是创建一个XDomainRequest示例，而不是XMLHttpRequest示例。最后附以下浏览器兼容性的表吧。
 ![CORS兼容性](http://7xr8op.com1.z0.glb.clouddn.com/CORS.png)
