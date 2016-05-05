@@ -28,6 +28,7 @@ WAI-ARIA是无障碍开发的一个关键点，它主要解决的就是残障人
 * HTML5已经开始使用ARIA，并且W3C发布的很多其他标准也开始使用ARIA
 * ARIA 是对 HTML 语义化的补充。它具备比现有的HTML元素和属性更完善的表达能力，并让你页面中元素的关系和含义更明确
 * ARIA 规范为浏览器和解析HTML文档的辅助性技术提供了一种可以让人们以多种方式访问和使用Web的标准方法
+
 ## 怎么使用WAI-ARIA
 ARIA主要由两部分组成，分别是：
 
@@ -103,7 +104,7 @@ ARIA主要由两部分组成，分别是：
 | aria-live            | 字符串。可选值有：off,polite,assertive,rude。默认为off, 表示不宣布更新；polite表示只有用户闲时宣布；assertive表示尽快对用户宣布；rude表示即时提醒用户，必要的时候甚至中断用户。            | `<div role="heading" aria-live="assertive" aria-atomic="true">2012年 3月</div>`     | 绝大多数的更新应该在用户闲暇的时候告知，即时提示对用户是一种干扰。如果希望内容完全更新后再提示，可以使用上面提到的aria-busy。左侧的HTML为时间选择控件的年月标题部分，aria-live="assertive"表示的是当用户选择了新的时间的时候，尽快通知用户时间发生了变更。 |
 | aria-multiselectable | 字符串。表示是否可多选。默认为false, 表示一次只能选择一个项。true表示一次可以选择多个项。                                                                                                   |                                                                                   | 例如手风琴展开收起效果，我们可以使用aria-multiselectable来告知辅助设备，一次可以展开多个项还是只有一个展开。                                                                                                                                               |
 
-##参考文章
+## 参考文章
 
 * W3C官方文档:[The Roles Model(role)](https://www.w3.org/TR/wai-aria/roles)
 * W3C官方文档:[Supported States and Properties(aria)](https://www.w3.org/TR/wai-aria/states_and_properties)
