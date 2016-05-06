@@ -37,7 +37,7 @@ ARIA主要由两部分组成，分别是：
 
 举个bootstrap官网的例子吧：
 ```html
-```<a class="btn btn-default dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Dropdown</a>```
+<a class="btn btn-default dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Dropdown</a>
 ```
 这是下来菜单的一段局部代码，在这里面我们就能看到aira在里面的应用，例如`role="button"`代表这个a标签是个按钮，不能当做链接来解读。`aria-haspopup="true"`这个表示点击这个dom元素后，会出现菜单或者是浮动元素。`aria-expanded="true"`表示当前元素是展开的。
 
