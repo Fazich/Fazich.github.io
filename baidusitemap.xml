@@ -4,14 +4,14 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/04/22/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8B%E4%BB%B6%E7%BB%9F%E4%B8%80/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>无障碍开发系列之事件统一</title>
-        <pubTime>2016-04-22T12:41:57.000Z</pubTime>
+        <title>无障碍开发系列之WAI-ARIA</title>
+        <pubTime>2016-05-04T08:49:48.000Z</pubTime>
         
-        <tag>js</tag>
+        <tag>html</tag>
          
          
            
@@ -39,30 +39,6 @@
            
              
               <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/18/JavaScript%E7%9A%84for%E5%BE%AA%E7%8E%AF%E5%86%99%E6%B3%95%E5%8F%8A%E6%95%88%E7%8E%87/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript的for循环写法及效率</title>
-        <pubTime>2016-05-18T12:31:54.000Z</pubTime>
-        
-        <tag>for循环</tag>
-         
-        <tag>效率</tag>
-         
-        <tag>写法</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
           
         </display>
     </data>
@@ -114,22 +90,18 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/09/27/callee%E3%80%81caller%E3%80%81call%E3%80%81apply%E3%80%81bind%E8%BF%99%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E5%AE%9E%E7%94%A8/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/05/18/JavaScript%E7%9A%84for%E5%BE%AA%E7%8E%AF%E5%86%99%E6%B3%95%E5%8F%8A%E6%95%88%E7%8E%87/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>callee、caller、call、apply、bind这些方法的含义和使用</title>
-        <pubTime>2016-09-27T13:09:04.000Z</pubTime>
+        <title>JavaScript的for循环写法及效率</title>
+        <pubTime>2016-05-18T12:31:54.000Z</pubTime>
         
-        <tag>callee</tag>
+        <tag>for循环</tag>
          
-        <tag>caller</tag>
+        <tag>效率</tag>
          
-        <tag>call</tag>
-         
-        <tag>apply</tag>
-         
-        <tag>bind</tag>
+        <tag>写法</tag>
          
          
            
@@ -155,6 +127,34 @@
            
              
               <breadCrumb title="git" url="http://blog.yangchen123h.cn/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/09/27/callee%E3%80%81caller%E3%80%81call%E3%80%81apply%E3%80%81bind%E8%BF%99%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E5%AE%9E%E7%94%A8/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>callee、caller、call、apply、bind这些方法的含义和使用</title>
+        <pubTime>2016-09-27T13:09:04.000Z</pubTime>
+        
+        <tag>callee</tag>
+         
+        <tag>caller</tag>
+         
+        <tag>call</tag>
+         
+        <tag>apply</tag>
+         
+        <tag>bind</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
           
         </display>
     </data>
@@ -229,6 +229,26 @@
 
     
   <url>
+    <loc>http://blog.yangchen123h.cn/2016/04/22/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8B%E4%BB%B6%E7%BB%9F%E4%B8%80/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>无障碍开发系列之事件统一</title>
+        <pubTime>2016-04-22T12:41:57.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+             
+              <breadCrumb title="无障碍" url="http://blog.yangchen123h.cn/categories/%E6%97%A0%E9%9A%9C%E7%A2%8D/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.yangchen123h.cn/2016/03/20/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%8E%E9%93%BA%E5%B9%B3/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
@@ -242,26 +262,6 @@
            
              
               <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>无障碍开发系列之WAI-ARIA</title>
-        <pubTime>2016-05-04T08:49:48.000Z</pubTime>
-        
-        <tag>html</tag>
-         
-         
-           
-             
-              <breadCrumb title="无障碍" url="http://blog.yangchen123h.cn/categories/%E6%97%A0%E9%9A%9C%E7%A2%8D/"/>
           
         </display>
     </data>
@@ -315,16 +315,18 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/04/22/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E7%84%A6%E7%82%B9%E7%AE%A1%E7%90%86/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/05/06/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E5%BC%80%E5%8F%91%E5%BB%BA%E8%AE%AE/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>无障碍开发系列之焦点管理</title>
-        <pubTime>2016-04-22T11:06:56.000Z</pubTime>
+        <title>无障碍开发系列之开发建议</title>
+        <pubTime>2016-05-06T06:01:03.000Z</pubTime>
         
         <tag>html</tag>
          
         <tag>js</tag>
+         
+        <tag>css</tag>
          
          
            
@@ -337,16 +339,16 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/04/18/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E9%9A%90%E8%97%8F%E5%86%85%E5%AE%B9%E8%AE%BF%E9%97%AE/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/04/22/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E7%84%A6%E7%82%B9%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>无障碍开发系列之隐藏内容访问</title>
-        <pubTime>2016-04-18T08:38:06.000Z</pubTime>
+        <title>无障碍开发系列之焦点管理</title>
+        <pubTime>2016-04-22T11:06:56.000Z</pubTime>
         
         <tag>html</tag>
          
-        <tag>css</tag>
+        <tag>js</tag>
          
          
            
@@ -379,16 +381,14 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/06/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E5%BC%80%E5%8F%91%E5%BB%BA%E8%AE%AE/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/04/18/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E9%9A%90%E8%97%8F%E5%86%85%E5%AE%B9%E8%AE%BF%E9%97%AE/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>无障碍开发系列之开发建议</title>
-        <pubTime>2016-05-06T06:01:03.000Z</pubTime>
+        <title>无障碍开发系列之隐藏内容访问</title>
+        <pubTime>2016-04-18T08:38:06.000Z</pubTime>
         
         <tag>html</tag>
-         
-        <tag>js</tag>
          
         <tag>css</tag>
          
