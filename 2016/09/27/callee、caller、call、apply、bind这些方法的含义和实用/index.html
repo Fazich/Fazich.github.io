@@ -1,0 +1,737 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="callee,caller,call,apply,bind," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在学校时间比较充裕，所以利用这段时间好好回顾下了js的基础。这回说下这五个函数属性方法，它们分别是：callee、caller、call、apply、bind这5个方法在刚学js的时候一直理解不透，在实际的开发中也一直避免使用这5个方法，原因嘛当然很简单，那就是不理解，怕埋坑。
+Function类型在讲这5个方法之前，首先先讲一下储备知识，能更加方便的理解这5个方法。众所周知js的数据类型有两大类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="callee、caller、call、apply、bind这些方法的含义和使用">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="在学校时间比较充裕，所以利用这段时间好好回顾下了js的基础。这回说下这五个函数属性方法，它们分别是：callee、caller、call、apply、bind这5个方法在刚学js的时候一直理解不透，在实际的开发中也一直避免使用这5个方法，原因嘛当然很简单，那就是不理解，怕埋坑。
+Function类型在讲这5个方法之前，首先先讲一下储备知识，能更加方便的理解这5个方法。众所周知js的数据类型有两大类">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/callee.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/callee2.png">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="callee、caller、call、apply、bind这些方法的含义和使用">
+<meta name="twitter:description" content="在学校时间比较充裕，所以利用这段时间好好回顾下了js的基础。这回说下这五个函数属性方法，它们分别是：callee、caller、call、apply、bind这5个方法在刚学js的时候一直理解不透，在实际的开发中也一直避免使用这5个方法，原因嘛当然很简单，那就是不理解，怕埋坑。
+Function类型在讲这5个方法之前，首先先讲一下储备知识，能更加方便的理解这5个方法。众所周知js的数据类型有两大类">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/callee.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> callee、caller、call、apply、bind这些方法的含义和使用 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                callee、caller、call、apply、bind这些方法的含义和使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T21:09:04+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学校时间比较充裕，所以利用这段时间好好回顾下了js的基础。这回说下这五个函数属性方法，它们分别是：callee、caller、call、apply、bind<br>这5个方法在刚学js的时候一直理解不透，在实际的开发中也一直避免使用这5个方法，原因嘛当然很简单，那就是不理解，怕埋坑。</p>
+<h2 id="Function类型"><a href="#Function类型" class="headerlink" title="Function类型"></a>Function类型</h2><p>在讲这5个方法之前，首先先讲一下储备知识，能更加方便的理解这5个方法。<br>众所周知js的数据类型有两大类型，它们分别是基本类型和引用类型。基本类型就是那5个基本的js数据类型：string、number、boolean、null、undefined。对于这5个基本数据类型可以用typeof来进行判断。<br>引用类型说的通俗点就是用typeof不能区分的，也就是object。对于Array、RegExp、Function等等这些都是引用类型。<br>说这些有什么用呢？那是因为<strong>由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。</strong>举个例子:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> num+<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> num+<span class="number">200</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> result = add(<span class="number">100</span>) <span class="comment">//300</span></div></pre></td></tr></table></figure></p>
+<p>为什么是后面覆盖了前面呢？因为一开始函数名add指向的是num+100的函数，后来的又写了一个名为add的函数，因此这个函数名add指向了num+200的函数。其实上面的代码也等同于下面的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> num+<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line">add = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> num+<span class="number">200</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> result = add(<span class="number">100</span>) <span class="comment">//300</span></div></pre></td></tr></table></figure></p>
+<p>这也js没有重载的原因所在。</p>
+<h2 id="callee-caller"><a href="#callee-caller" class="headerlink" title="callee,caller"></a>callee,caller</h2><p>上面那5个方法可以大体分为两类，一类是callee,caller，另一类是call,apply,bind。先从callee,caller开始。</p>
+<h3 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h3><p>首先从一个斐波那契数列开始<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">return</span> num*factorial(num<span class="number">-1</span>)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这么看很完美，但是有一个问题就是递归的时候函数的执行与函数名紧紧的耦合在一起了，例如:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> testFactorial = factorial;</div><div class="line">factorial = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line">testFactorial(<span class="number">5</span>); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<p>之所以是0的原因是factorial这个变量指向了<code>return 0</code>的这个匿名函数，在原来这个函数内部的<code>num*factorial(num-1)</code>会去指向factorial变量新指向的函数，因此就是0。听起来很绕，谨记着函数是对象，函数名是指针的概念看下面的图就能明白了。<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/callee.png" alt="解释图片"><br>接下来我们用callee来对这个斐波那契数列进行解耦，目的很简单让函数里return指向自身，代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(num&lt;=<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> num*<span class="built_in">arguments</span>.callee(num<span class="number">-1</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> testFactorial = factorial;</div><div class="line">factorial = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(testFactorial(<span class="number">5</span>)); <span class="comment">//120</span></div></pre></td></tr></table></figure></p>
+<p>这样以来就解决了刚才的问题，原理如下图所示：<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/callee2.png" alt="解释图片2"><br>那么就可以用一句话来概括callee了，那就是<strong>callee是一个指针，指向拥有这个argument对象的函数</strong></p>
+<h3 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h3><p>caller含义，一句话就是<strong>caller这个属性保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，它的值为null</strong>。还是举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    inner();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(inner.caller);</div><div class="line">&#125;</div><div class="line">outer(); <span class="comment">//显示outer的源代码</span></div></pre></td></tr></table></figure></p>
+<p>因为outer()调用了inner()，所以inner.caller就指向outer()。为了实现松散的耦合也可以把inner.caller换成arguments.callee.caller。</p>
+<h2 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call,apply,bind"></a>call,apply,bind</h2><h3 id="call-apply"><a href="#call-apply" class="headerlink" title="call,apply"></a>call,apply</h3><p>首先是call和apply，这两个完全可以放一块，因为他们的作用完全是一样的，区别也仅在于接受参数的方式不同。apply第二个参数可以是Array的实例，也是一个argument对象，而call方法接收的第二个参数必须逐个列出来。<br>call和apply是改变函数执行的作用域的，说的通俗点就是改变函数体内this的指向。举个例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">'red'</span></div><div class="line"><span class="keyword">var</span> o = &#123;</div><div class="line">	<span class="attr">color</span>:<span class="string">'blue'</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.color+<span class="string">' param:'</span>+color)</div><div class="line">&#125;</div><div class="line">sayColor.call(<span class="built_in">window</span>,<span class="string">'black'</span>); <span class="comment">//red param:black</span></div><div class="line">sayColor.apply(<span class="built_in">window</span>,[<span class="string">'black'</span>]);<span class="comment">//red param:black</span></div><div class="line"></div><div class="line">sayColor.call(o,<span class="string">'black'</span>) <span class="comment">//blue param:black</span></div><div class="line">sayColor.apply(o,[<span class="string">'black'</span>) <span class="comment">//blue param:black</span></div></pre></td></tr></table></figure></p>
+<p>这里面color存在在两个环境里，分别全局环境中和对象o中。使用了call或apply方法后，接收的第一个参数就是改变this的指向，将this指向参数传入的作用域中去，因此输出了不同环境下的color值。<br>使用apply和call的最大好处就是，对象不需要与方法有任何耦合关系。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>bin方法是ECMAscript5定义的一个方法。这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值，还是举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">'red'</span></div><div class="line"><span class="keyword">var</span> o = &#123;</div><div class="line">	<span class="attr">color</span>:<span class="string">'blue'</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> objSayColor = sayColor.bind(o);</div><div class="line">objSayColor(); <span class="comment">//blue</span></div></pre></td></tr></table></figure></p>
+<p>bind方法会创建一个函数实例，因此需要有变量指向这个函数实例。使用bind的好处，除了能够解耦对象和方法外，在全局作用域中调用这个函数，也能够将this指向所对应的环境。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/callee/" rel="tag">#callee</a>
+          
+            <a href="/tags/caller/" rel="tag">#caller</a>
+          
+            <a href="/tags/call/" rel="tag">#call</a>
+          
+            <a href="/tags/apply/" rel="tag">#apply</a>
+          
+            <a href="/tags/bind/" rel="tag">#bind</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/08/react开发思维方式入门/" rel="next" title="react开发思维方式入门">
+                <i class="fa fa-chevron-left"></i> react开发思维方式入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/08/如何判断指定dom元素是否在屏幕内/" rel="prev" title="如何判断指定dom元素是否在屏幕内">
+                如何判断指定dom元素是否在屏幕内 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/"
+     data-title="callee、caller、call、apply、bind这些方法的含义和使用"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/"
+           data-title="callee、caller、call、apply、bind这些方法的含义和使用" data-url="http://blog.yangchen123h.cn/2016/09/27/callee、caller、call、apply、bind这些方法的含义和实用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Function类型"><span class="nav-number">1.</span> <span class="nav-text">Function类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#callee-caller"><span class="nav-number">2.</span> <span class="nav-text">callee,caller</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#callee"><span class="nav-number">2.1.</span> <span class="nav-text">callee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caller"><span class="nav-number">2.2.</span> <span class="nav-text">caller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-apply-bind"><span class="nav-number">3.</span> <span class="nav-text">call,apply,bind</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call-apply"><span class="nav-number">3.1.</span> <span class="nav-text">call,apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">3.2.</span> <span class="nav-text">bind</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

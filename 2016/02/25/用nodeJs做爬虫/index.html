@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Nodejs,爬虫," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="引言提起爬虫，最容易想到的就是python，因为python给人的感觉就是啥都能干，但是之前用python做爬虫的过程还是很不爽的，主要问题来自这么几个方面：第一个是对爬来的网页dom操作上，第二个就是编码的处理，第三就是多线程，所以用python做爬虫其实并不是很爽，有没有更爽的方式呢？当然有那就是node.js！
+Nodejs做爬虫的优劣首先说一下node做爬虫的优势第一个就是他的驱动语言是J">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Nodejs做爬虫">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/02/25/用nodeJs做爬虫/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="引言提起爬虫，最容易想到的就是python，因为python给人的感觉就是啥都能干，但是之前用python做爬虫的过程还是很不爽的，主要问题来自这么几个方面：第一个是对爬来的网页dom操作上，第二个就是编码的处理，第三就是多线程，所以用python做爬虫其实并不是很爽，有没有更爽的方式呢？当然有那就是node.js！
+Nodejs做爬虫的优劣首先说一下node做爬虫的优势第一个就是他的驱动语言是J">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226182051.png-width">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226191031.png-width">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Nodejs做爬虫">
+<meta name="twitter:description" content="引言提起爬虫，最容易想到的就是python，因为python给人的感觉就是啥都能干，但是之前用python做爬虫的过程还是很不爽的，主要问题来自这么几个方面：第一个是对爬来的网页dom操作上，第二个就是编码的处理，第三就是多线程，所以用python做爬虫其实并不是很爽，有没有更爽的方式呢？当然有那就是node.js！
+Nodejs做爬虫的优劣首先说一下node做爬虫的优势第一个就是他的驱动语言是J">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226182051.png-width">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 用Nodejs做爬虫 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用Nodejs做爬虫
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-25T22:56:58+08:00" content="2016-02-25">
+              2016-02-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">Nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/25/用nodeJs做爬虫/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/25/用nodeJs做爬虫/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>提起爬虫，最容易想到的就是python，因为python给人的感觉就是啥都能干，但是之前用python做爬虫的过程还是很不爽的，主要问题来自这么几个方面：第一个是对爬来的网页dom操作上，第二个就是编码的处理，第三就是多线程，所以用python做爬虫其实并不是很爽，有没有更爽的方式呢？当然有那就是node.js！</p>
+<h2 id="Nodejs做爬虫的优劣"><a href="#Nodejs做爬虫的优劣" class="headerlink" title="Nodejs做爬虫的优劣"></a>Nodejs做爬虫的优劣</h2><h3 id="首先说一下node做爬虫的优势"><a href="#首先说一下node做爬虫的优势" class="headerlink" title="首先说一下node做爬虫的优势"></a>首先说一下node做爬虫的优势</h3><p>第一个就是他的驱动语言是JavaScript。JavaScript在nodejs诞生之前是运行在浏览器上的脚本语言，其优势就是对网页上的dom元素进行操作，在网页操作上这是别的语言无法比拟的。</p>
+<p>第二就是nodejs是单线程异步的。听起来很奇怪，单线程怎么能够异步呢？想一下学操作系统的时候，单核cpu为什么能够进行多任务处理？道理也是类似，在操作系统中进程对CPU的占有进行时间切片，每一个进程占有的时间很短，但是所有进程循环很多次，因此看起就像是多个任务在同时处理。js也是一样，js里有事件池，CPU会在事件池循环处理已经响应的事件，未处理完的事件不会放到事件池里，因此不会阻塞后续的操作。在爬虫上这样的优势就是在并发爬取页面上，一个页面未返回不会阻塞后面的页面继续加载，要做到这个不用像python那样需要多线程。</p>
+<h3 id="其次是node的劣势"><a href="#其次是node的劣势" class="headerlink" title="其次是node的劣势"></a>其次是node的劣势</h3><p>首先是异步并发上。处理的好很方便，处理的不好就会很麻烦。例如要爬取10个页面，用node不做异步处理话，那返回的结果可不一定是按1、2、3、4……这个顺序，很可能是随机。解决的办法就是增加一个页面的序列戳，让爬取的数据生成csv文件，然后重新排序。</p>
+<p>第二个是数据处理上的劣势，这点是不如python的，如果只是单纯的爬数据，用node当然很好，但是如果用爬来的数据继续做统计分析，做个回归分析聚类啥的话，那就不能用node一步到底了。</p>
+<h2 id="如何用nodejs做爬虫"><a href="#如何用nodejs做爬虫" class="headerlink" title="如何用nodejs做爬虫"></a>如何用nodejs做爬虫</h2><p>下面就要说一下如何用nodejs做爬虫了</p>
+<h3 id="1、初始化项目文件"><a href="#1、初始化项目文件" class="headerlink" title="1、初始化项目文件"></a>1、初始化项目文件</h3><p>在对应的项目文件夹下执行<code>npm init</code>来初始化一个package.json文件</p>
+<h3 id="2、安装request和cheerio依赖包"><a href="#2、安装request和cheerio依赖包" class="headerlink" title="2、安装request和cheerio依赖包"></a>2、安装request和cheerio依赖包</h3><p>request听起来很熟悉吧，跟python里request功能一样。它的功能就是建立起对目标网页的链接，并返回相应的数据，这个不难理解。</p>
+<p>cheerio的功能是用来操作dom元素的，他可以把request返回来的数据转换成可供dom操作的数据，更重要的cheerio的api跟jquery一样，用$来选取对应的dom结点，是不很方便？对一个前端程序员来说，这比python的什么xpath和beautisoup方便了不知道多少啊哈哈</p>
+<p>安装命令也很简单，分别是<code>npm install request --save</code>和<code>npm install cheerio</code></p>
+<h3 id="3、引入依赖包并使用"><a href="#3、引入依赖包并使用" class="headerlink" title="3、引入依赖包并使用"></a>3、引入依赖包并使用</h3><p>接下来就用request和cherrio写一个爬虫吧！</p>
+<p>首先引入依赖<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">"request"</span>);</div><div class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">"cheerio"</span>);</div></pre></td></tr></table></figure></p>
+<p>接下来就以爬取我们学校的新闻页为例吧，我们学校的新闻页面链接是<a href="http://news.shu.edu.cn/Default.aspx?tabid=446" target="_blank" rel="external">http://news.shu.edu.cn/Default.aspx?tabid=446</a></p>
+<p>然后调用request的接口<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">request(<span class="string">'http://news.shu.edu.cn/Default.aspx?tabid=446'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(err)&#123;</div><div class="line">        <span class="built_in">console</span>.log(err);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(result.body);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>运行一下结果就是这样的</p>
+<p><img src="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226182051.png-width" alt="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226182051.png"></p>
+<p>是不是很激动哈哈，html返回回来了。这样还是不够的，接下就是要处理下返回的数据，并提炼出我们想要获得的信息，这就轮到cheerio登场了</p>
+<p>将request返回的结果传入cheerio中,并获得想要获取的信息，看代码是不是想在写脚本的感觉？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">request(<span class="string">'http://news.shu.edu.cn/Default.aspx?tabid=446'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(err)&#123;</div><div class="line">        <span class="built_in">console</span>.log(err);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> $ = cheerio.load(result.body);</div><div class="line">   $(<span class="string">'a[id^="dnn"]'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index,element</span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log($(element).text());</div><div class="line">   &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>运行下结果如下：</p>
+<p><img src="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226191031.png-width" alt="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160226191031.png"></p>
+<p>这样一个简单的爬虫就完成啦，是不是很简单啊，当然这远远是不够的。</p>
+<h3 id="4、设置请求头"><a href="#4、设置请求头" class="headerlink" title="4、设置请求头"></a>4、设置请求头</h3><p>众所周知，http协议里，建立连接要发送请求头header，对于一些动态网页的爬取有时候需要设置user agent、cookies等等，那么这些设置如何使用呢？<br>具体事例代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> options = &#123;</div><div class="line">    <span class="attr">url</span>: startUrl+<span class="string">'?page=1'</span>,</div><div class="line">    <span class="attr">method</span>: <span class="string">'GET'</span>,</div><div class="line">    <span class="attr">charset</span>: <span class="string">"utf-8"</span>,</div><div class="line">    <span class="attr">headers</span>: &#123;</div><div class="line">        <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36"</span>,</div><div class="line">        <span class="string">"cookie"</span>: cookies</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">request(options,<span class="function"><span class="keyword">function</span>(<span class="params">err,response,body</span>)</span>&#123;</div><div class="line"><span class="comment">//...</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="5并发控制"><a href="#5并发控制" class="headerlink" title="5并发控制"></a>5并发控制</h3><p>爬取一个页面还好，要是页面多了就是无限制并发了，那肯定就要被封了，所以就要有一个并发控制，这里要介绍的就是async。跟上述一样要通过<code>npm install async --save</code>来安装并通过<code>var async = require(&quot;async&quot;)</code>来引入。</p>
+<p>具体以一个限制并发的方式来示例一下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span>.mapLimit(<span class="number">5</span>,<span class="function"><span class="keyword">function</span>(<span class="params">url,callback</span>))</span>&#123;</div><div class="line"><span class="comment">//...</span></div><div class="line">fetch(url,callback)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>这里面的5就是限制的并发数量，可以自由发挥，最后千万不要忘了执行完后callback，因为如果没有的话就会阻塞了，async并不知道他限制的函数是否执行完毕，因此不会释放掉。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此呢，Nodejs爬虫的核心就已经介绍完毕了，剩下就完全可以自由发挥了，最后附上一个自己做的简单的新浪微博的爬虫吧<a href="https://github.com/Fazich/nodeSpider" target="_blank" rel="external">https://github.com/Fazich/nodeSpider</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nodejs/" rel="tag">#Nodejs</a>
+          
+            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/25/页面整体缩放与viewport/" rel="next" title="页面整体缩放">
+                <i class="fa fa-chevron-left"></i> 页面整体缩放
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/" rel="prev" title="SCRIPT65535:意外地调用了方法或属性访问">
+                SCRIPT65535:意外地调用了方法或属性访问 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/02/25/用nodeJs做爬虫/"
+     data-title="用Nodejs做爬虫"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/02/25/用nodeJs做爬虫/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/25/用nodeJs做爬虫/"
+           data-title="用Nodejs做爬虫" data-url="http://blog.yangchen123h.cn/2016/02/25/用nodeJs做爬虫/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nodejs做爬虫的优劣"><span class="nav-number">2.</span> <span class="nav-text">Nodejs做爬虫的优劣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先说一下node做爬虫的优势"><span class="nav-number">2.1.</span> <span class="nav-text">首先说一下node做爬虫的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其次是node的劣势"><span class="nav-number">2.2.</span> <span class="nav-text">其次是node的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何用nodejs做爬虫"><span class="nav-number">3.</span> <span class="nav-text">如何用nodejs做爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、初始化项目文件"><span class="nav-number">3.1.</span> <span class="nav-text">1、初始化项目文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、安装request和cheerio依赖包"><span class="nav-number">3.2.</span> <span class="nav-text">2、安装request和cheerio依赖包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、引入依赖包并使用"><span class="nav-number">3.3.</span> <span class="nav-text">3、引入依赖包并使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、设置请求头"><span class="nav-number">3.4.</span> <span class="nav-text">4、设置请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5并发控制"><span class="nav-number">3.5.</span> <span class="nav-text">5并发控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

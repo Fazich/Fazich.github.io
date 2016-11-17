@@ -1,0 +1,1082 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="趁着今晚有空把我挖的无障碍开发系列这个坑填了。
+WAI-ARIA是无障碍开发的一个关键点，它主要解决的就是残障人士无障碍的访问页面的问题。
+回到第一篇文章无障碍开发系列之隐藏内容访问里面提到的一些问题，例如：
+
+
+对于一些模拟标签，例如用a标签写button，如何让读屏器读出这是button而不是链接。
+如何让盲人朋友知道焦点所在的区域是导航栏还是表单区域。
+
+
+这里面主要的用到的就是WAI-AR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无障碍开发系列之WAI-ARIA">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/05/04/无障碍开发系列之WAI-ARIA/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="趁着今晚有空把我挖的无障碍开发系列这个坑填了。
+WAI-ARIA是无障碍开发的一个关键点，它主要解决的就是残障人士无障碍的访问页面的问题。
+回到第一篇文章无障碍开发系列之隐藏内容访问里面提到的一些问题，例如：
+
+
+对于一些模拟标签，例如用a标签写button，如何让读屏器读出这是button而不是链接。
+如何让盲人朋友知道焦点所在的区域是导航栏还是表单区域。
+
+
+这里面主要的用到的就是WAI-AR">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无障碍开发系列之WAI-ARIA">
+<meta name="twitter:description" content="趁着今晚有空把我挖的无障碍开发系列这个坑填了。
+WAI-ARIA是无障碍开发的一个关键点，它主要解决的就是残障人士无障碍的访问页面的问题。
+回到第一篇文章无障碍开发系列之隐藏内容访问里面提到的一些问题，例如：
+
+
+对于一些模拟标签，例如用a标签写button，如何让读屏器读出这是button而不是链接。
+如何让盲人朋友知道焦点所在的区域是导航栏还是表单区域。
+
+
+这里面主要的用到的就是WAI-AR">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 无障碍开发系列之WAI-ARIA | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                无障碍开发系列之WAI-ARIA
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-04T16:49:48+08:00" content="2016-05-04">
+              2016-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/无障碍/" itemprop="url" rel="index">
+                    <span itemprop="name">无障碍</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/04/无障碍开发系列之WAI-ARIA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/无障碍开发系列之WAI-ARIA/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>趁着今晚有空把我挖的无障碍开发系列这个坑填了。</p>
+<p>WAI-ARIA是无障碍开发的一个关键点，它主要解决的就是残障人士无障碍的访问页面的问题。</p>
+<p>回到第一篇文章<a href="http://blog.yangchen123h.cn/2016/04/18/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E9%9A%90%E8%97%8F%E5%86%85%E5%AE%B9%E8%AE%BF%E9%97%AE/">无障碍开发系列之隐藏内容访问</a>里面提到的一些问题，例如：</p>
+<blockquote>
+<ol>
+<li>对于一些模拟标签，例如用a标签写button，如何让读屏器读出这是button而不是链接。</li>
+<li>如何让盲人朋友知道焦点所在的区域是导航栏还是表单区域。</li>
+</ol>
+</blockquote>
+<p>这里面主要的用到的就是WAI-ARIA，所以呢，知道有多重要了吧。</p>
+<h2 id="什么是WAI-ARIA"><a href="#什么是WAI-ARIA" class="headerlink" title="什么是WAI-ARIA"></a>什么是WAI-ARIA</h2><p>引自下百度百科的定义</p>
+<blockquote>
+<p>WAI-ARIA, 是Web Accessibility Initiative - Accessible Rich Internet Applications 的缩写，指无障碍网页应用技术。她主要解决的一个问题：让残障人士能无障碍地访问网页上的动态内容。</p>
+</blockquote>
+<p>值得一提的是ARIA可不是小众，它是W3C的一个标准且一直都在更新，对于IE8+和几乎全部的主流浏览器都做到了良好的支持，而且一些注重体验的网站，对于WAI-ARIA更是普遍。</p>
+<p>概括性的描述下就是</p>
+<ul>
+<li>ARIA是W3C的一个独立规范，帮助Web应用程序和Web页面变得更具可访问性</li>
+<li>ARIA主要是为了提升网页的可用性，网页对残疾人士的无障碍化</li>
+<li>HTML5已经开始使用ARIA，并且W3C发布的很多其他标准也开始使用ARIA</li>
+<li>ARIA 是对 HTML 语义化的补充。它具备比现有的HTML元素和属性更完善的表达能力，并让你页面中元素的关系和含义更明确</li>
+<li>ARIA 规范为浏览器和解析HTML文档的辅助性技术提供了一种可以让人们以多种方式访问和使用Web的标准方法</li>
+</ul>
+<h2 id="怎么使用WAI-ARIA"><a href="#怎么使用WAI-ARIA" class="headerlink" title="怎么使用WAI-ARIA"></a>怎么使用WAI-ARIA</h2><p>ARIA主要由两部分组成，分别是：</p>
+<ol>
+<li><code>role</code>(角色)，标示这个dom元素是做什么用的</li>
+<li><code>aria-</code>属性描述了与之有关的事物（特征）及其是什么样的（状态）</li>
+</ol>
+<p>举个bootstrap官网的例子吧：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn btn-default dropdown-toggle"</span> <span class="attr">role</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"dropdownMenu1"</span> <span class="attr">data-toggle</span>=<span class="string">"dropdown"</span> <span class="attr">aria-haspopup</span>=<span class="string">"true"</span> <span class="attr">aria-expanded</span>=<span class="string">"true"</span>&gt;</span>Dropdown<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这是下来菜单的一段局部代码，在这里面我们就能看到aira在里面的应用，例如<code>role=&quot;button&quot;</code>代表这个a标签是个按钮，不能当做链接来解读。<code>aria-haspopup=&quot;true&quot;</code>这个表示点击这个dom元素后，会出现菜单或者是浮动元素。<code>aria-expanded=&quot;true&quot;</code>表示当前元素是展开的。</p>
+<p>通过WAI-ARIA的标记，页面的无障碍可访问性就会大大增强，读屏器也能够充分的理解页面想要表达的内容，而且使用起来也很方便。</p>
+<h2 id="role属性"><a href="#role属性" class="headerlink" title="role属性"></a>role属性</h2><table>
+<thead>
+<tr>
+<th>role属性</th>
+<th style="text-align:center">含义</th>
+<th>HTML示意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alert</td>
+<td style="text-align:center">表示警告</td>
+<td><code>&lt;div class=&quot;alert alert-warning&quot;   role=&quot;alert&quot;&gt;...&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>dialog</td>
+<td style="text-align:center">表示Modal弹出窗</td>
+<td><code>&lt;div class=&quot;modal&quot; tabindex=&quot;-1&quot;   role=&quot;dialog&quot;&gt;...&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>presentation</td>
+<td style="text-align:center">表示描述</td>
+<td><code>&lt;h1 role=&quot;presentation&quot;&gt;text&lt;/h1&gt;</code></td>
+</tr>
+<tr>
+<td>application</td>
+<td style="text-align:center">表示应用</td>
+<td><code>&lt;div class=&quot;application&quot; role=&quot;application&quot;&gt;...&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>button</td>
+<td style="text-align:center">表示按钮</td>
+<td><code>&lt;span class=&quot;btn&quot; role=&quot;button&quot;&gt;&lt;/span&gt;</code></td>
+</tr>
+<tr>
+<td>checkbox</td>
+<td style="text-align:center">表示复选框</td>
+<td><code>&lt;div class=&quot;checkbox&quot; role=&quot;checkbox&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>radio</td>
+<td style="text-align:center">表示单选按钮</td>
+<td><code>&lt;div class=&quot;radio&quot; role=&quot;radio&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>combobox</td>
+<td style="text-align:center">表示表单控件</td>
+<td><code>&lt;input type=&quot;text&quot; role=&quot;combobox&quot; &gt;</code></td>
+</tr>
+<tr>
+<td>grid</td>
+<td style="text-align:center">表示网格</td>
+<td><code>&lt;div aria-readonly=&quot;true&quot; role=&quot;grid&quot;&gt;&lt;table role=&quot;presentation&quot;&gt;&lt;/table&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>gridcell</td>
+<td style="text-align:center">网格单元格</td>
+<td><code>&lt;tr role=&quot;row&quot;&gt;&lt;td role=&quot;gridcell&quot;&gt;Fido&lt;/td&gt;&lt;/tr&gt;</code></td>
+</tr>
+<tr>
+<td>group</td>
+<td style="text-align:center">表示组合并</td>
+<td><code>&lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;First group&quot;&gt;...&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>heading</td>
+<td style="text-align:center">表示标题</td>
+<td><code>&lt;div class=&quot;page-title&quot; role=&quot;heading&quot;   aria-level=&quot;1&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>listbox</td>
+<td style="text-align:center">表示列表框</td>
+<td><code>&lt;ul role=&quot;listbox&quot; aria-expanded=&quot;true&quot;&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr>
+<td>menu</td>
+<td style="text-align:center">表示菜单</td>
+<td><code>&lt;ul role=&quot;menu&quot; aria-hidden=&quot;true&quot;&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr>
+<td>menubar</td>
+<td style="text-align:center">表示菜单栏</td>
+<td><code>&lt;ul role=&quot;menubar&quot;&gt;&lt;li role=&quot;menuitem&quot;&gt;&lt;ul role=&quot;menu&quot;   aria-hidden=&quot;true&quot;&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr>
+<td>menuitem</td>
+<td style="text-align:center">表示菜单项</td>
+<td><code>&lt;ul role=&quot;menubar&quot;&gt;&lt;li role=&quot;menuitem&quot;&gt;&lt;ul role=&quot;menu&quot;   aria-hidden=&quot;true&quot;&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr>
+<td>menuitemcheckbox</td>
+<td style="text-align:center">可复选的菜单项</td>
+<td><code>&lt;ul role=&quot;menu&quot; aria-hidden=&quot;true&quot;&gt;&lt;li role=&quot;menuitemcheckbox&quot;&gt;&lt;/li&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr>
+<td>menuitemradio</td>
+<td style="text-align:center">表示只能单选的菜单项</td>
+<td><code>&lt;ul role=&quot;menu&quot; aria-hidden=&quot;true&quot;&gt;&lt;li role=&quot;menuitemradio&quot;&gt;&lt;/li&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr>
+<td>option</td>
+<td style="text-align:center">表示选项</td>
+<td><code>&lt;ul role=&quot;listbox&quot; aria-expanded=&quot;true&quot;&gt;&lt;li role=&quot;option&quot;&gt;&lt;/li&gt;&lt;/ul&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ARIA属性"><a href="#ARIA属性" class="headerlink" title="ARIA属性"></a>ARIA属性</h2><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>HTML示意</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aria-activedescendant</td>
+<td>字符串(后代元素的id值)</td>
+<td><code>&lt;div class=&quot;toolbar&quot; aira-activedscendant =&quot;button1&quot;&gt;&lt;img src=&quot;btn.png&quot; role=&quot;button&quot; id=&quot;button1&quot;&gt;&lt;/div&gt;</code></td>
+<td>aria-activedescendant属性定义了当工具栏获取焦点时，哪一个工具栏的子控件获取焦点。在这个示例中，id=”button1”的按钮控件先获取焦点</td>
+</tr>
+<tr>
+<td>aria-atomic</td>
+<td>字符串。表示区域内容是否完整播报。值为true和false。值为true时，读屏软件会把整个区域内容都播报出来，如果为false则表示只需要播报修改的部分。</td>
+<td><code>&lt;div role=&quot;heading&quot; aria-live=&quot;assertive&quot; aria-atomic=&quot;true&quot;&gt;&lt;/div&gt;</code></td>
+<td>这里的aria-atomic为true，则表示当时间改变的时候，日期的年月都要完整播报出来，不要只改了月份就播报月份的内容。</td>
+</tr>
+<tr>
+<td>aria-autocomplete</td>
+<td>字符串，表示用户的文本框的自动提示是否提供，可选值有inline、list、both和none</td>
+<td><code>&lt;input type=&quot;text&quot; tabindex=&quot;0&quot; role=&quot;combobox&quot; aria-autocomplete=&quot;inline&quot; aria-owns=&quot;list&quot; /&gt;</code></td>
+<td>aria-autocomplete对应HTML5中的autocomplete属性。如果aria-autocomplete取值为list、inline或both时，元素的autocomplete要设置为on,如果其值为none，则autocomplete取值为off</td>
+</tr>
+<tr>
+<td>aria-busy</td>
+<td>字符串，表示当前区域的忙碌状态。默认为false，表示清除busy状态,取值为true时，表示该区域正在加载；取值为error时，表示该区域验证无效</td>
+<td><code>&lt;ul aria-atomic=&quot;true&quot; aria-busy=&quot;true&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;</code></td>
+<td>如果某个区域内(如这里ul)有多个地方需要修改，需要全部修改完毕再通知使用者的话，就可以先将aria-busy设为true, 等到全部内容更新完毕后再设成false。该属性可以避免辅助工具在区域内容更新完毕前不断即时提醒使用者。</td>
+</tr>
+<tr>
+<td>aria-controls</td>
+<td>字符串，空格分隔的id属性值列表</td>
+<td><code>&lt;h3 aria-controls=&quot;panel1&quot; role=&quot;tab&quot; tabindex=&quot;0&quot;&gt;&lt;/h3&gt;&lt;div id=&quot;panel1&quot; role=&quot;tabpanel&quot;&gt;&lt;/div&gt;</code></td>
+<td>该属性定义了元素间不能通过文档结构决定的关联关系。aria-controls属性主要被role为group,?region, 或widget的元素使用。</td>
+</tr>
+<tr>
+<td>aria-describedby</td>
+<td>字符串，空格分隔的id属性值列表</td>
+<td><code>&lt;ul role=&quot;group&quot;&gt;&lt;li role=&quot;checkbox&quot; aria-checked=&quot;false&quot; aria-describedby=&quot;desc1&quot; tabindex=&quot;0&quot;&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div id=&quot;desc1&quot;&gt;&lt;/div&gt;</code></td>
+<td>同样的，该属性定义了文档结构表现不出来的的元素间的相互关联性。该属性旨在通过标签提供更多用户可能需要的信息。如果指定了不只一个id, 所有元素会合并在一起共同创建一条单独的描述。</td>
+</tr>
+<tr>
+<td>aria-dropeffect</td>
+<td>字符串。表示拖拽效果。可选值有：copy,move,?reference,?execute,?popup,?none, 依次表示：复制，移动，参照，执行，弹出以及没有效果。</td>
+<td></td>
+<td>该属性主要用在拖拽上</td>
+</tr>
+<tr>
+<td>aria-flowto</td>
+<td>字符串，空格分隔的的id值列表</td>
+<td></td>
+<td>如果该属性值对应的是单独的id, 辅助技术会恢复目标元素的阅读；如果对应的是多个id, 则辅助技术会让用户去选择、导航到目标元素。</td>
+</tr>
+<tr>
+<td>aria-grabbed</td>
+<td>字符串。拖拽中元素的捕获状态。可选值有:true,?false,?undefined。默认为undefined，表示元素捕获状态未知。true表示元素可以捕获；false表示不能被捕获。</td>
+<td></td>
+<td>该属性用在拖拽上。类似于HTML5中的draggable属性。</td>
+</tr>
+<tr>
+<td>aira-haspopup</td>
+<td>字符串。true表示点击的时候会出现菜单或是浮动元素；?false表示没有pop-up效果。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>aria-label</td>
+<td>字符串</td>
+<td></td>
+<td>定义一个字符串值标记当前元素。</td>
+</tr>
+<tr>
+<td>aria-labelledby</td>
+<td>字符串，空格分隔的id列表值</td>
+<td><code>&lt;div aria-labelledby=&quot;title&quot; role=&quot;alertdialog&quot;&gt;&lt;h3 id=&quot;title&quot;&gt;&lt;/h3&gt;&lt;/div&gt;</code></td>
+<td>aria-labelledby一般用在区域元素上，对于的id一般为对应的标题或是标签元素的id关系型属性。</td>
+</tr>
+<tr>
+<td>aria-level</td>
+<td>数值，表示等级</td>
+<td><code>&lt;div role=&quot;heading&quot; aria-level=&quot;2&quot;&gt;次标题&lt;/div&gt;</code></td>
+<td>模拟h2标签元素</td>
+</tr>
+<tr>
+<td>aria-live</td>
+<td>字符串。可选值有：off,?polite,assertive,rude。默认为off, 表示不宣布更新；polite表示只有用户闲时宣布；assertive表示尽快对用户宣布；rude表示即时提醒用户，必要的时候甚至中断用户。</td>
+<td><code>&lt;div role=&quot;heading&quot; aria-live=&quot;assertive&quot; aria-atomic=&quot;true&quot;&gt;2012年 3月&lt;/div&gt;</code></td>
+<td>绝大多数的更新应该在用户闲暇的时候告知，即时提示对用户是一种干扰。如果希望内容完全更新后再提示，可以使用上面提到的aria-busy。左侧的HTML为时间选择控件的年月标题部分，aria-live=”assertive”表示的是当用户选择了新的时间的时候，尽快通知用户时间发生了变更。</td>
+</tr>
+<tr>
+<td>aria-multiselectable</td>
+<td>字符串。表示是否可多选。默认为false, 表示一次只能选择一个项。true表示一次可以选择多个项。</td>
+<td></td>
+<td>例如手风琴展开收起效果，我们可以使用aria-multiselectable来告知辅助设备，一次可以展开多个项还是只有一个展开。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ARIA状态值"><a href="#ARIA状态值" class="headerlink" title="ARIA状态值"></a>ARIA状态值</h2><table>
+<thead>
+<tr>
+<th>属性状态</th>
+<th>属性值</th>
+<th>HTML示意</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aria-checked</td>
+<td>字符串。表示检查的状态。true表示元素被选择；false表示元素未被选择；mixed表示元素同时有选择和为选择状态。</td>
+<td><code>&lt;li role=&quot;checkbox&quot; aria-checked=&quot;mixed&quot; tabindex=&quot;0&quot;&gt;&lt;/li&gt;</code></td>
+<td>该属性用来表明用户是否选择了某些项,类似于input type=”checkbox”中的checked</td>
+</tr>
+<tr>
+<td>aria-disabled</td>
+<td>字符串。表禁用状态，true表示当前是非激活状态；false表示清除非激活状态。</td>
+<td><code>&lt;div role=&quot;button&quot; tabindex=&quot;0&quot; aria-pressed=&quot;false&quot; aria-disabled=&quot;false&quot;&gt;&lt;/div&gt;</code></td>
+<td>对应单复选框等控件的disabled属性，一般用在自定义模拟控件中</td>
+</tr>
+<tr>
+<td>aria-expanded</td>
+<td>字符串。表示展开状态。默认为undefined, 表示当前展开状态未知。其它可选值：true表示元素是展开的；false表示元素不是展开的。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>aria-hidden</td>
+<td>字符串。可选值为true和false,true表示元素隐藏(不可见)，false表示元素可见。</td>
+<td><code>&lt;div aria-hidden=&quot;false&quot;&gt;&lt;/div&gt;</code></td>
+<td>该属性使用非常普遍。几乎所有涉及到显示与隐藏这类交互或没有交互的地方都可以应用该属性。左边的示例HTML代码来自进度条进度值显示的div, 当前aria-hidden为false, 表示该进度值是可见的。</td>
+</tr>
+<tr>
+<td>aria-invalid</td>
+<td>字符串。表示元素值是否错误的。默认为false, 表示是OK的，如果为true, 则表示值验证不通过。</td>
+<td><code>&lt;input type=&quot;text&quot; size=&quot;3&quot; aria-labelledby=&quot;valid&quot; aria-invalid=&quot;false&quot; /&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>aria-pressed</td>
+<td>字符串。表示按下的状态，可选值有：true,false,mixed,undfined。默认为undfined, 表示按下状态未知；true表示元素往下（按钮按下）；false表示元素抬起；mixed表示元素同时有按下和没有按下的状态。</td>
+<td><code>&lt;div role=&quot;button&quot; tabindex=&quot;0&quot; aria-pressed=&quot;false&quot; aria-disabled=&quot;false&quot;&gt;&lt;/div&gt;</code></td>
+<td>左边HTML表示按钮已经按下，同时处于禁用状态。</td>
+</tr>
+<tr>
+<td>aria-selected</td>
+<td>字符串。表示选择状态。可选值有：true,false,undefined。 默认为undefined，表示元素选择状态未知。true表示元素已选择；false表示未被选中。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>aria-flowto</td>
+<td>字符串，空格分隔的的id值列表</td>
+<td></td>
+<td>如果该属性值对应的是单独的id, 辅助技术会恢复目标元素的阅读；如果对应的是多个id, 则辅助技术会让用户去选择、导航到目标元素。</td>
+</tr>
+<tr>
+<td>aria-grabbed</td>
+<td>字符串。拖拽中元素的捕获状态。可选值有:true,false,undefined。默认为undefined，表示元素捕获状态未知。true表示元素可以捕获；false表示不能被捕获。</td>
+<td></td>
+<td>该属性用在拖拽上。类似于HTML5中的draggable属性。</td>
+</tr>
+<tr>
+<td>aira-haspopup</td>
+<td>字符串。true表示点击的时候会出现菜单或是浮动元素；false表示没有pop-up效果。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>aria-label</td>
+<td>字符串</td>
+<td></td>
+<td>定义一个字符串值标记当前元素。</td>
+</tr>
+<tr>
+<td>aria-labelledby</td>
+<td>字符串，空格分隔的id列表值</td>
+<td><code>&lt;div aria-labelledby=&quot;title&quot; role=&quot;alertdialog&quot;&gt;&lt;h3 id=&quot;title&quot;&gt;&lt;/h3&gt;&lt;/div&gt;</code></td>
+<td>aria-labelledby一般用在区域元素上，对于的id一般为对应的标题或是标签元素的id关系型属性。</td>
+</tr>
+<tr>
+<td>aria-level</td>
+<td>数值，表示等级</td>
+<td><code>&lt;div role=&quot;heading&quot; aria-level=&quot;2&quot;&gt;次标题&lt;/div&gt;</code></td>
+<td>模拟h2标签元素</td>
+</tr>
+<tr>
+<td>aria-live</td>
+<td>字符串。可选值有：off,polite,assertive,rude。默认为off, 表示不宣布更新；polite表示只有用户闲时宣布；assertive表示尽快对用户宣布；rude表示即时提醒用户，必要的时候甚至中断用户。</td>
+<td><code>&lt;div role=&quot;heading&quot; aria-live=&quot;assertive&quot; aria-atomic=&quot;true&quot;&gt;2012年 3月&lt;/div&gt;</code></td>
+<td>绝大多数的更新应该在用户闲暇的时候告知，即时提示对用户是一种干扰。如果希望内容完全更新后再提示，可以使用上面提到的aria-busy。左侧的HTML为时间选择控件的年月标题部分，aria-live=”assertive”表示的是当用户选择了新的时间的时候，尽快通知用户时间发生了变更。</td>
+</tr>
+<tr>
+<td>aria-multiselectable</td>
+<td>字符串。表示是否可多选。默认为false, 表示一次只能选择一个项。true表示一次可以选择多个项。</td>
+<td></td>
+<td>例如手风琴展开收起效果，我们可以使用aria-multiselectable来告知辅助设备，一次可以展开多个项还是只有一个展开。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li>W3C官方文档:<a href="https://www.w3.org/TR/wai-aria/roles" target="_blank" rel="external">The Roles Model(role)</a></li>
+<li>W3C官方文档:<a href="https://www.w3.org/TR/wai-aria/states_and_properties" target="_blank" rel="external">Supported States and Properties(aria)</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2012/03/wai-aria-%E6%97%A0%E9%9A%9C%E7%A2%8D%E9%98%85%E8%AF%BB/" target="_blank" rel="external">WAI-ARIA无障碍网页应用属性完全展示</a></li>
+<li><a href="http://www.w3cplus.com/wai-aria/wai-aria.html" target="_blank" rel="external">WAI-ARIA 无障碍Web规范</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/22/无障碍开发系列之事件统一/" rel="next" title="无障碍开发系列之事件统一">
+                <i class="fa fa-chevron-left"></i> 无障碍开发系列之事件统一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/05/无障碍开发系列之准则及评级/" rel="prev" title="无障碍开发系列之准则及评级">
+                无障碍开发系列之准则及评级 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/04/无障碍开发系列之WAI-ARIA/"
+     data-title="无障碍开发系列之WAI-ARIA"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/05/04/无障碍开发系列之WAI-ARIA/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/04/无障碍开发系列之WAI-ARIA/"
+           data-title="无障碍开发系列之WAI-ARIA" data-url="http://blog.yangchen123h.cn/2016/05/04/无障碍开发系列之WAI-ARIA/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是WAI-ARIA"><span class="nav-number">1.</span> <span class="nav-text">什么是WAI-ARIA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么使用WAI-ARIA"><span class="nav-number">2.</span> <span class="nav-text">怎么使用WAI-ARIA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role属性"><span class="nav-number">3.</span> <span class="nav-text">role属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARIA属性"><span class="nav-number">4.</span> <span class="nav-text">ARIA属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARIA状态值"><span class="nav-number">5.</span> <span class="nav-text">ARIA状态值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

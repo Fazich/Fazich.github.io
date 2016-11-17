@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html,js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说着之前先推荐两个网站来体验下无障碍操作，一个是美联航，另一个是汉莎航空。打开这两个网站后，用tab键操作下，就能感受到流畅的无障碍操作，这里面的一个关键接下来要说的焦点管理。
+使元素可获得焦点在正常情况，只有a标签、button以及input标签可以获得焦点，其他元素例如div、span等等是无法用是tab键获得焦点的。那么怎么样才能获得焦点呢？
+方法就是：为标签属性中加入tabindex
+例如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无障碍开发系列之焦点管理">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/04/22/无障碍开发系列之焦点管理/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="说着之前先推荐两个网站来体验下无障碍操作，一个是美联航，另一个是汉莎航空。打开这两个网站后，用tab键操作下，就能感受到流畅的无障碍操作，这里面的一个关键接下来要说的焦点管理。
+使元素可获得焦点在正常情况，只有a标签、button以及input标签可以获得焦点，其他元素例如div、span等等是无法用是tab键获得焦点的。那么怎么样才能获得焦点呢？
+方法就是：为标签属性中加入tabindex
+例如">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无障碍开发系列之焦点管理">
+<meta name="twitter:description" content="说着之前先推荐两个网站来体验下无障碍操作，一个是美联航，另一个是汉莎航空。打开这两个网站后，用tab键操作下，就能感受到流畅的无障碍操作，这里面的一个关键接下来要说的焦点管理。
+使元素可获得焦点在正常情况，只有a标签、button以及input标签可以获得焦点，其他元素例如div、span等等是无法用是tab键获得焦点的。那么怎么样才能获得焦点呢？
+方法就是：为标签属性中加入tabindex
+例如">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 无障碍开发系列之焦点管理 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                无障碍开发系列之焦点管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-22T19:06:56+08:00" content="2016-04-22">
+              2016-04-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/无障碍/" itemprop="url" rel="index">
+                    <span itemprop="name">无障碍</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/22/无障碍开发系列之焦点管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/22/无障碍开发系列之焦点管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>说着之前先推荐两个网站来体验下无障碍操作，一个是<a href="https://www.united.com/ual/zh-cn/cn/?root=1" target="_blank" rel="external">美联航</a>，另一个是<a href="http://www.lufthansa.com/cn/mi/Homepage" target="_blank" rel="external">汉莎航空</a>。打开这两个网站后，用tab键操作下，就能感受到流畅的无障碍操作，这里面的一个关键接下来要说的焦点管理。</p>
+<h2 id="使元素可获得焦点"><a href="#使元素可获得焦点" class="headerlink" title="使元素可获得焦点"></a>使元素可获得焦点</h2><p>在正常情况，只有a标签、button以及input标签可以获得焦点，其他元素例如div、span等等是无法用是tab键获得焦点的。那么怎么样才能获得焦点呢？</p>
+<p>方法就是：<strong>为标签属性中加入tabindex</strong></p>
+<p>例如：<code>&lt;div tabindex=&quot;0&quot;&gt;这是能获得焦点的div&lt;/div&gt;</code></p>
+<p>添加了这个属性后，这个div元素就能够获得焦点了，tabindex的值也是很有讲究的，总的来说有三个状态</p>
+<ol>
+<li>tabindex等于0的时候，这种情况下会按正常的顺序遍历到这个可获得焦点的元素，不会有顺序上的差异</li>
+<li>tabindex大于0时，这种情况下会在遍历完<code>tabindex=&quot;0&quot;</code>的元素后，再去遍历等于1、等于2的……以此类推。</li>
+<li>tabindex等于-1，这种情况使用tab键不会获得这个元素的焦点，但是可以通过js获得，对于需要脚本控制的元素，通常会把值设置为-1</li>
+</ol>
+<h2 id="焦点管理"><a href="#焦点管理" class="headerlink" title="焦点管理"></a>焦点管理</h2><h3 id="焦点返回"><a href="#焦点返回" class="headerlink" title="焦点返回"></a>焦点返回</h3><p>焦点返回是个常用的操作，比如弹出一个模拟的对话框，关闭后焦点需要返回到之前触发的dom元素上，这样才能有一个良好的体验。</p>
+<p>实现这个的一个关键就是使用<code>document.activeElement</code>属性。这个属性始终会引用DOM中当前获得焦点的元素。元素获得焦点的方式有页面加载、用户输入（通常是通过按Tab键）和在代码中调用focus()方法。</p>
+<p>所以在做一个模拟对话框时，可以用<code>document.activeElement</code>记录下触发焦点的元素焦点，然后在返回回去，例如；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> lastfocus = <span class="built_in">document</span>.activeElement;</div><div class="line"><span class="comment">//打开对话框并获得焦点</span></div><div class="line"><span class="keyword">new</span> dialog();</div><div class="line">dialog.show();</div><div class="line">dialog.hide(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	lastfocus.focus();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>浏览器兼容性:IE 4+、Firefox 3+、Safari 4+、Chrome和Opera 8+都支持</p>
+<h3 id="焦点判断"><a href="#焦点判断" class="headerlink" title="焦点判断"></a>焦点判断</h3><p>接下来就是判断用户与页面是否处在交互状态，用到的关键是<code>document.hasFocus()</code>方法。<br>示例代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line">btn.focus();</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.hasFocus());</div></pre></td></tr></table></figure></p>
+<p>注意这个无法判断某个元素是否在获得焦点状态。在一些在线笔试考试中，当页面切换时就会出现提示，告诉你不要再干别的，我猜用到的方法就是这个吧。</p>
+<h3 id="焦点限制"><a href="#焦点限制" class="headerlink" title="焦点限制"></a>焦点限制</h3><p>有时候我们需要对一些对话框做一些无障碍处理。例如对于一个对话框，当不主动关闭的时候，用键盘操作焦点只能在这个对话框里转，不能跳出去，这里用到的就是焦点限制，让焦点限制在这个对话框里。我在开发中对于焦点限制这块处理的并不是很好，用到了很多if判断，这对于性能来说是在是一个不必要的损害。这里介绍个比较不错的方法，引自这篇文章<a href="http://www.topcss.org/?p=590" target="_blank" rel="external">创建无障碍的对话框</a>，这里直接引用下吧。</p>
+<blockquote>
+<p>焦点限制的基本思路是使用事件捕获（event capturing）侦听focus事件，这种方法由Peter-Paul Koch[2]推广，如今已在JavaScript库中广泛使用。由于focus不冒泡（bubble），你无法在事件流的冒泡阶段捕捉到它。相反，你可以通过使用事件捕获方法捕获页面上的所有focus事件。之后，你只需确定获得焦点的元素是否在对话框中。如果没有，则将焦点设置在对话框上。代码是非常简单的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"focus"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> dialog = <span class="built_in">document</span>.getElementById(<span class="string">"my-dialog"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (dialogOpen &amp;&amp; !dialog.contains(event.target)) &#123;</div><div class="line">        event.stopPropagation();</div><div class="line">        dialog.focus();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;, <span class="literal">true</span>);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>PS.这里说个题外话，简单提下这个contains方法，有时候处理点击其他关闭这种事情时，可以用这个方法，就是判断下点击元素是否被对话框包含，如果不包含则关闭，有空专门写下吧。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>焦点管理这块的几个重点要素：创建、返回、判断、限制，就算是大体的说了一下，当然在实际开发中对于焦点的处理远不止这些，但是有了这几个基础，其他的问题处理起来也不是没有思路啦。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://www.topcss.org/?p=608" target="_blank" rel="external">模拟按钮的可访问性</a><br><a href="http://www.topcss.org/?p=590" target="_blank" rel="external">创建无障碍的对话框</a><br><a href="http://www.topcss.org/?p=545" target="_blank" rel="external">[焦点管理]DOCUMENT.ACTIVEELEMENT与模态对话框</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/22/git本地提交未推送又复位到了其他版本怎么办/" rel="next" title="git本地提交未推送又复位到了其他版本怎么办">
+                <i class="fa fa-chevron-left"></i> git本地提交未推送又复位到了其他版本怎么办
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/22/无障碍开发系列之事件统一/" rel="prev" title="无障碍开发系列之事件统一">
+                无障碍开发系列之事件统一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/22/无障碍开发系列之焦点管理/"
+     data-title="无障碍开发系列之焦点管理"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/04/22/无障碍开发系列之焦点管理/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/22/无障碍开发系列之焦点管理/"
+           data-title="无障碍开发系列之焦点管理" data-url="http://blog.yangchen123h.cn/2016/04/22/无障碍开发系列之焦点管理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使元素可获得焦点"><span class="nav-number">1.</span> <span class="nav-text">使元素可获得焦点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#焦点管理"><span class="nav-number">2.</span> <span class="nav-text">焦点管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#焦点返回"><span class="nav-number">2.1.</span> <span class="nav-text">焦点返回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#焦点判断"><span class="nav-number">2.2.</span> <span class="nav-text">焦点判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#焦点限制"><span class="nav-number">2.3.</span> <span class="nav-text">焦点限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

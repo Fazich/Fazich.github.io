@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html,js,css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这将是无障碍开发系列的最后一篇文章，对一些开发中的琐碎点做些总结。
+HTML规范建议html这块的问题大部分是我们开发过程中的不规范导致的，如果规范化的使用HTML标签基本上问题都不大，有些问题还是要说一下
+图片添加替代文本写img标签时一定要加上替代文本，也就是alt属性里内容。它的作用就是焦点到这个图片时，读屏器会读出alt里的内容，这样能让视障朋友理解图片想要表达的信息。例如：&amp;lt;img">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无障碍开发系列之开发建议">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/05/06/无障碍开发系列之开发建议/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="这将是无障碍开发系列的最后一篇文章，对一些开发中的琐碎点做些总结。
+HTML规范建议html这块的问题大部分是我们开发过程中的不规范导致的，如果规范化的使用HTML标签基本上问题都不大，有些问题还是要说一下
+图片添加替代文本写img标签时一定要加上替代文本，也就是alt属性里内容。它的作用就是焦点到这个图片时，读屏器会读出alt里的内容，这样能让视障朋友理解图片想要表达的信息。例如：&amp;lt;img">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D%E6%90%9C%E7%B4%A2%E6%A1%86.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/ARIA%20Landmark%20Roles.gif">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无障碍开发系列之开发建议">
+<meta name="twitter:description" content="这将是无障碍开发系列的最后一篇文章，对一些开发中的琐碎点做些总结。
+HTML规范建议html这块的问题大部分是我们开发过程中的不规范导致的，如果规范化的使用HTML标签基本上问题都不大，有些问题还是要说一下
+图片添加替代文本写img标签时一定要加上替代文本，也就是alt属性里内容。它的作用就是焦点到这个图片时，读屏器会读出alt里的内容，这样能让视障朋友理解图片想要表达的信息。例如：&amp;lt;img">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D%E6%90%9C%E7%B4%A2%E6%A1%86.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 无障碍开发系列之开发建议 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                无障碍开发系列之开发建议
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T14:01:03+08:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/无障碍/" itemprop="url" rel="index">
+                    <span itemprop="name">无障碍</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/06/无障碍开发系列之开发建议/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/06/无障碍开发系列之开发建议/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这将是无障碍开发系列的最后一篇文章，对一些开发中的琐碎点做些总结。</p>
+<h2 id="HTML规范建议"><a href="#HTML规范建议" class="headerlink" title="HTML规范建议"></a>HTML规范建议</h2><p>html这块的问题大部分是我们开发过程中的不规范导致的，如果规范化的使用HTML标签基本上问题都不大，有些问题还是要说一下</p>
+<h3 id="图片添加替代文本"><a href="#图片添加替代文本" class="headerlink" title="图片添加替代文本"></a>图片添加替代文本</h3><p>写img标签时一定要加上替代文本，也就是alt属性里内容。它的作用就是焦点到这个图片时，读屏器会读出alt里的内容，这样能让视障朋友理解图片想要表达的信息。例如：<code>&lt;img src=&quot;../logo.png&quot; alt=&quot;logo&quot;&gt;</code></p>
+<h3 id="使用并正确的使用标题"><a href="#使用并正确的使用标题" class="headerlink" title="使用并正确的使用标题"></a>使用并正确的使用标题</h3><p>标题指的就是h1到h6标签。在写页面的时候，有时为了图方便可能用的不多或者不用标题。这在实际开发中是不正确的，标题是一个网页的基本构成要素，它够了网页信息的层级关系，正确的使用标题能够提高页面的可访问性。例如：<br>h1元素可能包含网页或网站的标题，h2可能表示该网页的标题。这不仅有助于屏幕阅读器用户浏览，而且使页面易于明眼用户阅读。</p>
+<p>在使用标题时要注意一下几个原则：</p>
+<ul>
+<li>每个页面只给一个H1元素（除非你使用HTML5）。</li>
+<li>H1的内容与网页标题相似。</li>
+<li>按顺序使用标题。例如，H1应该是第一个，H4应该在H3之后。</li>
+<li>不要跳级使用标题。举例来说，不要从H2跳至H4。</li>
+</ul>
+<h3 id="表单书写的规范化"><a href="#表单书写的规范化" class="headerlink" title="表单书写的规范化"></a>表单书写的规范化</h3><p>表单的无障碍支持往往是页面无障碍化的一个重点，所以规范化的表单书写规范能够减少很多不必要的麻烦和无用功，在实际开发中，回炉改造及bug中最多的一块也是表单这块。表单这块应注意以下一个方面：</p>
+<ul>
+<li>表单中的元素一定要有label标签，例如：<br><code>&lt;label for=&quot;firstname&quot;&gt;First Name:&lt;/label&gt;
+&lt;input name=&quot;firstname&quot; id=&quot;firstname&quot;type=&quot;text&quot; /&gt;</code></li>
+<li>对于一些其他情况，例如靠图片来传递表单信息的，例如：<img src="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D%E6%90%9C%E7%B4%A2%E6%A1%86.png" alt="搜索框">也要为这个input添加label，并将label用隐藏可访问的形式隐藏起来，这样读屏器在焦点到这个input时仍能解释出来这个输入框是干什么的。隐藏可访问的方法参考<a href="http://blog.yangchen123h.cn/2016/04/18/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E9%9A%90%E8%97%8F%E5%86%85%E5%AE%B9%E8%AE%BF%E9%97%AE/">无障碍开发系列之隐藏内容访问</a></li>
+<li><p>规范化的表单结构<br>即时用的ajax也要在表单外面套上form标签，对于一个域要用fieldset包裹起来，域的标题用legend声明，不想显示出来，可以隐藏起来但不能缺少。另外还有label这也是不能少的，之所以要这么标准是因为读屏器可是要靠这些标签来理解网页，写的越规范越有利于解决读屏器兼容性问题。一个标准化的表单示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"foo.php"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">legend</span>&gt;</span>Name<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"firstname"</span>&gt;</span>First Name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"firstname"</span> <span class="attr">id</span>=<span class="string">"firstname"</span></span></div><div class="line">		<span class="attr">type</span>=<span class="string">"text"</span> /&gt;</div><div class="line">		<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"lastname"</span>&gt;</span>Last Name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"lastname"</span> <span class="attr">id</span>=<span class="string">"lastname"</span> <span class="attr">type</span>=<span class="string">"text"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">legend</span>&gt;</span>Location<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"address"</span>&gt;</span>Address:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"address"</span> <span class="attr">id</span>=<span class="string">"address"</span> <span class="attr">type</span>=</span></div><div class="line">		<span class="string">"text"</span> /&gt;</div><div class="line">		<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"city"</span>&gt;</span>City:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"city"</span> <span class="attr">id</span>=<span class="string">"city"</span> <span class="attr">type</span>=<span class="string">"text"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在很长的下拉列表中，用optgroup元素包裹起来，例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"Swedish Cars"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span> =<span class="string">"volvo"</span>&gt;</span>Volvo<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span> =<span class="string">"saab"</span>&gt;</span>Saab<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"German Cars"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span> =<span class="string">"mercedes"</span>&gt;</span>Mercedes<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span> =<span class="string">"audi"</span>&gt;</span>Audi<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>不推荐隐式表单标记，推荐显示标记</p>
+</li>
+<li>表单要尽可能短。不要问你不需要的信息。</li>
+</ul>
+<h3 id="添加ARIA-Landmark-Roles"><a href="#添加ARIA-Landmark-Roles" class="headerlink" title="添加ARIA Landmark Roles"></a>添加ARIA Landmark Roles</h3><p>利用ARIA Landmark Roles能够让读屏器知道这个元素是干嘛的，提高页面的解析能力，值与这个aira有专门的文章介绍过，可以看一下<a href="http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/">无障碍开发系列之WAI-ARIA</a>示例如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- [header content] --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- [nav content] --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- [main content] --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">role</span>=<span class="string">"c​​ontentinfo"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- [footer content] --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://7xr8op.com1.z0.glb.clouddn.com/ARIA%20Landmark%20Roles.gif" alt="ARIA Landmark Roles"></p>
+<h3 id="使用列表元素"><a href="#使用列表元素" class="headerlink" title="使用列表元素"></a>使用列表元素</h3><p>对于列表信息的展示要使用列表元素，不要使用div堆叠起来，示例如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Burger King<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>Taco Bell<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="规范化使用表格"><a href="#规范化使用表格" class="headerlink" title="规范化使用表格"></a>规范化使用表格</h3><p>规范化的表格使用可不是table下面直接tr、td的这么简单，我们在使用表格的时候往往会忽略很多细节，这些细节在无障碍开发中是不能缺少。例如要添加summary属性声明表格内容和结构；添加caption表格标题；表头元素用th而不是td；如果表头在顶部行，控制下面的单元格，scope的属性值设为col。如果表头在左边列，控制右侧的单元格，则属性值为row。一个标准化的表格如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">summary</span>=<span class="string">"The number of employees and founding years of some</span></span></div><div class="line">imaginary companies."&gt;</div><div class="line">	<span class="tag">&lt;<span class="name">caption</span>&gt;</span>Table 1: Company data<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">"col"</span> <span class="attr">abbr</span>=<span class="string">"Company"</span>&gt;</span>Company Name<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">"col"</span> <span class="attr">abbr</span>=<span class="string">"Employees"</span>&gt;</span>Number of Employees<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">"col"</span> <span class="attr">abbr</span>=<span class="string">"Founded"</span>&gt;</span>Year Founded<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">td</span> <span class="attr">scope</span>=<span class="string">"row"</span>&gt;</span>ACME Inc<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>1947<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">td</span> <span class="attr">scope</span>=<span class="string">"row"</span>&gt;</span>XYZ Corp<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>3000<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>1973<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="功能建议"><a href="#功能建议" class="headerlink" title="功能建议"></a>功能建议</h2><h3 id="所有功能必须键盘可操作。"><a href="#所有功能必须键盘可操作。" class="headerlink" title="所有功能必须键盘可操作。"></a>所有功能必须键盘可操作。</h3><p>这个不用多说了，凡是click事件一定要有对应的键盘事件，有时候还要单独设置键盘事件，这个依据情况自己调整吧</p>
+<h3 id="页面顶部提供一个可以跳过头部导航。"><a href="#页面顶部提供一个可以跳过头部导航。" class="headerlink" title="页面顶部提供一个可以跳过头部导航。"></a>页面顶部提供一个可以跳过头部导航。</h3><p>实现方法：</p>
+<ul>
+<li>将导航放在body元素内，并且是第一个元素，例如：<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;a <span class="built_in">id</span>=<span class="string">"skippy"</span> <span class="built_in">class</span>=<span class="string">"sr-only sr-only-focusable"</span> href=<span class="string">"#content"</span>&gt;</div><div class="line">	&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">		&lt;span <span class="built_in">class</span>=<span class="string">"skiplink-text"</span>&gt;Skip <span class="keyword">to</span> main content&lt;/span&gt;</div><div class="line">	&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/a&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>需要注意以下几点：</p>
+<ul>
+<li>保证所有页面内有对应的跳转元素，例如<code>id=&quot;content&quot;</code>的元素。</li>
+<li><code>id=&quot;content&quot;</code>的元素必须是页面内主要内容所在的容器元素。</li>
+<li><code>id=&quot;content&quot;</code>元素需要加入tabindex属性：</li>
+<li>不要使用<code>display:none</code>将导航设置上隐藏可访问，只有获得焦点时才可以显示，这里可以参考下<a href="http://www.bootcss.com" target="_blank" rel="external">Bootstrap</a>的效果</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这块就先说这么多吧，这块写的不是很全，有些参考文章中提供的建议在开发中没有用到，但并不是说没有用途，后面如果还有无障碍开发的项目，就继续补充下吧。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://www.webhostingsearch.com/articles/25-ways-to-make-your-site-more-accessible.php" target="_blank" rel="external">25 Ways To Make Your Website Accessible</a><br><a href="http://www.topcss.org/?p=305" target="_blank" rel="external">增强网站可访问性的25种方法</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/05/无障碍开发系列之准则及评级/" rel="next" title="无障碍开发系列之准则及评级">
+                <i class="fa fa-chevron-left"></i> 无障碍开发系列之准则及评级
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/09/meta标签整理/" rel="prev" title="meta标签的作用及整理">
+                meta标签的作用及整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/06/无障碍开发系列之开发建议/"
+     data-title="无障碍开发系列之开发建议"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/05/06/无障碍开发系列之开发建议/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/06/无障碍开发系列之开发建议/"
+           data-title="无障碍开发系列之开发建议" data-url="http://blog.yangchen123h.cn/2016/05/06/无障碍开发系列之开发建议/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML规范建议"><span class="nav-number">1.</span> <span class="nav-text">HTML规范建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片添加替代文本"><span class="nav-number">1.1.</span> <span class="nav-text">图片添加替代文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用并正确的使用标题"><span class="nav-number">1.2.</span> <span class="nav-text">使用并正确的使用标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单书写的规范化"><span class="nav-number">1.3.</span> <span class="nav-text">表单书写的规范化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加ARIA-Landmark-Roles"><span class="nav-number">1.4.</span> <span class="nav-text">添加ARIA Landmark Roles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用列表元素"><span class="nav-number">1.5.</span> <span class="nav-text">使用列表元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范化使用表格"><span class="nav-number">1.6.</span> <span class="nav-text">规范化使用表格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能建议"><span class="nav-number">2.</span> <span class="nav-text">功能建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所有功能必须键盘可操作。"><span class="nav-number">2.1.</span> <span class="nav-text">所有功能必须键盘可操作。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面顶部提供一个可以跳过头部导航。"><span class="nav-number">2.2.</span> <span class="nav-text">页面顶部提供一个可以跳过头部导航。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

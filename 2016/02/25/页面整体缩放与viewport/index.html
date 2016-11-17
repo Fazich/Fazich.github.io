@@ -1,0 +1,738 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="meta," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前两天遇到一个问题，把PC的页面整体缩放到pad上，意思如下以：
+在PC下看到的页面：
+期望在移动设备下看到的：
+然而实际的样子是：
+查了查发现其实这还是个挺有意思的问题，所以在此整理下有关页面整体缩放的技术和方法
+1、js方式故名思议，通过脚本来控制html标签的css样式，使其能够整体按比例缩放，这种方式修修bug还好，要是一个复杂页面通过这种方式来控制css显然是本末倒置了，因为css才是控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="页面整体缩放">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/02/25/页面整体缩放与viewport/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="前两天遇到一个问题，把PC的页面整体缩放到pad上，意思如下以：
+在PC下看到的页面：
+期望在移动设备下看到的：
+然而实际的样子是：
+查了查发现其实这还是个挺有意思的问题，所以在此整理下有关页面整体缩放的技术和方法
+1、js方式故名思议，通过脚本来控制html标签的css样式，使其能够整体按比例缩放，这种方式修修bug还好，要是一个复杂页面通过这种方式来控制css显然是本末倒置了，因为css才是控">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87.png-width">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160225192221.png-height">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160225192248.png-height">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="页面整体缩放">
+<meta name="twitter:description" content="前两天遇到一个问题，把PC的页面整体缩放到pad上，意思如下以：
+在PC下看到的页面：
+期望在移动设备下看到的：
+然而实际的样子是：
+查了查发现其实这还是个挺有意思的问题，所以在此整理下有关页面整体缩放的技术和方法
+1、js方式故名思议，通过脚本来控制html标签的css样式，使其能够整体按比例缩放，这种方式修修bug还好，要是一个复杂页面通过这种方式来控制css显然是本末倒置了，因为css才是控">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87.png-width">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 页面整体缩放 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                页面整体缩放
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-25T18:47:37+08:00" content="2016-02-25">
+              2016-02-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/html/" itemprop="url" rel="index">
+                    <span itemprop="name">html</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/25/页面整体缩放与viewport/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/25/页面整体缩放与viewport/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前两天遇到一个问题，把PC的页面整体缩放到pad上，意思如下以：</p>
+<p>在PC下看到的页面：<img src="http://7xr8op.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87.png-width" alt="http://7xr8op.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87.png"></p>
+<p>期望在移动设备下看到的：<img src="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160225192221.png-height" alt="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160225192221.png"></p>
+<p>然而实际的样子是：<img src="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160225192248.png-height" alt="http://7xr8op.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160225192248.png"></p>
+<p>查了查发现其实这还是个挺有意思的问题，所以在此整理下有关页面整体缩放的技术和方法</p>
+<h2 id="1、js方式"><a href="#1、js方式" class="headerlink" title="1、js方式"></a>1、js方式</h2><p>故名思议，通过脚本来控制html标签的css样式，使其能够整体按比例缩放，这种方式修修bug还好，要是一个复杂页面通过这种方式来控制css显然是本末倒置了，因为css才是控制页面样式的啊</p>
+<h2 id="2、在body上加上zoom属性进行控制"><a href="#2、在body上加上zoom属性进行控制" class="headerlink" title="2、在body上加上zoom属性进行控制"></a>2、在body上加上zoom属性进行控制</h2><p>这种方法也不是很可取，使用zoom会倒置页面布局错乱，尤其是float布局时最明显。父标签设定了固定宽度，当使用zoom时，父标签宽度也会改变，如果宽度变小，float的子元素无法容下，那么就会到第二行去了，因此页面也就乱了。</p>
+<h2 id="3、rem方式"><a href="#3、rem方式" class="headerlink" title="3、rem方式"></a>3、rem方式</h2><p>这种方式是用来解决手机屏幕大小不一致时文字无法依据屏幕大小进行适配，可能会出现小屏幕手机文字图片比例刚好，但是到大屏幕手机上比例就失衡了。</p>
+<p>rem通俗点就是以根元素为标准设置元素的尺寸。例如为html标签设置<code>font-size:12px</code>,其下面的一个子元素span标签设置为<code>font-size:1.25rem</code>，那么这个span的font-size就是12*1.25=15px。这么做看起来很麻烦，属性值还需要重新计算一边，但是如果再为html元素的font-size加上响应式就不一样了，如果在大屏幕上，将html下的font-size的值变大，那么凡是以rem为单位的元素都会按比例进行缩放，这样一来就不会出现屏幕大小不同而导致的比例失衡的问题了。</p>
+<h2 id="4、通过meta标签的viewport来改变"><a href="#4、通过meta标签的viewport来改变" class="headerlink" title="4、通过meta标签的viewport来改变"></a>4、通过meta标签的viewport来改变</h2><p>在移动设备上，viewport就是设备的屏幕上能用来显示我们的网页的那一块区域，但viewport又不局限于浏览器可视区域的大小，它可能比浏览器的可视区域要大，也可能比浏览器的可视区域要小。当viewport小于页面大小的时候就会出现横向滚动条，因此通过调整viewport也能实现我们整体缩放页面的目的，但这个方式又与上面不同，上面是改变了css元素，而这个只是改变了视角。换句话说就是，如果你发现一副画很大，一眼看不全，那么就离这幅画远一点，这样你就可以看全了，viewport也是这个道理。<br>那么要怎么修改能够实现呢?在移动页面上我们都能看到这个标签</p>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt;</code><br>解释下就是我们的viewport宽度为设备宽度，初始缩放百分比为1，最大缩放百分比为1，用户不能进行页面的缩放<br>这样的方式通过移动设备打开pc页面就会只能看到局部并出现横向滚动条，如果想要实现看到全部的页面，也就是站远点看到全部的画，那么要做的就是把<code>initial-scale=1.0</code>这个值干掉，这样就不是按初始缩放1:1打开这个页面而是看到全部页面的视角打开，接着就是把<code>user-scalable=0</code>干掉，使用户能够自行缩放，至此就算是解决啦。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/meta/" rel="tag">#meta</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/25/运用hexo建立博客的几个坑/" rel="next" title="运用hexo建立博客的几个坑">
+                <i class="fa fa-chevron-left"></i> 运用hexo建立博客的几个坑
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/25/用nodeJs做爬虫/" rel="prev" title="用Nodejs做爬虫">
+                用Nodejs做爬虫 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/02/25/页面整体缩放与viewport/"
+     data-title="页面整体缩放"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/02/25/页面整体缩放与viewport/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/25/页面整体缩放与viewport/"
+           data-title="页面整体缩放" data-url="http://blog.yangchen123h.cn/2016/02/25/页面整体缩放与viewport/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、js方式"><span class="nav-number">1.</span> <span class="nav-text">1、js方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、在body上加上zoom属性进行控制"><span class="nav-number">2.</span> <span class="nav-text">2、在body上加上zoom属性进行控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、rem方式"><span class="nav-number">3.</span> <span class="nav-text">3、rem方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、通过meta标签的viewport来改变"><span class="nav-number">4.</span> <span class="nav-text">4、通过meta标签的viewport来改变</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

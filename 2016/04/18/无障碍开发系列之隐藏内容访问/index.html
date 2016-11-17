@@ -1,0 +1,772 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html,css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前一阵子一直在开发一个无障碍项目，到现在算是告一段落了，利用这点时间打算整理下无障碍开发上的一些关键技术。这次开发任务还是蛮有挑战的，网上也没有找到什么系统性的学习资料，踩了不少坑，回炉也改了不少代码，所以对于这个项目的技术总结还是十分重要的。
+无障碍开发概念什么是无障碍开发要做无障碍开发，知道什么是无障碍这个概念是十分重要的。无障碍在词典中的字面意思是
+
+在发展过程中没有阻碍，活动能够顺利进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无障碍开发系列之隐藏内容访问">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/04/18/无障碍开发系列之隐藏内容访问/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="前一阵子一直在开发一个无障碍项目，到现在算是告一段落了，利用这点时间打算整理下无障碍开发上的一些关键技术。这次开发任务还是蛮有挑战的，网上也没有找到什么系统性的学习资料，踩了不少坑，回炉也改了不少代码，所以对于这个项目的技术总结还是十分重要的。
+无障碍开发概念什么是无障碍开发要做无障碍开发，知道什么是无障碍这个概念是十分重要的。无障碍在词典中的字面意思是
+
+在发展过程中没有阻碍，活动能够顺利进行">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D1.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D%E6%90%9C%E7%B4%A2%E6%A1%86.png">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无障碍开发系列之隐藏内容访问">
+<meta name="twitter:description" content="前一阵子一直在开发一个无障碍项目，到现在算是告一段落了，利用这点时间打算整理下无障碍开发上的一些关键技术。这次开发任务还是蛮有挑战的，网上也没有找到什么系统性的学习资料，踩了不少坑，回炉也改了不少代码，所以对于这个项目的技术总结还是十分重要的。
+无障碍开发概念什么是无障碍开发要做无障碍开发，知道什么是无障碍这个概念是十分重要的。无障碍在词典中的字面意思是
+
+在发展过程中没有阻碍，活动能够顺利进行">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 无障碍开发系列之隐藏内容访问 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                无障碍开发系列之隐藏内容访问
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-18T16:38:06+08:00" content="2016-04-18">
+              2016-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/无障碍/" itemprop="url" rel="index">
+                    <span itemprop="name">无障碍</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/18/无障碍开发系列之隐藏内容访问/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/18/无障碍开发系列之隐藏内容访问/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前一阵子一直在开发一个无障碍项目，到现在算是告一段落了，利用这点时间打算整理下无障碍开发上的一些关键技术。这次开发任务还是蛮有挑战的，网上也没有找到什么系统性的学习资料，踩了不少坑，回炉也改了不少代码，所以对于这个项目的技术总结还是十分重要的。</p>
+<h2 id="无障碍开发概念"><a href="#无障碍开发概念" class="headerlink" title="无障碍开发概念"></a>无障碍开发概念</h2><h3 id="什么是无障碍开发"><a href="#什么是无障碍开发" class="headerlink" title="什么是无障碍开发"></a>什么是无障碍开发</h3><p>要做无障碍开发，知道什么是无障碍这个概念是十分重要的。无障碍在词典中的字面意思是</p>
+<blockquote>
+<p>在发展过程中没有阻碍，活动能够顺利进行</p>
+</blockquote>
+<p>对于前端的无障碍开发，我的概念是：能够让色弱、色盲、盲人等一些视觉有障碍的朋友，顺利、流畅、准确、一致的获得网页上的信息，并能进行相应的页面的操作。</p>
+<p>概念理解起来如果很抽象的话，可以下一个读屏软件例如NVDA、争渡等，然后随便打开一个页面，闭着眼睛体验一样，你就会发现十分令人抓狂，无法注册、无法订票、甚至最恶劣的情况是完全不知道这个页面提供了什么信息，就是给你读图片，编辑框等，然而你根本就不知道是什么图片，编辑框是写什么信息的。</p>
+<h3 id="无障碍开发与正常开发有什么不同？"><a href="#无障碍开发与正常开发有什么不同？" class="headerlink" title="无障碍开发与正常开发有什么不同？"></a>无障碍开发与正常开发有什么不同？</h3><p>这个问题很关键，先从几个问题开始入手。</p>
+<ol>
+<li>对于一些模拟标签，例如用a标签写button，如何让读屏器读出这是button而不是链接。</li>
+<li>如何让盲人朋友知道焦点所在的区域是导航栏还是表单区域。</li>
+<li>弹出一个对话框时，如何让盲人朋友知道这是一个对话框，并且点击后焦点能够返回到出发对话框的位置。</li>
+<li>点击一个区域使得另一个区域发生变化时，如何让盲人朋友知道。</li>
+<li>对于像图片这样的视觉信息，如何能够让盲人朋友获得里面的信息。</li>
+</ol>
+<p>所以，无障碍开发与正常开发有什么不同。概括总结下就是，正常发开中我们在乎的视觉信息的传递，页面上显示的bug这个显然是不能接受。而无障碍开发中，我们不但要兼顾上听觉的信息传递，使读屏器读出的信息与视觉信息一致，并且还要支持流畅的键盘操作，因为鼠标操作显示不适合盲人朋友的阅读。</p>
+<h2 id="隐藏内容的访问"><a href="#隐藏内容的访问" class="headerlink" title="隐藏内容的访问"></a>隐藏内容的访问</h2><h3 id="什么是隐藏内容的访问"><a href="#什么是隐藏内容的访问" class="headerlink" title="什么是隐藏内容的访问?"></a>什么是隐藏内容的访问?</h3><p>听起来很奇怪，隐藏的内容为什么要访问呢？谁访问？这个就是让读屏器访问的，对于无障碍导航，或者需要让读屏器读出来做补充的，而且内容要隐藏的，就需要用到这个技术。</p>
+<p>举个例子来说，打开<a href="http://v3.bootcss.com/" target="_blank" rel="external">bootstrap</a>，然后按下tab键就能看到这个无障碍导航<img src="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D1.png" alt="无障碍导航"></p>
+<p>这个无障碍导航在正常情况下是看不见的，只有获得焦点时才能访问。可能有人会有疑惑，用<code>display:none</code>不就好了，当然不行啊，<code>display:none</code>里的元素是不能被读屏器访问的。</p>
+<h3 id="无障碍导航的隐藏访问"><a href="#无障碍导航的隐藏访问" class="headerlink" title="无障碍导航的隐藏访问"></a>无障碍导航的隐藏访问</h3><p>隐藏访问的方式有很多，但是有些有很多坑，这里翻译下<a href="http://snook.ca/archives/html_and_css/hiding-content-for-accessibility" target="_blank" rel="external">Hiding Content for Accessibility</a>这篇文章的部分段落，来说明下各种隐藏方式的缺陷，以及常用的隐藏方式什么怎么由来的</p>
+<h4 id="文本缩进法"><a href="#文本缩进法" class="headerlink" title="文本缩进法"></a>文本缩进法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element-invisible</span> &#123;</div><div class="line">  <span class="attribute">text-indent</span>: -<span class="number">9999em</span>;</div><div class="line">  <span class="attribute">outline</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个技术无法用在从右向左书写的语言中，如希伯来文和阿拉伯文</p>
+<h4 id="绝对定位和高度塌陷法"><a href="#绝对定位和高度塌陷法" class="headerlink" title="绝对定位和高度塌陷法"></a>绝对定位和高度塌陷法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element-invisible</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Apple’s Voice Over无法读出里面的内容，因为高度是0</p>
+<h4 id="绝对定位和脱离屏幕法"><a href="#绝对定位和脱离屏幕法" class="headerlink" title="绝对定位和脱离屏幕法"></a>绝对定位和脱离屏幕法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element-invisible</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: -<span class="number">999999em</span>;</div><div class="line">  <span class="attribute">left</span>: auto;</div><div class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</div><div class="line">  <span class="attribute">overflow</span>:hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个技术中，如果焦点聚焦到了这个元素，屏幕将会滚动到这个元素的位置。PS.我个人开发中发现用这个方法，NVDA不会读出其中的内容</p>
+<h4 id="clip方法"><a href="#clip方法" class="headerlink" title="clip方法"></a>clip方法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element-invisible</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute <span class="meta">!important</span>;</div><div class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(1px 1px 1px 1px); <span class="comment">/* IE6, IE7 */</span></div><div class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(1px, 1px, 1px, 1px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是这篇文章的作者最终选用的方法，这个方法在IE和FF中很好，但是在Webkit(Chrome和Safari)和Opear下，会产生不必要的滚动条，取决于隐藏元素的布局和或在页面上的位置。</p>
+<h4 id="结合了position，clip以及Collapsed的最终方法"><a href="#结合了position，clip以及Collapsed的最终方法" class="headerlink" title="结合了position，clip以及Collapsed的最终方法"></a>结合了position，clip以及Collapsed的最终方法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element-invisible</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute <span class="meta">!important</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">1px</span>; </div><div class="line">  <span class="attribute">width</span>: <span class="number">1px</span>; </div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(1px 1px 1px 1px); <span class="comment">/* IE6, IE7 */</span></div><div class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(1px, 1px, 1px, 1px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这也是我在本次项目中用的方法，很稳定，获得焦点时只要改变下相应属性的值即可，具体就不写了先。</p>
+<h3 id="表单元素的隐藏访问"><a href="#表单元素的隐藏访问" class="headerlink" title="表单元素的隐藏访问"></a>表单元素的隐藏访问</h3><p>表单元素也是需要隐藏访问，例如这个搜索框</p>
+<p><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E6%97%A0%E9%9A%9C%E7%A2%8D%E6%90%9C%E7%B4%A2%E6%A1%86.png" alt="搜索框"></p>
+<p>这是通过图片放大镜这个图片来传递出这是搜索框的信息的，但是对于盲人朋友来说，他需要让读屏器读出来这是搜索，因此就用到下面要说的啦。下面的内容转自<a href="http://www.topcss.org/?p=349" target="_blank" rel="external">表单显式LABEL和隐式LABEL对屏幕阅读器用户的影响–更新</a></p>
+<h4 id="显示label"><a href="#显示label" class="headerlink" title="显示label"></a>显示label</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"firstname"</span>&gt;</span>First name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"firstname"</span> <span class="attr">id</span>=<span class="string">"firstname"</span> <span class="attr">tabindex</span>=<span class="string">"1"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>显示label也就是为label元素添加for属性，其属性值与表单控件的id属性值一致</li>
+<li>重置和提交按钮<code>&lt;input type=&quot;reset&quot;/&gt;</code> 、<code>&lt;input type=&quot;submit&quot;/&gt;</code>， 图片按钮<code>&lt;input type=&quot;img&quot;/&gt;</code>以及脚本按钮<code>&lt;button&gt;&lt;/button&gt;</code>不用使用显式label，因为它们已经有了隐式标签，如value和alt 属性值，button元素的内容。</li>
+</ul>
+<h4 id="隐式label"><a href="#隐式label" class="headerlink" title="隐式label"></a>隐式label</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>First name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"firstname"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>根据HTML 4.01 规范， 通过label 元素包裹 表单控件和label文本可创建”隐式label”。</li>
+<li>由于一些浏览器(IE6)不支持隐式label，WCAG2.0不建议使用。</li>
+</ul>
+<h4 id="两者结合法"><a href="#两者结合法" class="headerlink" title="两者结合法"></a>两者结合法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"firstname"</span>&gt;</span>First name:</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"firstname"</span> <span class="attr">id</span>=<span class="string">"firstname"</span> <span class="attr">tabindex</span>=<span class="string">"1"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h4><p>使用屏幕阅读器NVDA和IE9测试发现，屏幕阅读器用户听到的提示内容是不同的:</p>
+<ul>
+<li>显式label写法：“First name: 编辑框 空白（或内容）”</li>
+<li>隐式label写法：“First name: 文本 First name: 编辑框 空白（或内容）”</li>
+</ul>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>这篇文章的作者最后得出的结论是：<strong>使用for 和 id 并且表单控件不放在label元素内是最健壮的方法。</strong></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/15/跨域及jsonp/" rel="next" title="跨域及jsonp">
+                <i class="fa fa-chevron-left"></i> 跨域及jsonp
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/22/git本地提交未推送又复位到了其他版本怎么办/" rel="prev" title="git本地提交未推送又复位到了其他版本怎么办">
+                git本地提交未推送又复位到了其他版本怎么办 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/18/无障碍开发系列之隐藏内容访问/"
+     data-title="无障碍开发系列之隐藏内容访问"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/04/18/无障碍开发系列之隐藏内容访问/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/18/无障碍开发系列之隐藏内容访问/"
+           data-title="无障碍开发系列之隐藏内容访问" data-url="http://blog.yangchen123h.cn/2016/04/18/无障碍开发系列之隐藏内容访问/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无障碍开发概念"><span class="nav-number">1.</span> <span class="nav-text">无障碍开发概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是无障碍开发"><span class="nav-number">1.1.</span> <span class="nav-text">什么是无障碍开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无障碍开发与正常开发有什么不同？"><span class="nav-number">1.2.</span> <span class="nav-text">无障碍开发与正常开发有什么不同？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏内容的访问"><span class="nav-number">2.</span> <span class="nav-text">隐藏内容的访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是隐藏内容的访问"><span class="nav-number">2.1.</span> <span class="nav-text">什么是隐藏内容的访问?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无障碍导航的隐藏访问"><span class="nav-number">2.2.</span> <span class="nav-text">无障碍导航的隐藏访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本缩进法"><span class="nav-number">2.2.1.</span> <span class="nav-text">文本缩进法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对定位和高度塌陷法"><span class="nav-number">2.2.2.</span> <span class="nav-text">绝对定位和高度塌陷法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对定位和脱离屏幕法"><span class="nav-number">2.2.3.</span> <span class="nav-text">绝对定位和脱离屏幕法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clip方法"><span class="nav-number">2.2.4.</span> <span class="nav-text">clip方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合了position，clip以及Collapsed的最终方法"><span class="nav-number">2.2.5.</span> <span class="nav-text">结合了position，clip以及Collapsed的最终方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单元素的隐藏访问"><span class="nav-number">2.3.</span> <span class="nav-text">表单元素的隐藏访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示label"><span class="nav-number">2.3.1.</span> <span class="nav-text">显示label</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隐式label"><span class="nav-number">2.3.2.</span> <span class="nav-text">隐式label</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两者结合法"><span class="nav-number">2.3.3.</span> <span class="nav-text">两者结合法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两者区别"><span class="nav-number">2.3.4.</span> <span class="nav-text">两者区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">2.3.5.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="浏览器兼容性,hack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这次说一下css的hack
+前两天出来个新闻，淘宝将不再支持ie6、7。不得不说这是一个非常好的消息，为web开发行业树立了一个标杆，让我们众多前端开发工程狮们不用再为ie6、7来抓狂了。而且随着移动互联网开发的蓬勃发展，再加上各种前端开发工具和框架的出现，web的开发环境也是越来越好，很多曾经pc端开发时慎用的css3的属性在开发中也能够放肆的使用，从而提高开发的质量和效率。但是这并不意味着cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS HACK">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/03/28/CSS HACK/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="这次说一下css的hack
+前两天出来个新闻，淘宝将不再支持ie6、7。不得不说这是一个非常好的消息，为web开发行业树立了一个标杆，让我们众多前端开发工程狮们不用再为ie6、7来抓狂了。而且随着移动互联网开发的蓬勃发展，再加上各种前端开发工具和框架的出现，web的开发环境也是越来越好，很多曾经pc端开发时慎用的css3的属性在开发中也能够放肆的使用，从而提高开发的质量和效率。但是这并不意味着cs">
+<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS HACK">
+<meta name="twitter:description" content="这次说一下css的hack
+前两天出来个新闻，淘宝将不再支持ie6、7。不得不说这是一个非常好的消息，为web开发行业树立了一个标杆，让我们众多前端开发工程狮们不用再为ie6、7来抓狂了。而且随着移动互联网开发的蓬勃发展，再加上各种前端开发工具和框架的出现，web的开发环境也是越来越好，很多曾经pc端开发时慎用的css3的属性在开发中也能够放肆的使用，从而提高开发的质量和效率。但是这并不意味着cs">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> CSS HACK | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS HACK
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-28T21:13:47+08:00" content="2016-03-28">
+              2016-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/28/CSS HACK/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/28/CSS HACK/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次说一下css的hack</p>
+<p>前两天出来个新闻，淘宝将不再支持ie6、7。不得不说这是一个非常好的消息，为web开发行业树立了一个标杆，让我们众多前端开发工程狮们不用再为ie6、7来抓狂了。而且随着移动互联网开发的蓬勃发展，再加上各种前端开发工具和框架的出现，web的开发环境也是越来越好，很多曾经pc端开发时慎用的css3的属性在开发中也能够放肆的使用，从而提高开发的质量和效率。但是这并不意味着css hack就可以退出历史的舞台了，因为不同浏览器也有hack，而且ie8、9也是要支持的嘛。</p>
+<h2 id="什么是css-hack"><a href="#什么是css-hack" class="headerlink" title="什么是css hack?"></a>什么是css hack?</h2><p>引用下百度百科的定义</p>
+<blockquote>
+<p>CSS hack由于不同厂商的浏览器，比如Internet Explorer,Safari,Mozilla Firefox,Chrome等，或者是同一厂商的浏览器的不同版本，如IE6和IE7，对CSS的解析认识不完全一样，因此会导致生成的页面效果不一样，得不到我们所需要的页面效果。 这个时候我们就需要针对不同的浏览器去写不同的CSS，让它能够同时兼容不同的浏览器，能在不同的浏览器中也能得到我们想要的页面效果。</p>
+</blockquote>
+<p>简单点说就是通过css hack可以让不同版本的浏览器有不同的样式，可以运用它来为不同的浏览器制定不同的样式，也可以运用它来解决浏览器的兼容性问题</p>
+<h2 id="为什么会有css-hack？"><a href="#为什么会有css-hack？" class="headerlink" title="为什么会有css hack？"></a>为什么会有css hack？</h2><p>这个说起来就长了，具体可以参考下其他相关书籍，但总的来主要是由于浏览器大战导致的。第一次浏览器大战发生在上个世纪90年代，是微软的IE浏览器，和网景公司的Netscape Navigator，这次大战的结果是ie获胜，最后网景将公司卖给AOL一走了之。这次大战确立JavaScript在浏览器的绝对统治地位，另外也推动了web开发标准化的进程，这次大战也可以说是一次标准大战。第二次大战从04年firefox的推出一直到现在，这次大战的特点是一些新的基于不同引擎的浏览器也加入了阵营，例如Opera Chrome 等等，这次大战可以说是一次内核大战，这次大战的结果胜负未出，但是已经有了一些共识，例如chrome是js运行最快的浏览器，Nodejs用的就是Chrome的V8引擎，还有IE最不受开发者欢迎，因为有很多独立的api而且自己运行也慢，这告诉我们没有实力就不要搞特殊。</p>
+<h2 id="css-hack情况介绍"><a href="#css-hack情况介绍" class="headerlink" title="css hack情况介绍"></a>css hack情况介绍</h2><p>下面就是主题了，有哪些css hack和怎么用？这里按照以下几个方面来区分。</p>
+<h3 id="1、区别IE和非IE浏览器"><a href="#1、区别IE和非IE浏览器" class="headerlink" title="1、区别IE和非IE浏览器"></a>1、区别IE和非IE浏览器</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#tip</span>&#123; </div><div class="line">	<span class="attribute">background</span>:blue; <span class="comment">/*非IE背景蓝色  因为所有浏览器都能解释*/</span> </div><div class="line">	<span class="attribute">background</span>:red\<span class="number">9</span>; <span class="comment">/*IE6、IE7、IE8、IE9背景紅色 因为\9在IE6.7.8.9中可以识别，覆盖上面样式 IE10跟11应该不识别，IE11测试确定*/</span> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2、IE浏览器下的hack"><a href="#2、IE浏览器下的hack" class="headerlink" title="2、IE浏览器下的hack"></a>2、IE浏览器下的hack</h3><figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">element&#123;</div><div class="line">	<span class="keyword">color</span>：<span class="meta">#<span class="number">666</span>\<span class="number">9</span>； <span class="comment">//IE8 IE9</span></span></div><div class="line">	* <span class="keyword">color</span>：<span class="meta">#<span class="number">999</span>；   <span class="comment">//IE7</span></span></div><div class="line">	_color:<span class="meta">#EBEBEB； <span class="comment">//IE6</span></span></div><div class="line">&#125;</div><div class="line"><span class="comment">//若要区分IE8 和IE9可以使用伪类来识别</span></div><div class="line">:root element&#123;<span class="keyword">color</span>：<span class="meta">#<span class="number">666</span>\<span class="number">9</span>;&#125;<span class="comment">//IE9</span></span></div><div class="line"><span class="comment">//:root”伪类IE系列只有IE9支持，其他主流浏览器均支持，利用这一点来区分IE8和IE9。另外考虑到opera部分支持，完全支持:root,所以不使用。</span></div></pre></td></tr></table></figure>
+<h3 id="3、其他主流浏览器css-hack"><a href="#3、其他主流浏览器css-hack" class="headerlink" title="3、其他主流浏览器css hack"></a>3、其他主流浏览器css hack</h3><h4 id="1-Gecko内核，以Firefox为代表"><a href="#1-Gecko内核，以Firefox为代表" class="headerlink" title="1.Gecko内核，以Firefox为代表"></a>1.Gecko内核，以Firefox为代表</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用-moz-前缀</span></div><div class="line">-moz-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;</div></pre></td></tr></table></figure>
+<h4 id="2-Webkit内核，以Chrome为代表"><a href="#2-Webkit内核，以Chrome为代表" class="headerlink" title="2.Webkit内核，以Chrome为代表"></a>2.Webkit内核，以Chrome为代表</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用-webkit-前缀</span></div><div class="line">-webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;</div></pre></td></tr></table></figure>
+<h4 id="3-Presto内核，以Opera为代表"><a href="#3-Presto内核，以Opera为代表" class="headerlink" title="3.Presto内核，以Opera为代表"></a>3.Presto内核，以Opera为代表</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用-O-前缀</span></div><div class="line">-o-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;</div></pre></td></tr></table></figure>
+<h4 id="4-Trident内核，以IE-360等众国产浏览器为代表"><a href="#4-Trident内核，以IE-360等众国产浏览器为代表" class="headerlink" title="4.Trident内核，以IE 360等众国产浏览器为代表"></a>4.Trident内核，以IE 360等众国产浏览器为代表</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用-ms-前缀</span></div><div class="line">-ms-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;</div></pre></td></tr></table></figure>
+<h3 id="4、大汇总"><a href="#4、大汇总" class="headerlink" title="4、大汇总"></a>4、大汇总</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element</span>&#123;</div><div class="line">	<span class="attribute">color</span>:<span class="number">#000</span>;             <span class="comment">/*w3c标准*/</span></div><div class="line">	<span class="selector-attr">[;color:#f00;]</span>;         <span class="comment">/*Webkit(chrome和safari)*/</span></div><div class="line">	<span class="attribute">color</span>:<span class="number">#666</span>\<span class="number">9</span>;           <span class="comment">/*IE8*/</span></div><div class="line">	*<span class="attribute">color</span>:<span class="number">#999</span>;            <span class="comment">/*IE7*/</span></div><div class="line">	_color:<span class="number">#333</span>;            <span class="comment">/*IE6*/</span></div><div class="line">&#125;</div><div class="line">-moz-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;       <span class="comment">/*Firefox*/</span></div><div class="line">-webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;    <span class="comment">/*Chrome*/</span></div><div class="line">-o-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;         <span class="comment">/*Opera*/</span></div><div class="line">-ms-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> -<span class="number">4px</span> <span class="number">0</span> <span class="number">#2a6496</span>;        <span class="comment">/*IE*/</span></div></pre></td></tr></table></figure>
+<p>参考文章:<a href="http://www.kwstu.com/Admin/ViewArticle/201409011604277330" target="_blank" rel="external">CSS hack大全&amp;详解（什么是CSS hack）</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/浏览器兼容性/" rel="tag">#浏览器兼容性</a>
+          
+            <a href="/tags/hack/" rel="tag">#hack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/21/CommonJs-AMD-CMD/" rel="next" title="CommonJs,AMD,CMD">
+                <i class="fa fa-chevron-left"></i> CommonJs,AMD,CMD
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/15/跨域及jsonp/" rel="prev" title="跨域及jsonp">
+                跨域及jsonp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/03/28/CSS HACK/"
+     data-title="CSS HACK"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2016/03/28/CSS HACK/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/28/CSS HACK/"
+           data-title="CSS HACK" data-url="http://blog.yangchen123h.cn/2016/03/28/CSS HACK/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是css-hack"><span class="nav-number">1.</span> <span class="nav-text">什么是css hack?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有css-hack？"><span class="nav-number">2.</span> <span class="nav-text">为什么会有css hack？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css-hack情况介绍"><span class="nav-number">3.</span> <span class="nav-text">css hack情况介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、区别IE和非IE浏览器"><span class="nav-number">3.1.</span> <span class="nav-text">1、区别IE和非IE浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、IE浏览器下的hack"><span class="nav-number">3.2.</span> <span class="nav-text">2、IE浏览器下的hack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、其他主流浏览器css-hack"><span class="nav-number">3.3.</span> <span class="nav-text">3、其他主流浏览器css hack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Gecko内核，以Firefox为代表"><span class="nav-number">3.3.1.</span> <span class="nav-text">1.Gecko内核，以Firefox为代表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Webkit内核，以Chrome为代表"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.Webkit内核，以Chrome为代表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Presto内核，以Opera为代表"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.Presto内核，以Opera为代表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Trident内核，以IE-360等众国产浏览器为代表"><span class="nav-number">3.3.4.</span> <span class="nav-text">4.Trident内核，以IE 360等众国产浏览器为代表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、大汇总"><span class="nav-number">3.4.</span> <span class="nav-text">4、大汇总</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
