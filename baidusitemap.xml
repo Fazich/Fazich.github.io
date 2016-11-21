@@ -4,6 +4,249 @@
 
     
   <url>
+    <loc>http://blog.yangchen123h.cn/2016/11/21/xetex-def-not-found%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</loc>
+    <lastmod>2016-11-21T13:08:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>xetex.def not found的解决办法</title>
+        <pubTime>2016-11-21T12:56:57.000Z</pubTime>
+        
+        <tag>debug</tag>
+         
+         
+           
+             
+              <breadCrumb title="latex" url="http://blog.yangchen123h.cn/categories/latex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/03/20/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%8E%E9%93%BA%E5%B9%B3/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>数组去重与铺平</title>
+        <pubTime>2016-03-20T14:56:02.000Z</pubTime>
+        
+        <tag>数组</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-%E6%84%8F%E5%A4%96%E5%9C%B0%E8%B0%83%E7%94%A8%E4%BA%86%E6%96%B9%E6%B3%95%E6%88%96%E5%B1%9E%E6%80%A7%E8%AE%BF%E9%97%AE/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>SCRIPT65535:意外地调用了方法或属性访问</title>
+        <pubTime>2016-03-09T14:08:52.000Z</pubTime>
+        
+        <tag>debug</tag>
+         
+        <tag>ie</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/03/28/CSS%20HACK/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>CSS HACK</title>
+        <pubTime>2016-03-28T13:13:47.000Z</pubTime>
+        
+        <tag>浏览器兼容性</tag>
+         
+        <tag>hack</tag>
+         
+         
+           
+             
+              <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/03/21/CommonJs-AMD-CMD/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>CommonJs,AMD,CMD</title>
+        <pubTime>2016-03-21T13:12:29.000Z</pubTime>
+        
+        <tag>模块化</tag>
+         
+        <tag>标准</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/09/27/callee%E3%80%81caller%E3%80%81call%E3%80%81apply%E3%80%81bind%E8%BF%99%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E5%AE%9E%E7%94%A8/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>callee、caller、call、apply、bind这些方法的含义和使用</title>
+        <pubTime>2016-09-27T13:09:04.000Z</pubTime>
+        
+        <tag>callee</tag>
+         
+        <tag>caller</tag>
+         
+        <tag>call</tag>
+         
+        <tag>apply</tag>
+         
+        <tag>bind</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/03/12/BFC%E4%B8%8E%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>BFC与清除浮动</title>
+        <pubTime>2016-03-11T16:38:20.000Z</pubTime>
+        
+        <tag>BFC</tag>
+         
+        <tag>浮动</tag>
+         
+         
+           
+             
+              <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/10/08/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%8C%87%E5%AE%9Adom%E5%85%83%E7%B4%A0%E6%98%AF%E5%90%A6%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%86%85/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何判断指定dom元素是否在屏幕内</title>
+        <pubTime>2016-10-08T12:49:57.000Z</pubTime>
+        
+        <tag>元素可见</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/04/22/git%E6%9C%AC%E5%9C%B0%E6%8F%90%E4%BA%A4%E6%9C%AA%E6%8E%A8%E9%80%81%E5%8F%88%E5%A4%8D%E4%BD%8D%E5%88%B0%E4%BA%86%E5%85%B6%E4%BB%96%E7%89%88%E6%9C%AC%E6%80%8E%E4%B9%88%E5%8A%9E/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>git本地提交未推送又复位到了其他版本怎么办</title>
+        <pubTime>2016-04-22T10:27:07.000Z</pubTime>
+        
+        <tag>代码丢失</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://blog.yangchen123h.cn/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/05/09/meta%E6%A0%87%E7%AD%BE%E6%95%B4%E7%90%86/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>meta标签的作用及整理</title>
+        <pubTime>2016-05-09T11:25:59.000Z</pubTime>
+        
+        <tag>meta</tag>
+         
+        <tag>html</tag>
+         
+        <tag>标签</tag>
+         
+         
+           
+             
+              <breadCrumb title="html" url="http://blog.yangchen123h.cn/categories/html/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/09/08/react%E5%BC%80%E5%8F%91%E6%80%9D%E7%BB%B4%E6%96%B9%E5%BC%8F%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>react开发思维方式入门</title>
+        <pubTime>2016-09-08T04:29:06.000Z</pubTime>
+        
+        <tag>react</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+             
+              <breadCrumb title="react" url="http://blog.yangchen123h.cn/categories/js/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.yangchen123h.cn/2016/04/22/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8B%E4%BB%B6%E7%BB%9F%E4%B8%80/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
@@ -48,200 +291,19 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/28/CSS%20HACK/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>CSS HACK</title>
-        <pubTime>2016-03-28T13:13:47.000Z</pubTime>
+        <title>无障碍开发系列之WAI-ARIA</title>
+        <pubTime>2016-05-04T08:49:48.000Z</pubTime>
         
-        <tag>浏览器兼容性</tag>
-         
-        <tag>hack</tag>
-         
-         
-           
-             
-              <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/12/BFC%E4%B8%8E%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>BFC与清除浮动</title>
-        <pubTime>2016-03-11T16:38:20.000Z</pubTime>
-        
-        <tag>BFC</tag>
-         
-        <tag>浮动</tag>
-         
-         
-           
-             
-              <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-%E6%84%8F%E5%A4%96%E5%9C%B0%E8%B0%83%E7%94%A8%E4%BA%86%E6%96%B9%E6%B3%95%E6%88%96%E5%B1%9E%E6%80%A7%E8%AE%BF%E9%97%AE/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>SCRIPT65535:意外地调用了方法或属性访问</title>
-        <pubTime>2016-03-09T14:08:52.000Z</pubTime>
-        
-        <tag>debug</tag>
-         
-        <tag>ie</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/09/meta%E6%A0%87%E7%AD%BE%E6%95%B4%E7%90%86/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>meta标签的作用及整理</title>
-        <pubTime>2016-05-09T11:25:59.000Z</pubTime>
-        
-        <tag>meta</tag>
-         
         <tag>html</tag>
          
-        <tag>标签</tag>
-         
          
            
              
-              <breadCrumb title="html" url="http://blog.yangchen123h.cn/categories/html/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/09/27/callee%E3%80%81caller%E3%80%81call%E3%80%81apply%E3%80%81bind%E8%BF%99%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E5%AE%9E%E7%94%A8/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>callee、caller、call、apply、bind这些方法的含义和使用</title>
-        <pubTime>2016-09-27T13:09:04.000Z</pubTime>
-        
-        <tag>callee</tag>
-         
-        <tag>caller</tag>
-         
-        <tag>call</tag>
-         
-        <tag>apply</tag>
-         
-        <tag>bind</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/04/22/git%E6%9C%AC%E5%9C%B0%E6%8F%90%E4%BA%A4%E6%9C%AA%E6%8E%A8%E9%80%81%E5%8F%88%E5%A4%8D%E4%BD%8D%E5%88%B0%E4%BA%86%E5%85%B6%E4%BB%96%E7%89%88%E6%9C%AC%E6%80%8E%E4%B9%88%E5%8A%9E/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>git本地提交未推送又复位到了其他版本怎么办</title>
-        <pubTime>2016-04-22T10:27:07.000Z</pubTime>
-        
-        <tag>代码丢失</tag>
-         
-         
-           
-             
-              <breadCrumb title="git" url="http://blog.yangchen123h.cn/categories/git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/09/08/react%E5%BC%80%E5%8F%91%E6%80%9D%E7%BB%B4%E6%96%B9%E5%BC%8F%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>react开发思维方式入门</title>
-        <pubTime>2016-09-08T04:29:06.000Z</pubTime>
-        
-        <tag>react</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-             
-              <breadCrumb title="react" url="http://blog.yangchen123h.cn/categories/js/react/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/20/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%8E%E9%93%BA%E5%B9%B3/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>数组去重与铺平</title>
-        <pubTime>2016-03-20T14:56:02.000Z</pubTime>
-        
-        <tag>数组</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/10/08/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%8C%87%E5%AE%9Adom%E5%85%83%E7%B4%A0%E6%98%AF%E5%90%A6%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%86%85/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何判断指定dom元素是否在屏幕内</title>
-        <pubTime>2016-10-08T12:49:57.000Z</pubTime>
-        
-        <tag>元素可见</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+              <breadCrumb title="无障碍" url="http://blog.yangchen123h.cn/categories/%E6%97%A0%E9%9A%9C%E7%A2%8D/"/>
           
         </display>
     </data>
@@ -261,48 +323,6 @@
         <tag>js</tag>
          
         <tag>css</tag>
-         
-         
-           
-             
-              <breadCrumb title="无障碍" url="http://blog.yangchen123h.cn/categories/%E6%97%A0%E9%9A%9C%E7%A2%8D/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/21/CommonJs-AMD-CMD/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>CommonJs,AMD,CMD</title>
-        <pubTime>2016-03-21T13:12:29.000Z</pubTime>
-        
-        <tag>模块化</tag>
-         
-        <tag>标准</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>无障碍开发系列之WAI-ARIA</title>
-        <pubTime>2016-05-04T08:49:48.000Z</pubTime>
-        
-        <tag>html</tag>
          
          
            
@@ -403,28 +423,6 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/02/25/%E8%BF%90%E7%94%A8hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>运用hexo建立博客的几个坑</title>
-        <pubTime>2016-02-25T07:36:12.000Z</pubTime>
-        
-        <tag>hexo</tag>
-         
-        <tag>博客</tag>
-         
-         
-           
-             
-              <breadCrumb title="跳坑" url="http://blog.yangchen123h.cn/categories/%E8%B7%B3%E5%9D%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.yangchen123h.cn/2016/04/15/%E8%B7%A8%E5%9F%9F%E5%8F%8Ajsonp/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
@@ -449,26 +447,6 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/02/25/%E9%A1%B5%E9%9D%A2%E6%95%B4%E4%BD%93%E7%BC%A9%E6%94%BE%E4%B8%8Eviewport/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>页面整体缩放</title>
-        <pubTime>2016-02-25T10:47:37.000Z</pubTime>
-        
-        <tag>meta</tag>
-         
-         
-           
-             
-              <breadCrumb title="html" url="http://blog.yangchen123h.cn/categories/html/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.yangchen123h.cn/2016/02/25/%E7%94%A8nodeJs%E5%81%9A%E7%88%AC%E8%99%AB/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
@@ -484,6 +462,48 @@
            
              
               <breadCrumb title="Nodejs" url="http://blog.yangchen123h.cn/categories/Nodejs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/02/25/%E8%BF%90%E7%94%A8hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>运用hexo建立博客的几个坑</title>
+        <pubTime>2016-02-25T07:36:12.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+        <tag>博客</tag>
+         
+         
+           
+             
+              <breadCrumb title="跳坑" url="http://blog.yangchen123h.cn/categories/%E8%B7%B3%E5%9D%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/02/25/%E9%A1%B5%E9%9D%A2%E6%95%B4%E4%BD%93%E7%BC%A9%E6%94%BE%E4%B8%8Eviewport/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>页面整体缩放</title>
+        <pubTime>2016-02-25T10:47:37.000Z</pubTime>
+        
+        <tag>meta</tag>
+         
+         
+           
+             
+              <breadCrumb title="html" url="http://blog.yangchen123h.cn/categories/html/"/>
           
         </display>
     </data>
