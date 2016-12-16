@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="debug,ie," />
+  <meta name="keywords" content="js," />
 
 
 
@@ -78,25 +78,16 @@
 
 
 
-<meta name="description" content="本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
-问题概述首先说一下报错问题来自哪里。
-这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。
-其次就是什么时候报错。这个报错产生在ie6">
+<meta name="description" content="async模块是一个管理异步上很强大的模块，使用这个模块可以很轻松的实现对回调并发的控制，例如顺序执行或者限制并发执行等等。但是在使用async模块时经常有一个困扰就是里面的callback，使用不当可能会导致使用中没有达到符合预期的样子，一个典型的例子就是在使用mapLimit时，执行到并发限制上限就终止了，而且不明原因，只能参考别人的代码把callback加上才能用，所以在这里写一下这个是怎么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SCRIPT65535:意外地调用了方法或属性访问">
-<meta property="og:url" content="http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/index.html">
+<meta property="og:title" content="async模块之困扰的并发限制">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2016/12/16/async模块之困扰的并发限制/index.html">
 <meta property="og:site_name" content="YangChen's Blog">
-<meta property="og:description" content="本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
-问题概述首先说一下报错问题来自哪里。
-这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。
-其次就是什么时候报错。这个报错产生在ie6">
-<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta property="og:description" content="async模块是一个管理异步上很强大的模块，使用这个模块可以很轻松的实现对回调并发的控制，例如顺序执行或者限制并发执行等等。但是在使用async模块时经常有一个困扰就是里面的callback，使用不当可能会导致使用中没有达到符合预期的样子，一个典型的例子就是在使用mapLimit时，执行到并发限制上限就终止了，而且不明原因，只能参考别人的代码把callback加上才能用，所以在这里写一下这个是怎么">
+<meta property="og:updated_time" content="2016-12-16T13:49:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SCRIPT65535:意外地调用了方法或属性访问">
-<meta name="twitter:description" content="本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
-问题概述首先说一下报错问题来自哪里。
-这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。
-其次就是什么时候报错。这个报错产生在ie6">
+<meta name="twitter:title" content="async模块之困扰的并发限制">
+<meta name="twitter:description" content="async模块是一个管理异步上很强大的模块，使用这个模块可以很轻松的实现对回调并发的控制，例如顺序执行或者限制并发执行等等。但是在使用async模块时经常有一个困扰就是里面的callback，使用不当可能会导致使用中没有达到符合预期的样子，一个典型的例子就是在使用mapLimit时，执行到并发限制上限就终止了，而且不明原因，只能参考别人的代码把callback加上才能用，所以在这里写一下这个是怎么">
 
 
 
@@ -114,7 +105,7 @@
   };
 </script>
 
-  <title> SCRIPT65535:意外地调用了方法或属性访问 | YangChen's Blog </title>
+  <title> async模块之困扰的并发限制 | YangChen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +285,7 @@
             
             
               
-                SCRIPT65535:意外地调用了方法或属性访问
+                async模块之困扰的并发限制
               
             
           </h1>
@@ -306,8 +297,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-09T22:08:52+08:00" content="2016-03-09">
-              2016-03-09
+            <time itemprop="dateCreated" datetime="2016-12-16T20:21:27+08:00" content="2016-12-16">
+              2016-12-16
             </time>
           </span>
 
@@ -336,8 +327,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/" itemprop="commentsCount"></span>
+                <a href="/2016/12/16/async模块之困扰的并发限制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/16/async模块之困扰的并发限制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -359,19 +350,24 @@
       
 
       
-        <p>本文以这个bug报错信息命名，来阐述下这个问题的解决办法。</p>
-<h2 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h2><p>首先说一下报错问题来自哪里。</p>
-<p>这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。</p>
-<p>其次就是什么时候报错。这个报错产生在ie6、7、8中，在ie8以上没有报错，坑爹的ie啊，FUCK！！</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>下面直奔主题来说一下解决的办法<br>先说一下为什么会出现这个错误，根本原因就是在ie8以下的浏览器里，操作一个DOM的非法属性时会出现，举例说明下</p>
-<p>第一种情况，操作了一个DOM不该有的属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>如果要改变这个dom的值应该是修改它的value属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).val(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<p>但是如果写成了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).html(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<p>在ie8以上的浏览器也OK，给你识别纠正了，但是在ie8以下就不行了</p>
-<p>第二种情况，标签的闭合上也就是我出错的地方<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>由于编辑器的自动补全，往往会忽略一些细节上的错误例如为input自动加了闭合标签，如果只操作这个dom的值无影响，但是如果操作下个同级元素就会报错了例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).next().html(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<p>当debug到test的下一级标签时，便会发现这个dom的nodeName是input而不是p，input操作html属性是不合法的，因此就报错啦。解决方法就是把input的闭合标签干掉</p>
+        <p>async模块是一个管理异步上很强大的模块，使用这个模块可以很轻松的实现对回调并发的控制，例如顺序执行或者限制并发执行等等。但是在使用async模块时经常有一个困扰就是里面的callback，使用不当可能会导致使用中没有达到符合预期的样子，一个典型的例子就是在使用mapLimit时，执行到并发限制上限就终止了，而且不明原因，只能参考别人的代码把callback加上才能用，所以在这里写一下这个是怎么回事。</p>
+<h1 id="异步与同步"><a href="#异步与同步" class="headerlink" title="异步与同步"></a>异步与同步</h1><p>首先简述下同步与异步的概念，这是理解callback的一个很重要的基础。</p>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>先从同步这个概念开始。同步根据名字就能大致猜出来其中的意思，意思就是在事物处理上只能按部就班一个个来的。以银行取钱为例，一排人在排队取钱，有的人取的快有的人取得慢，不管快也好还是慢也好，你只能等着前面的取完钱后才能轮到自己。</p>
+<p>在浏览器加载网上的资源这个场景里同步是一件很可怕的事情，一个网页打开可能会请求很多资源图片文字声音等等，如果是同步执行的那就意味着一个资源下载完了才能下载另一个资源，一个大型网站优化不好的话可能要加载上百个资源文件，如果是同步的话那打开个网页的功夫你都可以撸完一局了。</p>
+<p>听起来感觉同步效率很低啊，那为什么还要有同步呢？同步也有它优秀的地方，那就是好管理，这个和数据结构的队列很像先进先出嘛。</p>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>接下来就是异步了。不讲概念丛场景入手，还是那个银行排队的场景，在刚才同步取钱的场景下已经看出了，效率很低，如果前面的人取钱的时候，正好还有其他事不能立刻取钱，占着取钱窗口不离开，那就醉了。所以异步就登场了帮你加快取钱速度。异步的处理是这样的，你前面的要取钱，但是工作人员说不行啊，你想取钱得复印下你的身份证，然后这个时候呢她就取复印身份证去了，然后你不用等她复印完回来就可以取钱了，因为她并没有就绪。这个时候你取完钱要走了，该轮到下一位了，但是这个时候你前面的那个人复印完回来了，这个时候就优先处理他了，后面的人肯定没意见吧。这就是异步取钱的场景。</p>
+<p>还是那个浏览器加载资源的过程，使用了异步就立马提升体验了。在请求资源的时候，我们不用等上个资源请求完毕，直接去请求下一个资源，之后就是谁先请求完了再处理谁，这样是不是很快，最大程度的利用了带宽和CPU，跟操作系统里的一些概念蛮像的。</p>
+<h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><p>接下在就是async了，本文将丛mapLimit这个方法入手，讲一下为什么使用mapLimit达到并发上限后就不执行了。</p>
+<blockquote>
+<p>mapLimit(arr, limit, iterator, callback) </p>
+</blockquote>
+<p>这就是那个方法的简单文档，其中这个四个参数的意思解释下。arr是一个数组对象，这里面包含着的是你处理的事件队列，比如在爬虫中这里面放的就是你要爬的url；limit就是并发限制，iteration是一个迭代器，它就是用来处理arr队列里资源的函数，callback就不用解释了回调函数，里面有两个参数一个是err另一个是result，iterator处理完arr里的资源后应该callback出来，出来的资源就是result。这块不大好说明，一会见代码吧，一眼就明白。</p>
+<p>好了，简单介绍完之后就上代码了，先是一个十分简单的例子，简单到里面跟没有异步<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">async</span> = <span class="built_in">require</span>(<span class="string">'async'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;<span class="number">100</span>;i++)&#123;</div><div class="line">    arr.push(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span>.mapLimit(arr,<span class="number">5</span>,<span class="function"><span class="keyword">function</span>(<span class="params">item,callback</span>)</span>&#123;</div><div class="line">        callback(<span class="literal">null</span>,item);</div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(result); <span class="comment">//[1,2,3,....,99];</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>上面的代码执行的记过就是遍历了整个数组。那么上面的代码发生了什么呢？首先在执行的时候先丛arr里取处一个资源给iteratior来处里，在iteratior里的那个item就是arr交给迭代器的一个资源，在iterator这个函数处理完之后将会有一个callback(null,item),意思就是执行完毕了返回的第一个null对应的就是后面的err，第二个item对应的就是后面的result，所以输出了整个数组内容。至于那个arr呢，如果发现iterator异步的处理没有达到上限，那么它就会继续把资源交给iterator来处理。</p>
+<p>上面说了一坨，来一句其中要害的，就是arr里的资源要交给iterator来处理，iterator处理完了要callback出来告诉arr，我处理完了有空缺位置，在给我一个来处理吧。</p>
+<p>接下来我们把上面的代码加点内容，让它有异步的存在，看起来更真是一些，不然的那个limit岂不是成摆设了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">async</span> = <span class="built_in">require</span>(<span class="string">'async'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;<span class="number">100</span>;i++)&#123;</div><div class="line">    arr.push(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">async</span>.mapLimit(arr,<span class="number">5</span>,<span class="function"><span class="keyword">function</span>(<span class="params">item,callback</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'并发执行:'</span>+count);</div><div class="line">    count++;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        callback(<span class="literal">null</span>,item);</div><div class="line">        count--;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'并发执行:'</span>+count);</div><div class="line">    &#125;,<span class="number">1000</span>)</div><div class="line"></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(result);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>上面这段代码更有真实感了，其实很简单，就是在callback的外面逃了一层settimeout，来模拟回调的执行，这样以来就能清晰的看到对并发的限制了。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>最后简而言之就是，在mapLimit达到上限后没有继续执行的根本原因就是，你少了callback，没有callback，async根本不知道你是否执行完毕，这样以来怎么能够获取arr里的资源呢</p>
 
       
     </div>
@@ -392,9 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/debug/" rel="tag">#debug</a>
-          
-            <a href="/tags/ie/" rel="tag">#ie</a>
+            <a href="/tags/js/" rel="tag">#js</a>
           
         </div>
       
@@ -403,17 +397,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/25/用nodeJs做爬虫/" rel="next" title="用Nodejs做爬虫">
-                <i class="fa fa-chevron-left"></i> 用Nodejs做爬虫
+              <a href="/2016/11/24/javascript设计模式之迭代器模式/" rel="next" title="javascript设计模式之迭代器模式">
+                <i class="fa fa-chevron-left"></i> javascript设计模式之迭代器模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/12/BFC与清除浮动/" rel="prev" title="BFC与清除浮动">
-                BFC与清除浮动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,10 +418,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/"
-     data-title="SCRIPT65535:意外地调用了方法或属性访问"
+        <div class="ds-share flat" data-thread-key="2016/12/16/async模块之困扰的并发限制/"
+     data-title="async模块之困扰的并发限制"
      data-content=""
-     data-url="http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/">
+     data-url="http://blog.yangchen123h.cn/2016/12/16/async模块之困扰的并发限制/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -458,8 +448,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/"
-           data-title="SCRIPT65535:意外地调用了方法或属性访问" data-url="http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/">
+      <div class="ds-thread" data-thread-key="2016/12/16/async模块之困扰的并发限制/"
+           data-title="async模块之困扰的并发限制" data-url="http://blog.yangchen123h.cn/2016/12/16/async模块之困扰的并发限制/">
       </div>
     
   </div>
@@ -572,7 +562,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题概述"><span class="nav-number">1.</span> <span class="nav-text">问题概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步与同步"><span class="nav-number">1.</span> <span class="nav-text">异步与同步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">1.1.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步"><span class="nav-number">1.2.</span> <span class="nav-text">异步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#async"><span class="nav-number">2.</span> <span class="nav-text">async</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
