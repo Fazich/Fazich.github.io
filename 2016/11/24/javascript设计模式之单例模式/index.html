@@ -359,10 +359,10 @@
       
 
       
-        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+        <h1 id="单例模式">单例模式</h1><h2 id="定义">定义</h2><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
 <p>也就是说一个类只能有一个接口，且只能通过这个接口来访问他，通过这种方式可以节约内存，实现类中实例的最大复用。</p>
 <p>在单利模式中，惰性单例是单例模式的重点。惰性单例是指在需要的时候才创建对象实例。</p>
-<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>单例实例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ProxySingletonCreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> instance; <span class="comment">// 实例保存对象</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> ( !instance )&#123;</div><div class="line">      instance = <span class="keyword">new</span> CreateDiv(html); <span class="comment">//需要的时候再去创建</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance; <span class="comment">//再次调用时返回该实例</span></div><div class="line">  &#125;</div><div class="line">&#125;)();</div><div class="line">  <span class="keyword">var</span> a = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'sven1'</span>);</div><div class="line">  <span class="keyword">var</span> b = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'sven2'</span>);</div><div class="line">  alert ( a === b ); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h2 id="代码示例">代码示例</h2><p>单例实例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ProxySingletonCreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> instance; <span class="comment">// 实例保存对象</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> ( !instance )&#123;</div><div class="line">      instance = <span class="keyword">new</span> CreateDiv(html); <span class="comment">//需要的时候再去创建</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance; <span class="comment">//再次调用时返回该实例</span></div><div class="line">  &#125;</div><div class="line">&#125;)();</div><div class="line">  <span class="keyword">var</span> a = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'sven1'</span>);</div><div class="line">  <span class="keyword">var</span> b = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'sven2'</span>);</div><div class="line">  alert ( a === b ); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -582,7 +582,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

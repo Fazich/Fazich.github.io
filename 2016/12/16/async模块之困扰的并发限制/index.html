@@ -351,13 +351,13 @@
 
       
         <p>async模块是一个管理异步上很强大的模块，使用这个模块可以很轻松的实现对回调并发的控制，例如顺序执行或者限制并发执行等等。但是在使用async模块时经常有一个困扰就是里面的callback，使用不当可能会导致使用中没有达到符合预期的样子，一个典型的例子就是在使用mapLimit时，执行到并发限制上限就终止了，而且不明原因，只能参考别人的代码把callback加上才能用，所以在这里写一下这个是怎么回事。</p>
-<h1 id="异步与同步"><a href="#异步与同步" class="headerlink" title="异步与同步"></a>异步与同步</h1><p>首先简述下同步与异步的概念，这是理解callback的一个很重要的基础。</p>
-<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>先从同步这个概念开始。同步根据名字就能大致猜出来其中的意思，意思就是在事物处理上只能按部就班一个个来的。以银行取钱为例，一排人在排队取钱，有的人取的快有的人取得慢，不管快也好还是慢也好，你只能等着前面的取完钱后才能轮到自己。</p>
+<h1 id="异步与同步">异步与同步</h1><p>首先简述下同步与异步的概念，这是理解callback的一个很重要的基础。</p>
+<h2 id="同步">同步</h2><p>先从同步这个概念开始。同步根据名字就能大致猜出来其中的意思，意思就是在事物处理上只能按部就班一个个来的。以银行取钱为例，一排人在排队取钱，有的人取的快有的人取得慢，不管快也好还是慢也好，你只能等着前面的取完钱后才能轮到自己。</p>
 <p>在浏览器加载网上的资源这个场景里同步是一件很可怕的事情，一个网页打开可能会请求很多资源图片文字声音等等，如果是同步执行的那就意味着一个资源下载完了才能下载另一个资源，一个大型网站优化不好的话可能要加载上百个资源文件，如果是同步的话那打开个网页的功夫你都可以撸完一局了。</p>
 <p>听起来感觉同步效率很低啊，那为什么还要有同步呢？同步也有它优秀的地方，那就是好管理，这个和数据结构的队列很像先进先出嘛。</p>
-<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>接下来就是异步了。不讲概念丛场景入手，还是那个银行排队的场景，在刚才同步取钱的场景下已经看出了，效率很低，如果前面的人取钱的时候，正好还有其他事不能立刻取钱，占着取钱窗口不离开，那就醉了。所以异步就登场了帮你加快取钱速度。异步的处理是这样的，你前面的要取钱，但是工作人员说不行啊，你想取钱得复印下你的身份证，然后这个时候呢她就取复印身份证去了，然后你不用等她复印完回来就可以取钱了，因为她并没有就绪。这个时候你取完钱要走了，该轮到下一位了，但是这个时候你前面的那个人复印完回来了，这个时候就优先处理他了，后面的人肯定没意见吧。这就是异步取钱的场景。</p>
+<h2 id="异步">异步</h2><p>接下来就是异步了。不讲概念丛场景入手，还是那个银行排队的场景，在刚才同步取钱的场景下已经看出了，效率很低，如果前面的人取钱的时候，正好还有其他事不能立刻取钱，占着取钱窗口不离开，那就醉了。所以异步就登场了帮你加快取钱速度。异步的处理是这样的，你前面的要取钱，但是工作人员说不行啊，你想取钱得复印下你的身份证，然后这个时候呢她就取复印身份证去了，然后你不用等她复印完回来就可以取钱了，因为她并没有就绪。这个时候你取完钱要走了，该轮到下一位了，但是这个时候你前面的那个人复印完回来了，这个时候就优先处理他了，后面的人肯定没意见吧。这就是异步取钱的场景。</p>
 <p>还是那个浏览器加载资源的过程，使用了异步就立马提升体验了。在请求资源的时候，我们不用等上个资源请求完毕，直接去请求下一个资源，之后就是谁先请求完了再处理谁，这样是不是很快，最大程度的利用了带宽和CPU，跟操作系统里的一些概念蛮像的。</p>
-<h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><p>接下在就是async了，本文将丛mapLimit这个方法入手，讲一下为什么使用mapLimit达到并发上限后就不执行了。</p>
+<h1 id="async">async</h1><p>接下在就是async了，本文将丛mapLimit这个方法入手，讲一下为什么使用mapLimit达到并发上限后就不执行了。</p>
 <blockquote>
 <p>mapLimit(arr, limit, iterator, callback) </p>
 </blockquote>
@@ -367,7 +367,7 @@
 <p>上面说了一坨，来一句其中要害的，就是arr里的资源要交给iterator来处理，iterator处理完了要callback出来告诉arr，我处理完了有空缺位置，在给我一个来处理吧。</p>
 <p>接下来我们把上面的代码加点内容，让它有异步的存在，看起来更真是一些，不然的那个limit岂不是成摆设了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">async</span> = <span class="built_in">require</span>(<span class="string">'async'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;<span class="number">100</span>;i++)&#123;</div><div class="line">    arr.push(i)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">async</span>.mapLimit(arr,<span class="number">5</span>,<span class="function"><span class="keyword">function</span>(<span class="params">item,callback</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'并发执行:'</span>+count);</div><div class="line">    count++;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        callback(<span class="literal">null</span>,item);</div><div class="line">        count--;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'并发执行:'</span>+count);</div><div class="line">    &#125;,<span class="number">1000</span>)</div><div class="line"></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err,result</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(result);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>上面这段代码更有真实感了，其实很简单，就是在callback的外面逃了一层settimeout，来模拟回调的执行，这样以来就能清晰的看到对并发的限制了。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>最后简而言之就是，在mapLimit达到上限后没有继续执行的根本原因就是，你少了callback，没有callback，async根本不知道你是否执行完毕，这样以来怎么能够获取arr里的资源呢</p>
+<h1 id="最后">最后</h1><p>最后简而言之就是，在mapLimit达到上限后没有继续执行的根本原因就是，你少了callback，没有callback，async根本不知道你是否执行完毕，这样以来怎么能够获取arr里的资源呢</p>
 
       
     </div>
@@ -581,7 +581,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

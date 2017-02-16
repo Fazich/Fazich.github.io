@@ -360,10 +360,10 @@
 
       
         <p>本文以这个bug报错信息命名，来阐述下这个问题的解决办法。</p>
-<h2 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h2><p>首先说一下报错问题来自哪里。</p>
+<h2 id="问题概述">问题概述</h2><p>首先说一下报错问题来自哪里。</p>
 <p>这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。</p>
 <p>其次就是什么时候报错。这个报错产生在ie6、7、8中，在ie8以上没有报错，坑爹的ie啊，FUCK！！</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>下面直奔主题来说一下解决的办法<br>先说一下为什么会出现这个错误，根本原因就是在ie8以下的浏览器里，操作一个DOM的非法属性时会出现，举例说明下</p>
+<h2 id="解决办法">解决办法</h2><p>下面直奔主题来说一下解决的办法<br>先说一下为什么会出现这个错误，根本原因就是在ie8以下的浏览器里，操作一个DOM的非法属性时会出现，举例说明下</p>
 <p>第一种情况，操作了一个DOM不该有的属性</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>如果要改变这个dom的值应该是修改它的value属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).val(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
@@ -591,7 +591,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
