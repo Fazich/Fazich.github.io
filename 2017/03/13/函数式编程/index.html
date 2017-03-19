@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%96%87%E6%A1%A3%20%281%29.png">
 <meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/function-sets.gif">
 <meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/relation-not-function.gif">
-<meta property="og:updated_time" content="2017-03-19T07:49:12.000Z">
+<meta property="og:updated_time" content="2017-03-19T07:55:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数式编程">
 <meta name="twitter:description" content="引言自react流行开来，函数式编程这个概念也跟着火了起来，记得去年面试时就问到了函数式编程的理解，当时对于函数式编程的理解只局限于自己开发过的一个react项目以及部分阅读过的文章而已，现在回想起来回答的真是不堪入目，所以在这之后好好的过了一遍相关概念，系统的了解一下函数式编程。
@@ -373,7 +373,7 @@
 <blockquote>
 <p>只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。</p>
 </blockquote>
-<p>通过闭包将第一个参数缓存起来供给给返回的函数使用，使之成为一个新的函数。柯里化函数看起来就像小时候玩的小霸王游戏机一样，输入一个参数，也就是放入一个游戏机卡，它就会返回这个参数对应的函数，电视里就会出现这个游戏卡的游戏画面。<br>柯里化函数推荐使用<a href="http://ramdajs.com/" target="_blank" rel="external">ramda</a>这个库，通过里面的<code>curry</code>方法可以轻松的讲一个普通函数转换成柯里化函数，十分的简单方面。</p>
+<p>通过闭包将第一个参数缓存起来供给给返回的函数使用，使之成为一个新的函数。柯里化函数看起来就像小时候玩的小霸王游戏机一样，输入一个参数，也就是放入一个游戏机卡，它就会返回这个参数对应的函数，电视里就会出现这个游戏卡的游戏画面。<br>柯里化函数推荐使用<a href="http://ramdajs.com/" target="_blank" rel="external">ramda</a>这个库，通过里面的<code>curry</code>方法可以轻松的讲一个普通函数转换成柯里化函数，十分的简单方便。</p>
 <h2 id="组合">组合</h2><p>组合是这个几个重要的基本概念中的最后一个，将组合之前要先从pointfree开始</p>
 <h3 id="point-free">point-free</h3><p>是的就是pointfree，没有对应的中文翻译名字。</p>
 <blockquote>
