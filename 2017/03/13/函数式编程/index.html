@@ -1,0 +1,752 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="引言自react流行开来，函数式编程这个概念也跟着火了起来，记得去年面试时就问到了函数式编程的理解，当时对于函数式编程的理解只局限于自己开发过的一个react项目以及部分阅读过的文章而已，现在回想起来回答的真是不堪入目，所以在这之后好好的过了一遍相关概念，系统的了解一下函数式编程。
+从bug产生的温床副作用讲起程序员最怕出现的bug，但是bug为什么会出现呢？可能所有人得看法都不一样，可能是由于开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数式编程">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2017/03/13/函数式编程/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="引言自react流行开来，函数式编程这个概念也跟着火了起来，记得去年面试时就问到了函数式编程的理解，当时对于函数式编程的理解只局限于自己开发过的一个react项目以及部分阅读过的文章而已，现在回想起来回答的真是不堪入目，所以在这之后好好的过了一遍相关概念，系统的了解一下函数式编程。
+从bug产生的温床副作用讲起程序员最怕出现的bug，但是bug为什么会出现呢？可能所有人得看法都不一样，可能是由于开">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%96%87%E6%A1%A3.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%96%87%E6%A1%A3%20%281%29.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/function-sets.gif">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/relation-not-function.gif">
+<meta property="og:updated_time" content="2017-03-19T07:49:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数式编程">
+<meta name="twitter:description" content="引言自react流行开来，函数式编程这个概念也跟着火了起来，记得去年面试时就问到了函数式编程的理解，当时对于函数式编程的理解只局限于自己开发过的一个react项目以及部分阅读过的文章而已，现在回想起来回答的真是不堪入目，所以在这之后好好的过了一遍相关概念，系统的了解一下函数式编程。
+从bug产生的温床副作用讲起程序员最怕出现的bug，但是bug为什么会出现呢？可能所有人得看法都不一样，可能是由于开">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%96%87%E6%A1%A3.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 函数式编程 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                函数式编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-13T14:25:51+08:00" content="2017-03-13">
+              2017-03-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/13/函数式编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/13/函数式编程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="引言">引言</h1><p>自react流行开来，函数式编程这个概念也跟着火了起来，记得去年面试时就问到了函数式编程的理解，当时对于函数式编程的理解只局限于自己开发过的一个react项目以及部分阅读过的文章而已，现在回想起来回答的真是不堪入目，所以在这之后好好的过了一遍相关概念，系统的了解一下函数式编程。</p>
+<h1 id="从bug产生的温床副作用讲起">从bug产生的温床副作用讲起</h1><p>程序员最怕出现的bug，但是bug为什么会出现呢？可能所有人得看法都不一样，可能是由于开发人员的水平所致，可能是软件的复杂度导致的等等。Franklin Risby教授认为bug产生的环境是副作用，副作用是bug产生的温床。什么是副作用呢？引用几个例子</p>
+<blockquote>
+<ul>
+<li>更改文件系统</li>
+<li>往数据库插入记录</li>
+<li>发送一个 http 请求</li>
+<li>可变数据</li>
+<li>打印/log</li>
+<li>获取用户输入</li>
+<li>DOM 查询</li>
+<li>访问系统状态</li>
+</ul>
+</blockquote>
+<p>概括来讲，只要是跟函数外部环境发生的交互就都是副作用。为什么bug容易在副环境中产生呢？简单来说因为外部环境是不可靠得，任何的变动都可能引起bug的产生，例如：<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%96%87%E6%A1%A3.png" alt="外部环境依赖示例图"><br>在这种情况下，当有新的开发者去开始依赖外部环境的方法D时，发现结果不是预期的，于是更改了外部环境的变量，虽然此时方法D是没有问题了，但是之前的方法ABC都出现了问题，这就是常见的修复了一个bug另一个地方又出现了bug。那么要怎样避免这种问题的出现呢？一个很直接的方法进行柯里化，将外部的环境变量转换为方法内部的变量，不依赖不可靠的外部环境。<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%96%87%E6%A1%A3%20%281%29.png" alt="柯里化降低副作用"><br>这样以来依赖不可靠的外部环境就会变成新方法内部的一个缓存下来的变量，当外部的环境发生变化的时候，起内部的缓存变量是不会变化的，减少副作用，这也是函数式编程的一个重要的点。</p>
+<h1 id="几个重要的基本概念">几个重要的基本概念</h1><p>面向对象与函数式编程是一个相对的概念，如果说面向对象是通过人类的思维方式去解决软件工程里的难题的话，那么函数式编程就是通过数学的思维方式去解决软件工程里的问题。<br>学习函数式就像当初学习面向对象编程的感觉一样。有很多新的概念需要学习，但又与面向对象不一样，函数式编程里的概念要比面向对象里的概念抽象，毕竟是数学的思维，数学的本质就是抽象。下面就从几个重要的概念说起，来一步步的深入到函数式编程的精髓中。</p>
+<h2 id="纯函数">纯函数</h2><p>纯函数是函数式编程的基础，函数式编程是建立在一个个纯函数的基础上实现的，那么什么是纯函数呢？就像之前说的函数式编程是数学的思维方式，所以就先回顾下初中数学函数的概念吧。</p>
+<blockquote>
+<p>A function relates an input to an output.函数是不同数值之间的特殊关系：每一个输入值返回且只返回一个输出值。</p>
+</blockquote>
+<p>函数有个重要的判断方式就是一个f(x)只能对应一个y，但是一个y可以对应多个f(x)，例如：<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/function-sets.gif" alt="function-sets"><br>上面这个图就是一个函数，而下面这个就不是，因为一个x对应了多个y<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/relation-not-function.gif" alt="http://7xr8op.com1.z0.glb.clouddn.com/relation-not-function.gif"></p>
+<p>说完了数学里函数的概念，那么再说下什么是纯函数，纯函数的意思和数学里函数的概念一样，即相同的输入产生相同的输出，若是相同的输入产生了不同的输出那这个就不是纯函数，会产生副作用，因为这个函数是不可靠的，他的输出结果是不确定的。先从个简单的例子开始：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> age = <span class="number">18</span>;</div><div class="line"><span class="keyword">let</span> showAge = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(age)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面这个<code>showAge</code>函数就不是一个纯函数，因为相同的输入不一定会产生相同的输出，当外部变量age改变时其输出也就改变了，若是要改成纯函数吧age这个变量变成一个非外部变量即可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> showAge = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> age = <span class="number">18</span>;</div><div class="line">  <span class="built_in">console</span>.log(age)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样一来这就是纯函数了，因为无论怎么调用这个函数，它的输出值是恒定不会改变的。<br>下面来一个稍微复杂点的。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let getUserInfo = AjaxGet('/getUserInfo',(<span class="name">json</span>) =&gt;&#123;</div><div class="line">  console.log(<span class="name">json</span>)<span class="comment">;</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>上面这个函数就不是纯函数，因为调用了’/getUserInfo’这个接口返回的参数并不会是总是一样的，若是要把它编程纯函数，就需要用到柯里化，将这个函数改成惰性调用就可以了。<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6</span></div><div class="line">let getUserInfo = (<span class="keyword">callback</span>) =&gt; AjaxGet(<span class="string">'/getUserInfo'</span>,<span class="keyword">callback</span>)</div><div class="line">ES5</div><div class="line"><span class="keyword">var</span> getUserInfo = <span class="function"><span class="keyword">function</span></span>(<span class="keyword">callback</span>) &#123;</div><div class="line">  <span class="keyword">return</span> AjaxGet(<span class="string">'/getUserInfo'</span>, <span class="keyword">callback</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>通过改造后能够看出<code>getUserInfo</code>这个函数这个函数无论调用多少次它的返回都是不会改变的，那就是返回一个调用<code>/getUserInfo</code>的接口函数，这样依赖就将一个非纯函数改造成了一个纯函数。</p>
+<h2 id="柯里化（curry）">柯里化（curry）</h2><p>首先什么是柯里化呢？这个如果只是从单纯的从概念上讲还是挺抽象的，所以先从例子说起，最后在说下什么是柯里化，这样更容易让人理解。<br>柯里化是函数编程中另一个十分重要的概念，且在应用上十分的广泛和重要，使用柯里化不光可以将一个非纯函数改造成一个纯函数，即使不用来改造函数，在非函数式开发中也能给我们带来很大的便利。举个例子，在接口模块中我们常常会这么定义接口调用的函数：<br><figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> getUserInfo = Ajaxget(<span class="string">'/getUserInfo'</span>,(json) =&gt; json)</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> getUserInfo = AjaxGet(<span class="string">'/getUserInfo'</span>,fcuntion(json)&#123;</div><div class="line">  <span class="keyword">return</span> json;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> getItemInfo = Ajaxget(<span class="string">'/getItemInfo'</span>,(json) =&gt; json)</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> getItemInfo = AjaxGet(<span class="string">'/getItemInfo'</span>,fcuntion(json)&#123;</div><div class="line">  <span class="keyword">return</span> json;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> getPrice = Ajaxget(<span class="string">'/getPrice'</span>,(json) =&gt; json)</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> getPrice = AjaxGet(<span class="string">'/getPrice'</span>,fcuntion(json)&#123;</div><div class="line">  <span class="keyword">return</span> json;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//......等等众接口</span></div></pre></td></tr></table></figure></p>
+<p>这样写看起来不错没什么问题，但是如果有一天接到变动说通信协议要变，对每个返回的json加上安全检测，那这改动就麻烦了，成了一个纯体力活。改动就成了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> getUserInfo = $.getJson(<span class="string">'/getUserInfo'</span>,(json) =&gt;&#123;</div><div class="line">  <span class="keyword">if</span> (isSecruity(json))&#123;</div><div class="line">    <span class="keyword">return</span> callback</div><div class="line">  &#125; </div><div class="line">&#125;)</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> getUserInfo = $.getJson(<span class="string">'/getUserInfo'</span>,fcuntion(json)&#123;</div><div class="line">  <span class="keyword">if</span> (isSecruity(json))&#123;</div><div class="line">    <span class="keyword">return</span> callback</div><div class="line">  &#125; </div><div class="line">&#125;)</div><div class="line"><span class="comment">//...省略掉</span></div></pre></td></tr></table></figure></p>
+<p>使用了柯里化这个问题就变得简单了不少<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> getJson = <span class="function">(<span class="params">api,callback</span>) =&gt;</span> ajaxGet(api,callback)</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> getJson = <span class="function"><span class="keyword">function</span>(<span class="params">api,callback</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> ajaxGet(api,callback)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> getUserInfo = getJson(<span class="string">'/getUserInfo'</span>)</div><div class="line"><span class="keyword">let</span> getItemInfo = getJson(<span class="string">'/getItemInfo'</span>)</div><div class="line"><span class="keyword">let</span> getPrice = getJson(<span class="string">'/getPrice'</span>)</div></pre></td></tr></table></figure></p>
+<p>对于上面提到的协议变动，我们只要对<code>getJson</code>这个柯里化函数做修改就可以了，其他的由<code>getJson</code>这个柯里化函数生出来的小函数都一个个的自动修改了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> getJson = <span class="function">(<span class="params">api,callback</span>) =&gt;</span> ajaxGet(api,(json)=&gt;&#123;</div><div class="line">  <span class="keyword">if</span> (isSecruity(json))&#123;</div><div class="line">    <span class="keyword">return</span> callback</div><div class="line">  &#125; </div><div class="line">&#125;)</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> getJson = <span class="function"><span class="keyword">function</span>(<span class="params">api,callback</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> ajaxGet(api,<span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (isSecruity(json))&#123;</div><div class="line">      <span class="keyword">return</span> callback</div><div class="line">    &#125; </div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过例子可以看出柯里化就是</p>
+<blockquote>
+<p>只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。</p>
+</blockquote>
+<p>通过闭包将第一个参数缓存起来供给给返回的函数使用，使之成为一个新的函数。柯里化函数看起来就像小时候玩的小霸王游戏机一样，输入一个参数，也就是放入一个游戏机卡，它就会返回这个参数对应的函数，电视里就会出现这个游戏卡的游戏画面。<br>柯里化函数推荐使用<a href="http://ramdajs.com/" target="_blank" rel="external">ramda</a>这个库，通过里面的<code>curry</code>方法可以轻松的讲一个普通函数转换成柯里化函数，十分的简单方面。</p>
+<h2 id="组合">组合</h2><p>组合是这个几个重要的基本概念中的最后一个，将组合之前要先从pointfree开始</p>
+<h3 id="point-free">point-free</h3><p>是的就是pointfree，没有对应的中文翻译名字。</p>
+<blockquote>
+<p>point-free又称作tacit-programming，是一种编程范式即不通过使用变量的形式声明函数。for example:</p>
+</blockquote>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let getReverse = (<span class="built_in">str</span>) =&gt; <span class="built_in">str</span>.<span class="built_in">split</span>(<span class="string">' '</span>).<span class="built_in">reverse</span>()</div></pre></td></tr></table></figure>
+<p>上面这个函数就不是point-free的，因为它用到了str这个变量做了split和reverse方法的连接器。那么现在问题来了，能够不通过声明变量来声明一个函数吗？</p>
+<h3 id="使用compose连接方法">使用compose连接方法</h3><p>这里就要引出组合这个概念，组合的概念很简单，就是将两个以上的纯函数组合成一个新的函数。一个最简单的组合代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="keyword">let</span> compose = <span class="function">(<span class="params">f,g</span>) =&gt;</span> (x) =&gt; f(g(x))</div><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> compose = <span class="function"><span class="keyword">function</span>(<span class="params">f,g</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> f(g(x));</div><div class="line">  &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>现在就用<code>compose</code>把上面的那个非point-free的函数变成point-free的函数,注意compose对于参数里函数的执行顺序是从右到左执行的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> reverse = <span class="function">(<span class="params">arr</span>) =&gt;</span> arr.reverse();</div><div class="line"><span class="keyword">let</span> splitSpace = <span class="function">(<span class="params">str</span>) =&gt;</span> str.split(<span class="string">' '</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> getReverse = compose(reverse,splitSpace);</div><div class="line"></div><div class="line">getReverse(<span class="string">'a b c'</span>) <span class="comment">// result ==&gt; [b,c,a]</span></div></pre></td></tr></table></figure></p>
+<p>通过compose（组合）就可以不使用中间参数来串联起两个方法，引入<code>ramda</code>库，使用里面的compose方法，我们可以通过组合构建起更加清晰的point-free的函数。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> R <span class="keyword">from</span> <span class="string">'ramda'</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> getUserInfo = R.compose(</div><div class="line">  setUserHTML,</div><div class="line">  getUserProp,</div><div class="line">  checkUserInfo,</div><div class="line">  getUserJson</div><div class="line">)</div><div class="line">getUserInfo(<span class="string">'/getUserInfo'</span>)</div></pre></td></tr></table></figure></p>
+<p>我们可以清晰看到<code>getUserInfo</code>这个函数调用了4个函数，且执行顺序是从下往上的。这样的代码可读性是非常强的，想一下如果不用<code>compose</code>而使用变量将这个4个函数连接起来，这个代码阅读的难度是多么的费劲吧。</p>
+<h1 id="函数式编程的优点">函数式编程的优点</h1><p>明白上几个重要的基本概念，函数式编程旅程就可以开始了。但是像纯函数、柯里化、组合这些用起来与面向对象相比有什么好处呢呢？这里就简单的坐下阐述</p>
+<h2 id="可缓存性（Cacheable）">可缓存性（Cacheable）</h2><p>通过纯函数和柯里化可以轻松缓存技术<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> R <span class="keyword">from</span> <span class="string">'ramda'</span></div><div class="line"></div><div class="line">let getJson = R.curry(<span class="function"><span class="params">(api,callback)</span>=&gt;</span>&#123;</div><div class="line">  let cache = &#123;&#125;</div><div class="line">  <span class="keyword">if</span> (cahce[api])&#123;</div><div class="line">    <span class="keyword">return</span> callback &amp;&amp; callback(cache[api])</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    ajaxGet(api,<span class="function"><span class="params">(json)</span>=&gt;</span>&#123;</div><div class="line">        cache[api] = json;</div><div class="line">        <span class="keyword">return</span> callback &amp;&amp; callback(json)</div><div class="line">    &#125;))</div><div class="line">  &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line">getUserInfo = getJson(<span class="string">'/getUserInfo'</span>)</div><div class="line">getItemInfo = getJson(<span class="string">'/getItemInfo'</span>)</div><div class="line">getPriceInfo = getJson(<span class="string">'/getPriceInfo'</span>)</div></pre></td></tr></table></figure></p>
+<p>通过柯里化轻松的将ajax的返回的json缓存了起来，并且柯里化函数的可配置性更强，对于通用性很强只是参数差异的函数，使用柯里化可以将它们抽象起来方便统一的管理。</p>
+<h2 id="可移植性／自文档化（Portable_/_Self-Documenting）">可移植性／自文档化（Portable / Self-Documenting）</h2><p>纯函数是自给自足的，依赖清晰的，这意味着纯函数相比于面向对象更容易理解和观察。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不纯的</span></div><div class="line"><span class="keyword">let</span> signUp = <span class="function">(<span class="params">attrs</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> user = saveUser(attrs);</div><div class="line">  welcomeUser(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> saveUser = <span class="function">(<span class="params">attrs</span>) =&gt;</span>&#123;</div><div class="line">    <span class="keyword">var</span> user = Db.save(attrs);</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> welcomeUser =<span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</div><div class="line">    Email(user, ...);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上述这种代码是项目中经常看到的，一个功能背后的函数是无法一眼就看出来的，需要一层层的阅读才能看出其中的依赖关系。与此相比函数式就先的更为的清晰和诚实。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//纯函数</span></div><div class="line"><span class="keyword">let</span> signUp = <span class="function">(<span class="params">Db, Email, attrs</span>) =&gt;</span> () =&gt;&#123;</div><div class="line">    <span class="keyword">let</span> user = saveUser(Db, attrs);</div><div class="line">    welcomeUser(Email, user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> saveUser = <span class="function">(<span class="params">Db, attrs</span>) =&gt;</span> &#123;</div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> welcomeUser = <span class="function">(<span class="params">Email, user</span>) =&gt;</span> &#123;</div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line"><span class="comment">//使用point-free与compose会更加的清晰</span></div><div class="line"><span class="keyword">let</span> signUp = compse(</div><div class="line">  welcomeUser,</div><div class="line">  saveUser</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>引用下Erlang 语言的作者 Joe Armstrong 说的一句话</p>
+<blockquote>
+<p>“面向对象语言的问题是，它们永远都要随身携带那些隐式的环境。你只需要一个香蕉，但却得到一个拿着香蕉的大猩猩…以及整个丛林”</p>
+</blockquote>
+<h2 id="可测试性（Testable）">可测试性（Testable）</h2><p>可测试性就不用过多的赘述了，由于纯函数是可靠的，因此在测试上不用过多的配置，只需要简单输入断言输出即可。</p>
+<h1 id="与面向对象的对比">与面向对象的对比</h1><p>看起来好像函数式好想比面向对象好用太多了，使用函数式编程就像是在玩乐高一样，把每一个定义好的纯函数进行组合就能构建出一个个复杂可靠的功能。但是函数式编程并不是一个通用的最优解，它有自己适合的地方，也有自己的不足，讲了这么多的好处也要说一下它的缺点。<br>这块主要引用下王垠对于函数式不足的看法</p>
+<blockquote>
+<p>所谓纯函数，基本上就是忽略了物质基础(硅片、晶体等)表现的特性。纯函数式的编程语言试图通过函数——在函数中传入传出整个宇宙——来重新实现整个宇宙。但物理的和模拟的是有区别的。“副作用”是物理的。它们真实的存在于自然界中，对计算机的效用的实现起着不可或缺的作用。利用纯函数来模拟它们是注定低效的、复杂的、甚至是丑陋的。你是否发现，在C语言里实现一个环形数据结构或随机数发生器是多么的简单？但使用Haskell语言就不是这样了。</p>
+<p>还有，纯函数编程语言会带来巨大的认知成本。如果你深入观察它们，你会看到monads使程序变得复杂，难于编写，而且monad的变体都是拙劣的修改。monads跟Java的“设计模式”具有相同的精神本质。使用monad来表现副作用就像是visitor模式来写解释器。你是否发现，在很多其它语言里很简单的事情，放到Haskell语言就变成了一个课题来研究如何实现。</p>
+</blockquote>
+<p>由于这遍文章已经被本人删掉了，可能是为了避免一些不必要的争执吧，原文可以看<a href="http://www.vaikan.com/whats-wrong-with-oop-and-fp/" target="_blank" rel="external">为什么说面向对象编程和函数式编程都有问题</a>。总的来看对于函数式有两个重要的不足之处，一个是副作用是不可能完全避免的，用纯函数模拟会复杂低效，其次monads使程序变得复杂，它和面向对象的设计模式一样是弥补自身缺陷的一个补丁。偏激的选择函数式或者面向对象都是不可取的，最好的办法往往都是折中的相互借鉴的。</p>
+<h1 id="遗漏部分">遗漏部分</h1><p>文章对函数式编程还有几个重要的概念没有说明，一个是Functor，另一个是Monad，这些是为了在函数式中处理错误处理，异步等更复杂的场景而存在，属于更高阶的函数式用法，这里就先不做赘述了，用空专门好好整理下这两点</p>
+<h1 id="个人思考">个人思考</h1><p>总的来看如果用函数式来完全的替代面向对象，个人认为是不可取的。函数式在学术界虽然已经研究了多年，但是仍然处在完善中，使用函数式编程的思想来完善和提高项目代码的控制还是十分不错的，比如通过纯函数和柯里化管理接口功能，mock测试等等都是十分不错的方案。</p>
+<h1 id="参考">参考</h1><p><a href="http://www.mathsisfun.com/sets/function.html" target="_blank" rel="external">http://www.mathsisfun.com/sets/function.html</a><br><a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese" target="_blank" rel="external">JS函数式编程指南</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/16/async模块之困扰的并发限制/" rel="next" title="async模块之困扰的并发限制">
+                <i class="fa fa-chevron-left"></i> async模块之困扰的并发限制
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/13/函数式编程/"
+     data-title="函数式编程"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2017/03/13/函数式编程/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/13/函数式编程/"
+           data-title="函数式编程" data-url="http://blog.yangchen123h.cn/2017/03/13/函数式编程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从bug产生的温床副作用讲起"><span class="nav-number">2.</span> <span class="nav-text">从bug产生的温床副作用讲起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几个重要的基本概念"><span class="nav-number">3.</span> <span class="nav-text">几个重要的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#纯函数"><span class="nav-number">3.1.</span> <span class="nav-text">纯函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柯里化（curry）"><span class="nav-number">3.2.</span> <span class="nav-text">柯里化（curry）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合"><span class="nav-number">3.3.</span> <span class="nav-text">组合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#point-free"><span class="nav-number">3.3.1.</span> <span class="nav-text">point-free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用compose连接方法"><span class="nav-number">3.3.2.</span> <span class="nav-text">使用compose连接方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程的优点"><span class="nav-number">4.</span> <span class="nav-text">函数式编程的优点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可缓存性（Cacheable）"><span class="nav-number">4.1.</span> <span class="nav-text">可缓存性（Cacheable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可移植性／自文档化（Portable_/_Self-Documenting）"><span class="nav-number">4.2.</span> <span class="nav-text">可移植性／自文档化（Portable / Self-Documenting）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性（Testable）"><span class="nav-number">4.3.</span> <span class="nav-text">可测试性（Testable）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与面向对象的对比"><span class="nav-number">5.</span> <span class="nav-text">与面向对象的对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遗漏部分"><span class="nav-number">6.</span> <span class="nav-text">遗漏部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人思考"><span class="nav-number">7.</span> <span class="nav-text">个人思考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
