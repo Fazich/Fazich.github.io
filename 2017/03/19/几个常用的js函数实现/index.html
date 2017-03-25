@@ -1,0 +1,724 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文的翻译自7 Essential JavaScript Functions
+我记得之前由于浏览器厂商对于js的支持程度不同，我们需要自己写一些简单函数来实现一些边缘功能，甚至是一些基本功能例如addEventListener和attachEvent。随着发展，这些功能大部分的浏览器都已经支持了，但是仍有一些函数未实现，需要开发者们掌握，以便为了更容易的开发。
+debouncedebounce函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个常用的js函数实现">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2017/03/19/几个常用的js函数实现/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="本文的翻译自7 Essential JavaScript Functions
+我记得之前由于浏览器厂商对于js的支持程度不同，我们需要自己写一些简单函数来实现一些边缘功能，甚至是一些基本功能例如addEventListener和attachEvent。随着发展，这些功能大部分的浏览器都已经支持了，但是仍有一些函数未实现，需要开发者们掌握，以便为了更容易的开发。
+debouncedebounce函数">
+<meta property="og:updated_time" content="2017-03-25T09:35:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="几个常用的js函数实现">
+<meta name="twitter:description" content="本文的翻译自7 Essential JavaScript Functions
+我记得之前由于浏览器厂商对于js的支持程度不同，我们需要自己写一些简单函数来实现一些边缘功能，甚至是一些基本功能例如addEventListener和attachEvent。随着发展，这些功能大部分的浏览器都已经支持了，但是仍有一些函数未实现，需要开发者们掌握，以便为了更容易的开发。
+debouncedebounce函数">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 几个常用的js函数实现 | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                几个常用的js函数实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-19T21:22:21+08:00" content="2017-03-19">
+              2017-03-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/19/几个常用的js函数实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/19/几个常用的js函数实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文的翻译自<a href="https://davidwalsh.name/essential-javascript-functions" target="_blank" rel="external">7 Essential JavaScript Functions</a></p>
+<p>我记得之前由于浏览器厂商对于js的支持程度不同，我们需要自己写一些简单函数来实现一些边缘功能，甚至是一些基本功能例如<code>addEventListener</code>和<code>attachEvent</code>。随着发展，这些功能大部分的浏览器都已经支持了，但是仍有一些函数未实现，需要开发者们掌握，以便为了更容易的开发。</p>
+<h1 id="debounce">debounce</h1><p>debounce函数能够很好的提升事件处理的性能。如果你没有为<code>scroll</code>，<code>resize</code>，<code>key*</code>事件使用debounce函数的话，那是十分糟糕的。以下是debounce的实现，这能让你的代码更有效率<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回一个函数，如果它被不间断地调用，它将不会得到执行。该函数在停止调用 N 毫秒后，再次调用它才会得到执行。如果有传递 ‘immediate’ 参数，会马上将函数安排到执行队列中，而不会延迟。</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> timeout;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> context = <span class="keyword">this</span>, args = <span class="built_in">arguments</span>;</div><div class="line">		<span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			timeout = <span class="literal">null</span>;</div><div class="line">			<span class="keyword">if</span> (!immediate) func.apply(context, args);</div><div class="line">		&#125;;</div><div class="line">		<span class="keyword">var</span> callNow = immediate &amp;&amp; !timeout;</div><div class="line">		clearTimeout(timeout);</div><div class="line">		timeout = setTimeout(later, wait); <span class="comment">//当immediate为false时timeout是执行函数，为true时timeout执行为空，不会与下面的apply冲突</span></div><div class="line">		<span class="keyword">if</span> (callNow) func.apply(context, args);</div><div class="line">	&#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line"><span class="keyword">var</span> myEfficientFn = debounce(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="comment">// All the taxing stuff you do</span></div><div class="line">&#125;, <span class="number">250</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, myEfficientFn);</div></pre></td></tr></table></figure></p>
+<p><code>debounce</code>函数不允许回调函数在指定时间内执行多次。这对一些频繁触发事件但执行一次回调的函数十分重要。<br>个人备注：在一些浏览器事件中我们不希望事件触发后立刻执行的，例如scroll到浏览器底部加载数据这个时间，有时候用户触底可能是无意操作，或者触底后就会关闭页面并不会继续浏览接下来的内容，这就会带来不必要的开销。因此通常的措施是为这个响应时间加上setTimeout来延迟执行，在延迟期间在此触发并不会继续执行。</p>
+<h1 id="poll">poll</h1><p>尽管上面提及了<code>debounce</code>函数，但如果时间不存在的话，你就不能插入一个事件来判断一个所需要的状态，你需要每隔一段时间来检查所需要的状态<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// The polling function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">poll</span>(<span class="params">fn, timeout, interval</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> endTime = <span class="built_in">Number</span>(<span class="keyword">new</span> <span class="built_in">Date</span>()) + (timeout || <span class="number">2000</span>);</div><div class="line">    interval = interval || <span class="number">100</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> checkCondition = <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">		<span class="comment">//当条件满足时resolve</span></div><div class="line">        <span class="keyword">var</span> result = fn();</div><div class="line">        <span class="keyword">if</span>(result) &#123;</div><div class="line">            resolve(result);</div><div class="line">        &#125;</div><div class="line">		<span class="comment">//若条件没有满足且没有超时则继续</span></div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Number</span>(<span class="keyword">new</span> <span class="built_in">Date</span>()) &lt; endTime) &#123;</div><div class="line">            setTimeout(checkCondition, interval, resolve, reject);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//超时且未获得所需状态, reject!</span></div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'timed out for '</span> + fn + <span class="string">': '</span> + <span class="built_in">arguments</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(checkCondition);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用：确保元素可见</span></div><div class="line">poll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">document</span>.getElementById(<span class="string">'lightbox'</span>).offsetWidth &gt; <span class="number">0</span>;</div><div class="line">&#125;, <span class="number">2000</span>, <span class="number">150</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Polling 结束, 做其他事情</span></div><div class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Polling 超时, 处理错误</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h1 id="once">once</h1><p>有时候你想要一个函数只执行一次，类似于使用onload事件，这段代码可以提供给你想要的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">once</span>(<span class="params">fn, context</span>) </span>&#123; </div><div class="line">	<span class="keyword">var</span> result;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">		<span class="keyword">if</span>(fn) &#123;</div><div class="line">			result = fn.apply(context || <span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">			fn = <span class="literal">null</span>; <span class="comment">//执行一次之后清空参数</span></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line"><span class="keyword">var</span> canOnlyFireOnce = once(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Fired!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">canOnlyFireOnce(); <span class="comment">// "Fired!"</span></div><div class="line">canOnlyFireOnce(); <span class="comment">// nada</span></div></pre></td></tr></table></figure></p>
+<p>once函数能够保证函数只能执行一次，从而避免了多次初始化</p>
+<h1 id="getAbsoluteUrl">getAbsoluteUrl</h1><p>通过一个字符串变量获得一个绝对URL并不如你想象的简单。对于URL构造器来说如果你不提供需要的参数的话，它就不能正常工作，然后又时候你都不能提供。这里有一个优雅的技巧，只需要传递一个字符串就能得到绝对URL<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getAbsoluteUrl = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> a; <span class="comment">//通过闭包缓存</span></div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">		<span class="keyword">if</span>(!a) a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</div><div class="line">		a.href = url;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> a.href;</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line">getAbsoluteUrl(<span class="string">'/something'</span>); <span class="comment">// https://davidwalsh.name/something</span></div></pre></td></tr></table></figure></p>
+<p>看起来href的处理和url看起来毫无意义，但是通过return提供了一个可靠的绝对URL<br>个人备注：通过创建a标签，因为a标签的href属性会有当前页面的绝对路径，因此就能获得绝对路径</p>
+<h1 id="isNative">isNative</h1><p>如果你想知道一个函数是否是原生的，并且不知道能否覆盖他。下面这段代码就能给你答案<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// Used to resolve the internal `[[Class]]` of values</span></div><div class="line">  <span class="comment">//用来处理内部[[Class]]的值</span></div><div class="line">  <span class="keyword">var</span> toString = <span class="built_in">Object</span>.prototype.toString;</div><div class="line">  </div><div class="line">  <span class="comment">// Used to resolve the decompiled source of functions</span></div><div class="line">  <span class="comment">//解析函数的反编译代码</span></div><div class="line">  <span class="keyword">var</span> fnToString = <span class="built_in">Function</span>.prototype.toString;</div><div class="line">  </div><div class="line">  <span class="comment">// Used to detect host constructors (Safari &gt; 4; really typed array specific)</span></div><div class="line">  <span class="comment">//用来检测宿主构造器</span></div><div class="line">  <span class="keyword">var</span> reHostCtor = <span class="regexp">/^\[object .+?Constructor\]$/</span>;</div><div class="line"></div><div class="line">  <span class="comment">// Compile a regexp using a common native method as a template.</span></div><div class="line">  <span class="comment">//用一个通用的原生方法作为模版来编译一个正则表达式</span></div><div class="line">  <span class="comment">// We chose `Object#toString` because there's a good chance it is not being mucked with.</span></div><div class="line">  <span class="comment">//我们选择`Object#toString`因为它一般不会被污染</span></div><div class="line">  <span class="keyword">var</span> reNative = <span class="built_in">RegExp</span>(<span class="string">'^'</span> +</div><div class="line">    <span class="comment">// Coerce `Object#toString` to a string</span></div><div class="line">	<span class="comment">//将`Object#toString`强制转换为字符串</span></div><div class="line">    <span class="built_in">String</span>(toString)</div><div class="line">    <span class="comment">// Escape any special regexp characters</span></div><div class="line">	<span class="comment">//转义任何特殊的正则字符</span></div><div class="line">    .replace(<span class="regexp">/[.*+?^$&#123;&#125;()|[\]\/\\]/g</span>, <span class="string">'\\$&amp;'</span>)</div><div class="line">    <span class="comment">// Replace mentions of `toString` with `.*?` to keep the template generic.</span></div><div class="line">	<span class="comment">//用 '.*?' 替换提及的 'toString' ，以保持模板的通用性</span></div><div class="line">    <span class="comment">// Replace thing like `for ...` to support environments like Rhino which add extra info</span></div><div class="line">    <span class="comment">// such as method arity.</span></div><div class="line">	<span class="comment">//将 'for ...' 之类的字符替换掉，以兼容 Rhino 等环境，因为这些环境添加了额外的信息，如方法参数数量</span></div><div class="line">    .replace(<span class="regexp">/toString|(function).*?(?=\\\()| for .+?(?=\\\])/g</span>, <span class="string">'$1.*?'</span>) + <span class="string">'$'</span></div><div class="line">  );</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">isNative</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> type = <span class="keyword">typeof</span> value;</div><div class="line">    <span class="keyword">return</span> type == <span class="string">'function'</span></div><div class="line">      <span class="comment">// Use `Function#toString` to bypass the value's own `toString` method</span></div><div class="line">      <span class="comment">// and avoid being faked out.</span></div><div class="line">	  <span class="comment">// 用 'Function#toString' （fnToString）绕过了值（value）本身的 'toString' 方法，以免被伪造所欺骗。</span></div><div class="line">      ? reNative.test(fnToString.call(value))</div><div class="line">      <span class="comment">// Fallback to a host object check because some environments will represent</span></div><div class="line">      <span class="comment">// things like typed arrays as DOM methods which may not conform to the</span></div><div class="line">      <span class="comment">// normal native pattern.</span></div><div class="line">	  <span class="comment">// 回退到宿主对象的检查，因为某些环境（浏览器）将类型数组（typed arrays）之类的东西当作 DOM 方法，此时可能不遵循标准的原生正则表达式</span></div><div class="line">      : (value &amp;&amp; type == <span class="string">'object'</span> &amp;&amp; reHostCtor.test(toString.call(value))) || <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//导出函数</span></div><div class="line">  <span class="built_in">module</span>.exports = isNative;</div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line">isNative(alert); <span class="comment">// true</span></div><div class="line">isNative(myCustomFunction); <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p>这个函数虽然不完美但是可用</p>
+<h1 id="insertRule">insertRule</h1><p>我们都知道我们可以通过选择器（例如<code>document.querySelectorAll</code>）来获取一个NodeList，并且给其中的每一个元素赋一个样式，但是有什么更高效的方式来处理这个事情呢（就像在css里那样）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sheet = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="comment">// 创建style标签</span></div><div class="line">	<span class="keyword">var</span> style = <span class="built_in">document</span>.createElement(<span class="string">'style'</span>);</div><div class="line">	<span class="comment">//如果需要媒介类型，这里需要添加下面的代码</span></div><div class="line">	<span class="comment">// style.setAttribute('media', 'screen')</span></div><div class="line">	<span class="comment">// style.setAttribute('media', 'only screen and (max-width : 1024px)')</span></div><div class="line"></div><div class="line">	<span class="comment">// WebKit hack :(</span></div><div class="line">	style.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">''</span>));</div><div class="line"></div><div class="line">	<span class="comment">// 将style标签添加到页面里</span></div><div class="line">	<span class="built_in">document</span>.head.appendChild(style);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> style.sheet;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line">sheet.insertRule(<span class="string">"header &#123; float: left; opacity: 0.8; &#125;"</span>, <span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+<p>这对与动态的重度依赖Ajax的网站是十分游泳的。如果你为一个选择器设置样式，那么你就不需要为每个匹配到的元素都设置样式（现在或将来）。</p>
+<h1 id="matcheSelector">matcheSelector</h1><p>我们经常会在进行下一步操作前进行输入校验，以确保是一个可靠值，或确保表单数据是有效的，等等。但我们平时是怎么确保一个元素是否有资格进行进一步操作呢？如果一个元素有给定匹配的选择器，那么你可以使用 matchesSelector 函数来校验：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">matchesSelector</span>(<span class="params">el, selector</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> p = Element.prototype;</div><div class="line">	<span class="keyword">var</span> f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> [].indexOf.call(<span class="built_in">document</span>.querySelectorAll(s), <span class="keyword">this</span>) !== <span class="number">-1</span>;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">return</span> f.call(el, selector);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line">matchesSelector(<span class="built_in">document</span>.getElementById(<span class="string">'myDiv'</span>), <span class="string">'div.someSelector[some-attribute=true]'</span>)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础/" rel="tag">#基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/13/函数式编程/" rel="next" title="函数式编程">
+                <i class="fa fa-chevron-left"></i> 函数式编程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/19/几个常用的js函数实现/"
+     data-title="几个常用的js函数实现"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2017/03/19/几个常用的js函数实现/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/19/几个常用的js函数实现/"
+           data-title="几个常用的js函数实现" data-url="http://blog.yangchen123h.cn/2017/03/19/几个常用的js函数实现/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#debounce"><span class="nav-number">1.</span> <span class="nav-text">debounce</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#poll"><span class="nav-number">2.</span> <span class="nav-text">poll</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#once"><span class="nav-number">3.</span> <span class="nav-text">once</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#getAbsoluteUrl"><span class="nav-number">4.</span> <span class="nav-text">getAbsoluteUrl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#isNative"><span class="nav-number">5.</span> <span class="nav-text">isNative</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#insertRule"><span class="nav-number">6.</span> <span class="nav-text">insertRule</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matcheSelector"><span class="nav-number">7.</span> <span class="nav-text">matcheSelector</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
