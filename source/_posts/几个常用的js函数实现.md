@@ -99,7 +99,7 @@ canOnlyFireOnce(); // nada
 ```
 once函数能够保证函数只能执行一次，从而避免了多次初始化
 
-#getAbsoluteUrl
+# getAbsoluteUrl
 通过一个字符串变量获得一个绝对URL并不如你想象的简单。对于URL构造器来说如果你不提供需要的参数的话，它就不能正常工作，然后又时候你都不能提供。这里有一个优雅的技巧，只需要传递一个字符串就能得到绝对URL
 ```javascript
 var getAbsoluteUrl = (function() {
