@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="debug,ie," />
+  <meta name="keywords" content="box-sizing," />
 
 
 
@@ -78,25 +78,29 @@
 
 
 
-<meta name="description" content="本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
-问题概述首先说一下报错问题来自哪里。
-这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。
-其次就是什么时候报错。这个报错产生在ie6">
+<meta name="description" content="前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。
+概念还是概念先行，看下MDN对box-sizing的解释吧
+
+box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SCRIPT65535:意外地调用了方法或属性访问">
-<meta property="og:url" content="http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/index.html">
+<meta property="og:title" content="css之box-sizing">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2017/03/27/css之box-sizing/index.html">
 <meta property="og:site_name" content="YangChen's Blog">
-<meta property="og:description" content="本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
-问题概述首先说一下报错问题来自哪里。
-这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。
-其次就是什么时候报错。这个报错产生在ie6">
-<meta property="og:updated_time" content="2016-11-17T07:39:06.000Z">
+<meta property="og:description" content="前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。
+概念还是概念先行，看下MDN对box-sizing的解释吧
+
+box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/ie%E7%9B%92%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E7%9B%92%E6%A8%A1%E5%9E%8B.gif">
+<meta property="og:updated_time" content="2017-03-27T07:41:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SCRIPT65535:意外地调用了方法或属性访问">
-<meta name="twitter:description" content="本文以这个bug报错信息命名，来阐述下这个问题的解决办法。
-问题概述首先说一下报错问题来自哪里。
-这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。
-其次就是什么时候报错。这个报错产生在ie6">
+<meta name="twitter:title" content="css之box-sizing">
+<meta name="twitter:description" content="前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。
+概念还是概念先行，看下MDN对box-sizing的解释吧
+
+box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
 
 
 
@@ -114,7 +118,7 @@
   };
 </script>
 
-  <title> SCRIPT65535:意外地调用了方法或属性访问 | YangChen's Blog </title>
+  <title> css之box-sizing | YangChen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +298,7 @@
             
             
               
-                SCRIPT65535:意外地调用了方法或属性访问
+                css之box-sizing
               
             
           </h1>
@@ -306,8 +310,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-09T22:08:52+08:00" content="2016-03-09">
-              2016-03-09
+            <time itemprop="dateCreated" datetime="2017-03-27T14:26:25+08:00" content="2017-03-27">
+              2017-03-27
             </time>
           </span>
 
@@ -320,8 +324,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
                   </a>
                 </span>
 
@@ -336,8 +340,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/" itemprop="commentsCount"></span>
+                <a href="/2017/03/27/css之box-sizing/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/css之box-sizing/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -359,19 +363,33 @@
       
 
       
-        <p>本文以这个bug报错信息命名，来阐述下这个问题的解决办法。</p>
-<h2 id="问题概述">问题概述</h2><p>首先说一下报错问题来自哪里。</p>
-<p>这是一条脚本的报错信息，是我在KISSY中遇到了，报错模块在base.js中，这是KISSY里的一个核心模块。当然在jQuery中也一样会遇到，因为这是dom操作中遇到的bug。初次看到这个bug很无奈，居然是框架里的报错信息不是自己写的代码，完全无从下手。</p>
-<p>其次就是什么时候报错。这个报错产生在ie6、7、8中，在ie8以上没有报错，坑爹的ie啊，FUCK！！</p>
-<h2 id="解决办法">解决办法</h2><p>下面直奔主题来说一下解决的办法<br>先说一下为什么会出现这个错误，根本原因就是在ie8以下的浏览器里，操作一个DOM的非法属性时会出现，举例说明下</p>
-<p>第一种情况，操作了一个DOM不该有的属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>如果要改变这个dom的值应该是修改它的value属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).val(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<p>但是如果写成了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).html(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<p>在ie8以上的浏览器也OK，给你识别纠正了，但是在ie8以下就不行了</p>
-<p>第二种情况，标签的闭合上也就是我出错的地方<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>由于编辑器的自动补全，往往会忽略一些细节上的错误例如为input自动加了闭合标签，如果只操作这个dom的值无影响，但是如果操作下个同级元素就会报错了例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#test'</span>).next().html(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<p>当debug到test的下一级标签时，便会发现这个dom的nodeName是input而不是p，input操作html属性是不合法的，因此就报错啦。解决方法就是把input的闭合标签干掉</p>
+        <p>前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。</p>
+<h1 id="概念">概念</h1><p>还是概念先行，看下MDN对box-sizing的解释吧</p>
+<blockquote>
+<p>box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可以使用此属性来模拟不正确支持CSS框模型规范的浏览器的行为。</p>
+</blockquote>
+<h1 id="盒模型">盒模型</h1><p>在概念中可以很容易的看出来这个属性是用来更改盒模型计算的，那么这里就自然而然的需要介绍两个盒模型一个是标准盒模型，一个是IE盒模型</p>
+<h2 id="标准盒模型">标准盒模型</h2><p>无论什么盒模型它都有这几个属性值，从外到分别是:</p>
+<ol>
+<li>margin</li>
+<li>border</li>
+<li>padding</li>
+<li>content</li>
+</ol>
+<p>对于标准盒模型来说，当修改了这个dom的width或height属性时，例如修改为200px，这个修改只是修改了content的width，其总宽度是content+padding+border+margin。这个宽度是要大于等于200px的。这就是标准盒模型的长宽计算过程，如图所示:<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png" alt="标准盒模型"></p>
+<h2 id="IE盒模型">IE盒模型</h2><p>有了标准盒模型自然也有非标准的，那就是IE盒模型，在怪异模式下css的盒模型就是这个模式，同标准盒模型一样它也有margin、border、padding、content这4个属性，但是与标准盒模型不一样的地方在于，它的width计算可与标准盒模型不一样，这里做个对比:</p>
+<ul>
+<li>标准盒模型的width为content的width，总宽高 = content(width)+padding+border+margin</li>
+<li>ie盒模型的width为content+padding+border的width，因此总宽高为 = (content+padding+border)(width)+margin</li>
+</ul>
+<p>ie盒模型的计算如图所示:<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/ie%E7%9B%92%E6%A8%A1%E5%9E%8B.jpg" alt="ie盒模型"></p>
+<h2 id="两者对比">两者对比</h2><p>一张图就可以清晰的看出两者的差异，主要差异在width的计算上，如图所示:<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E7%9B%92%E6%A8%A1%E5%9E%8B.gif" alt="盒模型对比"></p>
+<h1 id="box-sizing">box-sizing</h1><p>接下来再回到box-sizing这个属性上就十分容易理解了，box-sizing有两个重要的属性，分别是：</p>
+<ol>
+<li>content-box。这是默认值，使用标准盒模型计算</li>
+<li>border-box。使用ie盒模型计算</li>
+</ol>
+<p>至此就可以灵活的切换css盒模型的计算方式来应对设计师的需求啦</p>
 
       
     </div>
@@ -392,9 +410,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/debug/" rel="tag">#debug</a>
-          
-            <a href="/tags/ie/" rel="tag">#ie</a>
+            <a href="/tags/box-sizing/" rel="tag">#box-sizing</a>
           
         </div>
       
@@ -403,17 +419,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/25/用nodeJs做爬虫/" rel="next" title="用Nodejs做爬虫">
-                <i class="fa fa-chevron-left"></i> 用Nodejs做爬虫
+              <a href="/2017/03/19/几个常用的js函数实现/" rel="next" title="几个常用的js函数实现">
+                <i class="fa fa-chevron-left"></i> 几个常用的js函数实现
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/12/BFC与清除浮动/" rel="prev" title="BFC与清除浮动">
-                BFC与清除浮动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,10 +440,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/"
-     data-title="SCRIPT65535:意外地调用了方法或属性访问"
+        <div class="ds-share flat" data-thread-key="2017/03/27/css之box-sizing/"
+     data-title="css之box-sizing"
      data-content=""
-     data-url="http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/">
+     data-url="http://blog.yangchen123h.cn/2017/03/27/css之box-sizing/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -458,8 +470,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/"
-           data-title="SCRIPT65535:意外地调用了方法或属性访问" data-url="http://blog.yangchen123h.cn/2016/03/09/SCRIPT65535-意外地调用了方法或属性访问/">
+      <div class="ds-thread" data-thread-key="2017/03/27/css之box-sizing/"
+           data-title="css之box-sizing" data-url="http://blog.yangchen123h.cn/2017/03/27/css之box-sizing/">
       </div>
     
   </div>
@@ -572,7 +584,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题概述"><span class="nav-number">1.</span> <span class="nav-text">问题概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盒模型"><span class="nav-number">2.</span> <span class="nav-text">盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准盒模型"><span class="nav-number">2.1.</span> <span class="nav-text">标准盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE盒模型"><span class="nav-number">2.2.</span> <span class="nav-text">IE盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两者对比"><span class="nav-number">2.3.</span> <span class="nav-text">两者对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#box-sizing"><span class="nav-number">3.</span> <span class="nav-text">box-sizing</span></a></li></ol></div>
             
           </div>
         </section>
