@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="box-sizing," />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -78,29 +78,28 @@
 
 
 
-<meta name="description" content="前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。
-概念还是概念先行，看下MDN对box-sizing的解释吧
+<meta name="description" content="这是来自freecodecamp里的一道有趣的算法题，内容如下：
 
-box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可">
+把一个字符串中的字符重新排列生成新的字符串，返回新生成的字符串里没有连续重复字符的字符串个数.连续重复只以单个字符为准。例如, aab 应该返回 2 因为它总共有6种排列 (aab, aab, aba, aba, baa, baa), 但是只有两个 (aba and aba)没有连续重复的字符 (在本例中是 a).
+
+看到这个题的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css之box-sizing">
-<meta property="og:url" content="http://blog.yangchen123h.cn/2017/03/27/css之box-sizing/index.html">
+<meta property="og:title" content="一道有趣的算法题——非连续重复字符串计算">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2017/03/29/一道有趣的算法题——非连续重复字符串计算/index.html">
 <meta property="og:site_name" content="YangChen's Blog">
-<meta property="og:description" content="前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。
-概念还是概念先行，看下MDN对box-sizing的解释吧
+<meta property="og:description" content="这是来自freecodecamp里的一道有趣的算法题，内容如下：
 
-box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可">
-<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
-<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/ie%E7%9B%92%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E7%9B%92%E6%A8%A1%E5%9E%8B.gif">
-<meta property="og:updated_time" content="2017-03-29T11:56:40.000Z">
+把一个字符串中的字符重新排列生成新的字符串，返回新生成的字符串里没有连续重复字符的字符串个数.连续重复只以单个字符为准。例如, aab 应该返回 2 因为它总共有6种排列 (aab, aab, aba, aba, baa, baa), 但是只有两个 (aba and aba)没有连续重复的字符 (在本例中是 a).
+
+看到这个题的">
+<meta property="og:updated_time" content="2017-03-29T11:56:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css之box-sizing">
-<meta name="twitter:description" content="前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。
-概念还是概念先行，看下MDN对box-sizing的解释吧
+<meta name="twitter:title" content="一道有趣的算法题——非连续重复字符串计算">
+<meta name="twitter:description" content="这是来自freecodecamp里的一道有趣的算法题，内容如下：
 
-box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可">
-<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
+把一个字符串中的字符重新排列生成新的字符串，返回新生成的字符串里没有连续重复字符的字符串个数.连续重复只以单个字符为准。例如, aab 应该返回 2 因为它总共有6种排列 (aab, aab, aba, aba, baa, baa), 但是只有两个 (aba and aba)没有连续重复的字符 (在本例中是 a).
+
+看到这个题的">
 
 
 
@@ -118,7 +117,7 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
   };
 </script>
 
-  <title> css之box-sizing | YangChen's Blog </title>
+  <title> 一道有趣的算法题——非连续重复字符串计算 | YangChen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -298,7 +297,7 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
             
             
               
-                css之box-sizing
+                一道有趣的算法题——非连续重复字符串计算
               
             
           </h1>
@@ -310,8 +309,8 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-27T14:26:25+08:00" content="2017-03-27">
-              2017-03-27
+            <time itemprop="dateCreated" datetime="2017-03-29T15:30:18+08:00" content="2017-03-29">
+              2017-03-29
             </time>
           </span>
 
@@ -324,8 +323,8 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
                   </a>
                 </span>
 
@@ -340,8 +339,8 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/03/27/css之box-sizing/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/css之box-sizing/" itemprop="commentsCount"></span>
+                <a href="/2017/03/29/一道有趣的算法题——非连续重复字符串计算/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/29/一道有趣的算法题——非连续重复字符串计算/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -363,33 +362,18 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
       
 
       
-        <p>前一阵子逛论坛社区看看最近春招的面试题，以此来观察下前端发展和变化的趋势，一般看到问题时我都会过一下思路，如果不通的话就会记一下。在其中有个问题时box-sizing的理解，当时一看愣了一下，回头一查全都想了起来，所以在此记一下毕竟好记性不如烂笔头啊。</p>
-<h1 id="概念">概念</h1><p>还是概念先行，看下MDN对box-sizing的解释吧</p>
+        <p>这是来自<a href="https://www.freecodecamp.cn/challenges/no-repeats-please" target="_blank" rel="external">freecodecamp</a>里的一道有趣的算法题，内容如下：</p>
 <blockquote>
-<p>box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒模型。可以使用此属性来模拟不正确支持CSS框模型规范的浏览器的行为。</p>
+<p>把一个字符串中的字符重新排列生成新的字符串，返回新生成的字符串里没有连续重复字符的字符串个数.连续重复只以单个字符为准。例如, aab 应该返回 2 因为它总共有6种排列 (aab, aab, aba, aba, baa, baa), 但是只有两个 (aba and aba)没有连续重复的字符 (在本例中是 a).</p>
 </blockquote>
-<h1 id="盒模型">盒模型</h1><p>在概念中可以很容易的看出来这个属性是用来更改盒模型计算的，那么这里就自然而然的需要介绍两个盒模型一个是标准盒模型，一个是IE盒模型</p>
-<h2 id="标准盒模型">标准盒模型</h2><p>无论什么盒模型它都有这几个属性值，从外到分别是:</p>
-<ol>
-<li>margin</li>
-<li>border</li>
-<li>padding</li>
-<li>content</li>
-</ol>
-<p>对于标准盒模型来说，当修改了这个dom的width或height属性时，例如修改为200px，这个修改只是修改了content的width，其总宽度是content+padding+border+margin。这个宽度是要大于等于200px的。这就是标准盒模型的长宽计算过程，如图所示:<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png" alt="标准盒模型"></p>
-<h2 id="IE盒模型">IE盒模型</h2><p>有了标准盒模型自然也有非标准的，那就是IE盒模型，在怪异模式下css的盒模型就是这个模式，同标准盒模型一样它也有margin、border、padding、content这4个属性，但是与标准盒模型不一样的地方在于，它的width计算可与标准盒模型不一样，这里做个对比:</p>
-<ul>
-<li>标准盒模型的width为content的width，总宽高 = content(width)+padding+border+margin</li>
-<li>ie盒模型的width为content+padding+border的width，因此总宽高为 = (content+padding+border)(width)+margin</li>
-</ul>
-<p>ie盒模型的计算如图所示:<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/ie%E7%9B%92%E6%A8%A1%E5%9E%8B.jpg" alt="ie盒模型"></p>
-<h2 id="两者对比">两者对比</h2><p>一张图就可以清晰的看出两者的差异，主要差异在width的计算上，如图所示:<br><img src="http://7xr8op.com1.z0.glb.clouddn.com/%E7%9B%92%E6%A8%A1%E5%9E%8B.gif" alt="盒模型对比"></p>
-<h1 id="box-sizing">box-sizing</h1><p>接下来再回到box-sizing这个属性上就十分容易理解了，box-sizing有两个重要的属性，分别是：</p>
-<ol>
-<li>content-box。这是默认值，使用标准盒模型计算</li>
-<li>border-box。使用ie盒模型计算</li>
-</ol>
-<p>至此就可以灵活的切换css盒模型的计算方式来应对设计师的需求啦</p>
+<p>看到这个题的第一反应就是穷举遍历加判断的方式对这个问题进行求解，当然这个想法冒出来之后本能的直觉也告诉我这样做很愚蠢，会产生大量的无用功。</p>
+<h1 id="求解思路">求解思路</h1><p>仔细看看这道题用动态规划来解似乎是要好很多，对一个长度为n的字符串来说，它有n!种组合方式，在这n!种组合方式中如果有任意两个连续字符一样，那么就不符合题目要求的字符串。具体思路如下：</p>
+<p>以“aab”这个字符为例，组合的时候会将这个字符串分成两个部分，一部分是基础为不变对对象，另一部分是交换对象。为了方便看，构建一个对象来存放这两个属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">immutable</span>:[],</div><div class="line">  <span class="attr">swap</span>:[]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>例如“aab”会分为a,ab、a-],ab和b,aa这三块。如下所示:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">immutable</span>:[a],</div><div class="line">  <span class="attr">swap</span>:[a,b]</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">  <span class="attr">immutable</span>:[a],</div><div class="line">  <span class="attr">swap</span>:[a,b]</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">  <span class="attr">immutable</span>:[b],</div><div class="line">  <span class="attr">swap</span>:[a,a]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以a,ab为例，在[a,b]这个组合中a是与不变部分相同，另一个是不同的，这就意味着在这个交换属性中，必然会存在一个连续的字符。接下来在从swap中的两个字符分成不变与可变部分<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attribute">immutable</span>:[a],</div><div class="line">  swap:[b]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>两个不相等，这样一来就产生了一个符合要求字符串。</p>
+<h1 id="算法实现:">算法实现:</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">permAlone</span>(<span class="params">str,lc</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (str.length===<span class="number">0</span>)&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> res=<span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;str.length; i++)&#123;</div><div class="line">    <span class="keyword">if</span> (str[i]!==lc)&#123;</div><div class="line">      res+=permAlone(str.substring(<span class="number">0</span>,i)+str.substring(i+<span class="number">1</span>),str[i]);</div><div class="line">    &#125;</div><div class="line">  &#125;      </div><div class="line">  <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种分而治之的思想让这个复杂的问题变得更为的简单</p>
 
       
     </div>
@@ -410,7 +394,7 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
       
         <div class="post-tags">
           
-            <a href="/tags/box-sizing/" rel="tag">#box-sizing</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -419,17 +403,13 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/19/几个常用的js函数实现/" rel="next" title="几个常用的js函数实现">
-                <i class="fa fa-chevron-left"></i> 几个常用的js函数实现
+              <a href="/2017/03/27/css之box-sizing/" rel="next" title="css之box-sizing">
+                <i class="fa fa-chevron-left"></i> css之box-sizing
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/29/一道有趣的算法题——非连续重复字符串计算/" rel="prev" title="一道有趣的算法题——非连续重复字符串计算">
-                一道有趣的算法题——非连续重复字符串计算 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -444,10 +424,10 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/27/css之box-sizing/"
-     data-title="css之box-sizing"
+        <div class="ds-share flat" data-thread-key="2017/03/29/一道有趣的算法题——非连续重复字符串计算/"
+     data-title="一道有趣的算法题——非连续重复字符串计算"
      data-content=""
-     data-url="http://blog.yangchen123h.cn/2017/03/27/css之box-sizing/">
+     data-url="http://blog.yangchen123h.cn/2017/03/29/一道有趣的算法题——非连续重复字符串计算/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -474,8 +454,8 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/27/css之box-sizing/"
-           data-title="css之box-sizing" data-url="http://blog.yangchen123h.cn/2017/03/27/css之box-sizing/">
+      <div class="ds-thread" data-thread-key="2017/03/29/一道有趣的算法题——非连续重复字符串计算/"
+           data-title="一道有趣的算法题——非连续重复字符串计算" data-url="http://blog.yangchen123h.cn/2017/03/29/一道有趣的算法题——非连续重复字符串计算/">
       </div>
     
   </div>
@@ -588,7 +568,7 @@ box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS �
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盒模型"><span class="nav-number">2.</span> <span class="nav-text">盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准盒模型"><span class="nav-number">2.1.</span> <span class="nav-text">标准盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE盒模型"><span class="nav-number">2.2.</span> <span class="nav-text">IE盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两者对比"><span class="nav-number">2.3.</span> <span class="nav-text">两者对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#box-sizing"><span class="nav-number">3.</span> <span class="nav-text">box-sizing</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#求解思路"><span class="nav-number">1.</span> <span class="nav-text">求解思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法实现:"><span class="nav-number">2.</span> <span class="nav-text">算法实现:</span></a></li></ol></div>
             
           </div>
         </section>
