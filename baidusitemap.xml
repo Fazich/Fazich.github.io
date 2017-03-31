@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://blog.yangchen123h.cn/2017/03/31/Promise%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-03-31T07:45:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Promise总结</title>
+        <pubTime>2017-03-31T06:13:45.000Z</pubTime>
+        
+        <tag>es6</tag>
+         
+        <tag>promise</tag>
+         
+         
+           
+             
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.yangchen123h.cn/2017/03/27/css%E4%B9%8Bbox-sizing/</loc>
     <lastmod>2017-03-29T11:56:40.000Z</lastmod>
     <data>
@@ -232,21 +254,23 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/12/BFC%E4%B8%8E%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/05/18/JavaScript%E7%9A%84for%E5%BE%AA%E7%8E%AF%E5%86%99%E6%B3%95%E5%8F%8A%E6%95%88%E7%8E%87/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>BFC与清除浮动</title>
-        <pubTime>2016-03-11T16:38:20.000Z</pubTime>
+        <title>JavaScript的for循环写法及效率</title>
+        <pubTime>2016-05-18T12:31:54.000Z</pubTime>
         
-        <tag>BFC</tag>
+        <tag>for循环</tag>
          
-        <tag>浮动</tag>
+        <tag>效率</tag>
+         
+        <tag>写法</tag>
          
          
            
              
-              <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
+              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
           
         </display>
     </data>
@@ -329,28 +353,6 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/03/21/CommonJs-AMD-CMD/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>CommonJs,AMD,CMD</title>
-        <pubTime>2016-03-21T13:12:29.000Z</pubTime>
-        
-        <tag>模块化</tag>
-         
-        <tag>标准</tag>
-         
-         
-           
-             
-              <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.yangchen123h.cn/2016/04/22/git%E6%9C%AC%E5%9C%B0%E6%8F%90%E4%BA%A4%E6%9C%AA%E6%8E%A8%E9%80%81%E5%8F%88%E5%A4%8D%E4%BD%8D%E5%88%B0%E4%BA%86%E5%85%B6%E4%BB%96%E7%89%88%E6%9C%AC%E6%80%8E%E4%B9%88%E5%8A%9E/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
@@ -393,23 +395,43 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/18/JavaScript%E7%9A%84for%E5%BE%AA%E7%8E%AF%E5%86%99%E6%B3%95%E5%8F%8A%E6%95%88%E7%8E%87/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/03/21/CommonJs-AMD-CMD/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>JavaScript的for循环写法及效率</title>
-        <pubTime>2016-05-18T12:31:54.000Z</pubTime>
+        <title>CommonJs,AMD,CMD</title>
+        <pubTime>2016-03-21T13:12:29.000Z</pubTime>
         
-        <tag>for循环</tag>
+        <tag>模块化</tag>
          
-        <tag>效率</tag>
-         
-        <tag>写法</tag>
+        <tag>标准</tag>
          
          
            
              
               <breadCrumb title="js" url="http://blog.yangchen123h.cn/categories/js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/03/12/BFC%E4%B8%8E%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>BFC与清除浮动</title>
+        <pubTime>2016-03-11T16:38:20.000Z</pubTime>
+        
+        <tag>BFC</tag>
+         
+        <tag>浮动</tag>
+         
+         
+           
+             
+              <breadCrumb title="css" url="http://blog.yangchen123h.cn/categories/css/"/>
           
         </display>
     </data>
@@ -459,26 +481,6 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/</loc>
-    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>无障碍开发系列之WAI-ARIA</title>
-        <pubTime>2016-05-04T08:49:48.000Z</pubTime>
-        
-        <tag>html</tag>
-         
-         
-           
-             
-              <breadCrumb title="无障碍" url="http://blog.yangchen123h.cn/categories/%E6%97%A0%E9%9A%9C%E7%A2%8D/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.yangchen123h.cn/2016/04/22/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8B%E4%BB%B6%E7%BB%9F%E4%B8%80/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
@@ -499,18 +501,14 @@
 
     
   <url>
-    <loc>http://blog.yangchen123h.cn/2016/05/05/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E5%87%86%E5%88%99%E5%8F%8A%E8%AF%84%E7%BA%A7/</loc>
+    <loc>http://blog.yangchen123h.cn/2016/05/04/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8BWAI-ARIA/</loc>
     <lastmod>2016-11-17T07:39:06.000Z</lastmod>
     <data>
         <display>
-        <title>无障碍开发系列之准则及评级</title>
-        <pubTime>2016-05-05T13:54:04.000Z</pubTime>
+        <title>无障碍开发系列之WAI-ARIA</title>
+        <pubTime>2016-05-04T08:49:48.000Z</pubTime>
         
-        <tag>js</tag>
-         
         <tag>html</tag>
-         
-        <tag>css</tag>
          
          
            
@@ -557,6 +555,30 @@
         <tag>js</tag>
          
         <tag>html</tag>
+         
+         
+           
+             
+              <breadCrumb title="无障碍" url="http://blog.yangchen123h.cn/categories/%E6%97%A0%E9%9A%9C%E7%A2%8D/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.yangchen123h.cn/2016/05/05/%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E4%B9%8B%E5%87%86%E5%88%99%E5%8F%8A%E8%AF%84%E7%BA%A7/</loc>
+    <lastmod>2016-11-17T07:39:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>无障碍开发系列之准则及评级</title>
+        <pubTime>2016-05-05T13:54:04.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>html</tag>
+         
+        <tag>css</tag>
          
          
            
