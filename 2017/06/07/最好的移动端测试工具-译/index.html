@@ -1,0 +1,861 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="引言你是否正在寻找一种更先进的移动端测试方案？有很多种方式可以实现但是毕竟你的时间和精力有限无法一一了解。
+即使你是移动APP测试的专家，在自动化测试上也一定存在着改进的余地。你需要知道采用什么方案以及使用什么样的工具。
+移动端领域正在迅速的发展，移动APP包含的类型也是多种多样，例如从视频APP再到银行APP。这样以来测试移动APP会是一个相当复杂的过程。
+对移动APP来说，平台、操作系统、测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最好的移动端测试工具[译]">
+<meta property="og:url" content="http://blog.yangchen123h.cn/2017/06/07/最好的移动端测试工具-译/index.html">
+<meta property="og:site_name" content="YangChen's Blog">
+<meta property="og:description" content="引言你是否正在寻找一种更先进的移动端测试方案？有很多种方式可以实现但是毕竟你的时间和精力有限无法一一了解。
+即使你是移动APP测试的专家，在自动化测试上也一定存在着改进的余地。你需要知道采用什么方案以及使用什么样的工具。
+移动端领域正在迅速的发展，移动APP包含的类型也是多种多样，例如从视频APP再到银行APP。这样以来测试移动APP会是一个相当复杂的过程。
+对移动APP来说，平台、操作系统、测试">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/Types-of-Mobile-App-Testing.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/Mobile-Testing-Tools2.jpg">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/webload1.png">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/mobilelabs-logo-300x213.jpg">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/Katalon-Studio-logo.jpg">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/logo-kobiton.jpg">
+<meta property="og:image" content="http://7xr8op.com1.z0.glb.clouddn.com/Mobile-Testing-Tools5-150x150.jpg">
+<meta property="og:image" content="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools7.jpg">
+<meta property="og:image" content="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools8.jpg">
+<meta property="og:image" content="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools9.jpg">
+<meta property="og:image" content="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools10.jpg">
+<meta property="og:image" content="http://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools11.jpg">
+<meta property="og:image" content="http://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools12.jpg">
+<meta property="og:updated_time" content="2017-06-12T11:53:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最好的移动端测试工具[译]">
+<meta name="twitter:description" content="引言你是否正在寻找一种更先进的移动端测试方案？有很多种方式可以实现但是毕竟你的时间和精力有限无法一一了解。
+即使你是移动APP测试的专家，在自动化测试上也一定存在着改进的余地。你需要知道采用什么方案以及使用什么样的工具。
+移动端领域正在迅速的发展，移动APP包含的类型也是多种多样，例如从视频APP再到银行APP。这样以来测试移动APP会是一个相当复杂的过程。
+对移动APP来说，平台、操作系统、测试">
+<meta name="twitter:image" content="http://7xr8op.com1.z0.glb.clouddn.com/Types-of-Mobile-App-Testing.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 最好的移动端测试工具[译] | YangChen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d95e3b95f32dcf5757911eae96c3308d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YangChen's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">KEEP LIFE SIMPLE && STUPID</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Eegk8H9Wsy5c2UwpGZxY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags,categories " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                最好的移动端测试工具[译]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-07T18:57:43+08:00" content="2017-06-07">
+              2017-06-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化测试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/07/最好的移动端测试工具-译/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/07/最好的移动端测试工具-译/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="引言">引言</h1><p>你是否正在寻找一种更先进的移动端测试方案？有很多种方式可以实现但是毕竟你的时间和精力有限无法一一了解。</p>
+<p>即使你是移动APP测试的专家，在自动化测试上也一定存在着改进的余地。你需要知道采用什么方案以及使用什么样的工具。</p>
+<p>移动端领域正在迅速的发展，移动APP包含的类型也是多种多样，例如从视频APP再到银行APP。这样以来测试移动APP会是一个相当复杂的过程。</p>
+<p>对移动APP来说，平台、操作系统、测试场景以及网络环境都是多种多样的。</p>
+<p>Android和iOS是最为流行的两个移动端操作系统。在这两个平台上有成千上万的APP需要被测试。</p>
+<p>那么什么是移动端测试呢？</p>
+<p>移动端测试是一个过程，这个过程是为移动设备（例如平板电脑，智能手机等）设计和开发一个可以进行一致性和可用性的应用程序。</p>
+<h2 id="移动端测试通常分为以下几个类型">移动端测试通常分为以下几个类型</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/Types-of-Mobile-App-Testing.png" alt="Types-of-Mobile-App-Testing"></p>
+<ul>
+<li>功能测试：根据需求规范检查应用的基本功能</li>
+<li>性能测试：测试客户端性能、服务器性能以及网络性能</li>
+<li>内存测试：与PC相比移动设备的内存是有限的，这项测试用来检测APP的内存优化情况</li>
+<li>中断测试：用来检测APP在运行期间受到其他情况导致运行中断的情况，例如来电、短信、低内存警告、低电量警告灯。</li>
+<li>安装测试：安装测试用来测试应用程序安装是否简单、平滑的，包括更新和卸载。</li>
+<li>可用性测试：它用来检测应用的效率、有效性以及满意度。</li>
+</ul>
+<h2 id="移动端自动化测试工具的类别">移动端自动化测试工具的类别</h2><ol>
+<li>最佳的移动端测试工具</li>
+<li>基于云服务的移动端测试工具和服务</li>
+<li>移动APP闪退崩溃报告工具</li>
+<li>移动端性能测试工具</li>
+<li>移动设备上用来测试在线网站的模拟器</li>
+<li>移动端A/B测试优化用具</li>
+<li>移动端日志记录及测试管理工具</li>
+<li>移动端测试服务及服务提供</li>
+</ol>
+<h1 id="最好的移动端测试工具">最好的移动端测试工具</h1><h2 id="1-_Appium（Android和iOS）">1. Appium（Android和iOS）</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/Mobile-Testing-Tools2.jpg" alt="Appium（Android和iOS）"></p>
+<ul>
+<li>Appium是一款在iOS和Android测试原生APP、web应用以及hybird应用的开源的自动化测试工具</li>
+<li>对于使用Android或iOS SDk开发的APP也是一样适用的</li>
+<li>Appium支持iOS上的Safari和Android上其他所有内置浏览器应用程序</li>
+<li>不需要修改任何APP的代码来进行测试，它适用于任何在真机或模拟器上运行的iOS或Android应用</li>
+<li>此工具仅适用于Android和iOS平台上运行的WebLOAD free edition程序<br>下载地址:<a href="http://appium.io/" target="_blank" rel="external">appium</a></li>
+</ul>
+<h2 id="2-_WebLOAD_–_移动端性能测试工具:">2. WebLOAD – 移动端性能测试工具:</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/webload1.png" alt="webload"><br>了解你的网站能够处理多少移动用户访问的唯一方法就是对您的网站做移动用户的压力测试。WebLOAD可以进行任何场景的测试，这样就能让您准确的了解Android和iOS用户体验。你可以在模拟器或者真机环境下进行测试（这样就能反映出真实的用户体验）</p>
+<p>WebLOAD允许您通过真机设备，模拟器，JavaScript或直接使用WebLOAD的内置IDE来记录测试信息。 WebLOAD包含一个实时的Web仪表板，以便您可以跟踪任何设备上移动设备的负载测试。</p>
+<p>免费版的WebLOAD支持50个虚拟用户，全部功能的测试。</p>
+<p>下载地址:<a href="http://www.radview.com/?utm_campaign=mobile&amp;utm_medium=directory&amp;utm_source=softwaretestinghelp" target="_blank" rel="external">WebLOAD free edition</a></p>
+<h2 id="3-_deviceConnect:_移动端测试管理工具">3. deviceConnect: 移动端测试管理工具</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/mobilelabs-logo-300x213.jpg" alt="deviceConnect"></p>
+<ul>
+<li>麻雀虽小五脏俱全，deviceConnect由一个服务器、操作软件和一个架构设备组成</li>
+<li>十分安全，它可以部署您的企业防火墙后面</li>
+<li>基于Web的管理控制台允许工程师远程管理，跟踪和监控测试</li>
+<li>支持Android和iOS的智能设备远程连接和访问，支持和手动或自动化测试</li>
+<li>可靠的自动化工具推荐，Appium（Selenium），Tricentis，SOASTA，SeeTest，Calabash，HP的UFT，IBM的Rational以及大多数其他移动自动化工具</li>
+</ul>
+<p>更多细节及下载地址:<a href="https://mobilelabsinc.com/products/deviceconnect?utm_medium=review_post&amp;utm_campaign=best_testing_tools&amp;utm_source=softwaretestinghelp.com" target="_blank" rel="external">deviceConnect demo</a></p>
+<h2 id="4-_Katalon_Studio_–_一个完整且免费的移动端及Web自动化测试工具">4.  Katalon Studio – 一个完整且免费的移动端及Web自动化测试工具</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/Katalon-Studio-logo.jpg" alt="Katalon Studio"></p>
+<ul>
+<li>全功能测试及执行管理</li>
+<li>为新手及高手准备的双脚本界面</li>
+<li>兼容Android和iOS的最新版本</li>
+<li>可以在模拟器、真机设备或云服务上执行脚本</li>
+<li>内置关键字的支持GUI，API和数据测试</li>
+<li>支持终端模式下的CI工作流程</li>
+<li>与JIRA，GIT和Kobiton移动云服务对接完善开箱即用</li>
+</ul>
+<p>下载地址：<a href="https://www.katalon.com/?utm_source=sth&amp;utm_campaign=58%20best%20mobile%20testing%20tool&amp;utm_medium=post" target="_blank" rel="external">Free Katalon Studio</a></p>
+<h2 id="5-_Kobiton_(iOS和Android的设备云服务)">5. Kobiton (iOS和Android的设备云服务)</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/logo-kobiton.jpg" alt="Kobiton"></p>
+<ul>
+<li>Kobiton是一个移动设备云平台，可以访问真机设备，以便在本机，网络和混合Android/iOS应用程序上进行手动和自动测试</li>
+<li>建立在Appium开源框架之上</li>
+<li>不断向支持设备列表中最新的设备和操作系统版本</li>
+<li>跨设备测试无需脚本修改</li>
+<li>自动生成的运行日志，命令，截图和元数据可以更快地定位问题</li>
+</ul>
+<p>更多信息：(Sign up to join the beta for Free)[<a href="https://kobiton.com/?utm_source=software_testing_help&amp;utm_campaign=software_testing_help&amp;utm_medium=pr&amp;utm_content=ranking_5spot" target="_blank" rel="external">https://kobiton.com/?utm_source=software_testing_help&amp;utm_campaign=software_testing_help&amp;utm_medium=pr&amp;utm_content=ranking_5spot</a>]</p>
+<h2 id="6-_MonkeyTalk_(Android和iOS):">6. MonkeyTalk (Android和iOS):</h2><p><img src="http://7xr8op.com1.z0.glb.clouddn.com/Mobile-Testing-Tools5-150x150.jpg" alt="MonkeyTalk"></p>
+<ul>
+<li>MonkeyTalk可自动为Android和iOS进行功能性测试</li>
+<li>它是一个开源工具，由三个组件组成，包括IDE，脚本和代理</li>
+<li>IDE使用录制和播放创建测试脚本，代理是是APP和测试仪库之间的连接纽带，脚本包括关键字，语法和Java执行引擎</li>
+<li>每一个小的“冒烟测试”都通过数据驱动，它适用于native、hybird和web应用</li>
+</ul>
+<p>下载链接：<a href="https://www.cloudmonkeymobile.com/monkeytalk" target="_blank" rel="external">MonkeyTalk</a></p>
+<h2 id="7-_Calabash_(Android和iOS):">7. Calabash (Android和iOS):</h2><ul>
+<li>Calabash是由Xamarin和Calabash维护的自动化测试框架，可与Selenium Web Driver进行比较</li>
+<li>它可以为native app进行自动化的功能测试</li>
+<li>它包含两个开源库，一个用于Android的开源库，另一个用于iOS native应用和hybird应用</li>
+<li>它提供专门用于触摸屏体验的API</li>
+<li>它适用于Ruby，Java，.NET，Flex和许多其他编程语言</li>
+</ul>
+<p>下载链接：<a href="http://calaba.sh/" target="_blank" rel="external">Calabash</a></p>
+<h2 id="8-_iOS_UI_Automation(iOS):">8. iOS UI Automation(iOS):</h2><ul>
+<li>iOS UI Automation是专为iOS应用开发的Apple开源测试自动化框架</li>
+<li>通过测试脚本对接口进行自动化的测试</li>
+<li>JavaScript接口可以在设备UI上进行测试</li>
+<li>它与其他工具，方法和框架不兼容，因为它是专有工具</li>
+<li>它有助于减少软件产品开发所需的流程性工作和时间</li>
+</ul>
+<p>更多信息：<a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html" target="_blank" rel="external">iOS UI Automation</a></p>
+<h2 id="9-_UI_Automator_(Android):">9. UI Automator (Android):</h2><p><img src="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools7.jpg" alt="UI Automator"></p>
+<ul>
+<li>UI Automator是一个开源框架，允许使用自动功能测试用例测试UI</li>
+<li>可以在一个或多个设备上运行</li>
+<li>automatics.jar文件的/platforms/目录下，包含着UI Automator的接口</li>
+<li>UI Automator框架使用JavaScript编写</li>
+</ul>
+<p>更多信息：<a href="http://developer.android.com/tools/testing-support-library/index.html#UIAutomator" target="_blank" rel="external">UI Aotomator</a></p>
+<h2 id="10-_Robotium_(Android)">10. Robotium (Android)</h2><p><img src="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools8.jpg" alt="Robotium"></p>
+<ul>
+<li>Robotium是专为Android UI测试而开发的开源库</li>
+<li>它是一个Android测试自动化框架，为原生和混合应用程序提供支持</li>
+<li>它使用TestDroid和javascript脚本为Android应用进行自动化的黑盒测试</li>
+<li>通过测试脚本，它还允许编写功能，系统和用户验收测试场景</li>
+<li>基于测试脚本，它可以编写函数、系统和用户操作的测试场景</li>
+</ul>
+<p>下载链接：<a href="https://code.google.com/p/robotium/wiki/Downloads?tm=2" target="_blank" rel="external">Robotium</a></p>
+<h2 id="11-_iOS_Driver_(iOS)">11. iOS Driver (iOS)</h2><p><img src="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools9.jpg" alt="iOS Driver"></p>
+<ul>
+<li>该工具是一个开源工具，可以和Selenium完全整合，并使用Selenium / WebDriver API自动化测试iOS原生应用和混合应用程序</li>
+<li>这个工具在模拟器上的执行效率要比在真机设备上好，部分最新的设备可以在真机设备上运行，但是要比在模拟器上慢</li>
+<li>无需修改任何代码或者加载其他应用来测试设备上的app</li>
+</ul>
+<p>下载链接：<a href="http://ios-driver.github.io/ios-driver/" target="_blank" rel="external">iOS Driver</a></p>
+<h2 id="12-_KeepItFunctional_(iOS):">12. KeepItFunctional (iOS):</h2><p><img src="http://cdn2.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools10.jpg" alt="KeepItFunctional"></p>
+<ul>
+<li>KeepItFunctional（KIF）是用于功能测试的iOS集成测试框架，使用标准XCTest测试目标构建和执行测试用例</li>
+<li>它是一个开源框架，旨在测试移动应用UI，并允许iOS应用程序的自动化测试</li>
+</ul>
+<p>下载链接：<a href="https://github.com/kif-framework/KIF" target="_blank" rel="external">KIF</a></p>
+<h2 id="13-_Selendroid_(Selenium_for_Android):">13. Selendroid (Selenium for Android):</h2><p><img src="http://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools11.jpg" alt="Selendroid"></p>
+<ul>
+<li>Selendroid也是一个开源框架，他可以同时对多个设备和模拟器进行测试</li>
+<li>它由Selenium2客户端API编写，通过原生、混合及web应用的UI驱动测试</li>
+<li>Selendroid的测试代码基于Selenium 2和WebDriver API<br>下载链接：<a href="http://selendroid.io/" target="_blank" rel="external">Selendroid</a></li>
+</ul>
+<h2 id="14-_Ranorex_(Android_and_iOS):">14. Ranorex (Android and iOS):</h2><p><img src="http://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2015/08/Mobile-Testing-Tools12.jpg" alt="Ranorex"></p>
+<ul>
+<li>Ranorex是开源的UI自动化测试框架，用来测试Web和移动应用程序</li>
+<li>Ranorex通常用来进行功能测试，以测试原生iOS应用程序，原生移动应用程序，iOS的移动网络测试，触摸测试等。</li>
+<li>Ranorex支持验收测试，自动化测试，GUI测试，Web测试，移动测试，数据驱动测试，跨设备测试等。</li>
+</ul>
+<p>下载链接：<a href="http://www.ranorex.com/" target="_blank" rel="external">Ranorex</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/31/Promise总结/" rel="next" title="Promise总结">
+                <i class="fa fa-chevron-left"></i> Promise总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/06/07/最好的移动端测试工具-译/"
+     data-title="最好的移动端测试工具[译]"
+     data-content=""
+     data-url="http://blog.yangchen123h.cn/2017/06/07/最好的移动端测试工具-译/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/06/07/最好的移动端测试工具-译/"
+           data-title="最好的移动端测试工具[译]" data-url="http://blog.yangchen123h.cn/2017/06/07/最好的移动端测试工具-译/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr8op.com1.z0.glb.clouddn.com/logo.jpg"
+               alt="yangchen" />
+          <p class="site-author-name" itemprop="name">yangchen</p>
+          <p class="site-description motion-element" itemprop="description">热爱技术，追求卓越</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Fazich" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2293060607/info" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端测试通常分为以下几个类型"><span class="nav-number">1.1.</span> <span class="nav-text">移动端测试通常分为以下几个类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端自动化测试工具的类别"><span class="nav-number">1.2.</span> <span class="nav-text">移动端自动化测试工具的类别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最好的移动端测试工具"><span class="nav-number">2.</span> <span class="nav-text">最好的移动端测试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_Appium（Android和iOS）"><span class="nav-number">2.1.</span> <span class="nav-text">1. Appium（Android和iOS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_WebLOAD_–_移动端性能测试工具:"><span class="nav-number">2.2.</span> <span class="nav-text">2. WebLOAD – 移动端性能测试工具:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_deviceConnect:_移动端测试管理工具"><span class="nav-number">2.3.</span> <span class="nav-text">3. deviceConnect: 移动端测试管理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-_Katalon_Studio_–_一个完整且免费的移动端及Web自动化测试工具"><span class="nav-number">2.4.</span> <span class="nav-text">4.  Katalon Studio – 一个完整且免费的移动端及Web自动化测试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-_Kobiton_(iOS和Android的设备云服务)"><span class="nav-number">2.5.</span> <span class="nav-text">5. Kobiton (iOS和Android的设备云服务)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-_MonkeyTalk_(Android和iOS):"><span class="nav-number">2.6.</span> <span class="nav-text">6. MonkeyTalk (Android和iOS):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-_Calabash_(Android和iOS):"><span class="nav-number">2.7.</span> <span class="nav-text">7. Calabash (Android和iOS):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-_iOS_UI_Automation(iOS):"><span class="nav-number">2.8.</span> <span class="nav-text">8. iOS UI Automation(iOS):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-_UI_Automator_(Android):"><span class="nav-number">2.9.</span> <span class="nav-text">9. UI Automator (Android):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-_Robotium_(Android)"><span class="nav-number">2.10.</span> <span class="nav-text">10. Robotium (Android)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-_iOS_Driver_(iOS)"><span class="nav-number">2.11.</span> <span class="nav-text">11. iOS Driver (iOS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-_KeepItFunctional_(iOS):"><span class="nav-number">2.12.</span> <span class="nav-text">12. KeepItFunctional (iOS):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-_Selendroid_(Selenium_for_Android):"><span class="nav-number">2.13.</span> <span class="nav-text">13. Selendroid (Selenium for Android):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-_Ranorex_(Android_and_iOS):"><span class="nav-number">2.14.</span> <span class="nav-text">14. Ranorex (Android and iOS):</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangchen123h"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
